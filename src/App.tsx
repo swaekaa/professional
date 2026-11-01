@@ -36,18 +36,18 @@ function PortfolioContent() {
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-[#E7E7E7] selection:bg-[#E45B43]/30 selection:text-white">
-      {/* Interactive Dot Shader GPU Background */}
+      {/* Interactive Dot Shader GPU Background — Subtle & Fine Minimalist Grid */}
       <DotShader
         className="fixed inset-0 pointer-events-none z-0"
-        dotColor="rgba(255, 255, 255, 0.07)"
+        dotColor="rgba(255, 255, 255, 0.05)"
         accentColor={accent.primary}
-        dotSize={1.4}
-        spacing={24}
-        cursorRadius={190}
-        distortionStrength={0.4}
-        maxScale={2.4}
-        waveIntensity={0.2}
-        speed={0.8}
+        dotSize={0.95}
+        spacing={26}
+        cursorRadius={110}
+        distortionStrength={0.08}
+        maxScale={1.28}
+        waveIntensity={0.1}
+        speed={0.6}
         interactive={true}
         overlay={false}
       />

@@ -180,8 +180,9 @@ export default function PixelTrex() {
     const updateLoop = () => {
       tick++;
 
-      const targetX = mouseRef.current.x + 22;
-      const targetY = mouseRef.current.y + 12;
+      // Follow cursor positioned comfortably to the bottom-right of cursor pointer
+      const targetX = mouseRef.current.x + 38;
+      const targetY = mouseRef.current.y + 36;
 
       const dx = targetX - posRef.current.x;
       const dy = targetY - posRef.current.y;

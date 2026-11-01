@@ -601,3 +601,4 @@ export const DotShader: React.FC<DotShaderProps> = ({
 };
 
 export default DotShader;
+
