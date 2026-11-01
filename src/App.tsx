@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
-import DotShader from './components/ui/dot-shader';
 import SidebarNavigation from './components/SidebarNavigation';
 import HeroSection from './components/HeroSection';
 import GithubHeatmap from './components/GithubHeatmap';
@@ -18,6 +17,7 @@ import './index.css';
 function PortfolioContent() {
   const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
   const { accent } = useTheme();
 
   useEffect(() => {
@@ -30,27 +30,32 @@ function PortfolioContent() {
       }
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-[#E7E7E7] selection:bg-[#E45B43]/30 selection:text-white">
-      {/* Interactive Dot Shader GPU Background — Subtle & Fine Minimalist Grid */}
-      <DotShader
-        className="fixed inset-0 pointer-events-none z-0"
-        dotColor="rgba(255, 255, 255, 0.05)"
-        accentColor={accent.primary}
-        dotSize={0.95}
-        spacing={26}
-        cursorRadius={110}
-        distortionStrength={0.08}
-        maxScale={1.28}
-        waveIntensity={0.1}
-        speed={0.6}
-        interactive={true}
-        overlay={false}
+      {/* Ambient Accent Cursor Aura (Soft light beneath noise) */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(550px circle at ${mousePos.x}px ${mousePos.y}px, ${accent.glow} 0%, transparent 65%)`,
+          opacity: 0.22,
+        }}
+        aria-hidden="true"
       />
+
+      {/* Tactile Dark Film Grain / Noise Texture Background */}
+      <div className="noise-overlay" aria-hidden="true" />
 
       {/* Scroll Progress Indicator */}
       <div
