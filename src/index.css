@@ -190,3 +190,20 @@ body {
   z-index: 9999;
   transition: width 0.1s linear;
 }
+
+/* Gentle ambient breeze for pixel forest */
+@keyframes pineSway {
+  0% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(0.45deg);
+  }
+  70% {
+    transform: rotate(-0.35deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+

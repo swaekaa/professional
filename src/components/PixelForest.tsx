@@ -1,189 +1,65 @@
-// Pixel art pine forest — pure SVG, no background, fixed bottom-right
+import forestData from './forest-paths.json';
 
-// Each character → pixel. 'X' = foliage, 'T' = trunk, ' ' = transparent
-const P = 5; // pixel unit size in px
+interface LayerData {
+  color: string;
+  d: string;
+}
 
-const px = (rows: string[]): Array<{ x: number; y: number; t: 'leaf' | 'trunk' }> => {
-  const cells: Array<{ x: number; y: number; t: 'leaf' | 'trunk' }> = [];
-  rows.forEach((row, y) => {
-    [...row].forEach((ch, x) => {
-      if (ch === 'X') cells.push({ x, y, t: 'leaf' });
-      else if (ch === 'T') cells.push({ x, y, t: 'trunk' });
-    });
-  });
-  return cells;
-};
-
-// ── Pixel art pine trees ────────────────────────────────────────────────────
-
-const TREE_A = px([
-  '      X      ',
-  '     XXX     ',
-  '    XXXXX    ',
-  '   XXXXXXX   ',
-  '  XXXXXXXXX  ',
-  '     XXX     ',
-  '    XXXXX    ',
-  '   XXXXXXX   ',
-  '  XXXXXXXXX  ',
-  ' XXXXXXXXXXX ',
-  '     XXX     ',
-  '    XXXXX    ',
-  '   XXXXXXX   ',
-  '  XXXXXXXXX  ',
-  ' XXXXXXXXXXX ',
-  'XXXXXXXXXXXXX',
-  '     XXX     ',
-  '    XXXXX    ',
-  '   XXXXXXX   ',
-  '  XXXXXXXXX  ',
-  ' XXXXXXXXXXX ',
-  'XXXXXXXXXXXXX',
-  '      TT     ',
-  '      TT     ',
-  '      TT     ',
-  '      TT     ',
-  '      TT     ',
-  '      TT     ',
-]);
-
-const TREE_B = px([
-  '     X     ',
-  '    XXX    ',
-  '   XXXXX   ',
-  '  XXXXXXX  ',
-  ' XXXXXXXXX ',
-  '    XXX    ',
-  '   XXXXX   ',
-  '  XXXXXXX  ',
-  ' XXXXXXXXX ',
-  'XXXXXXXXXXX',
-  '    XXX    ',
-  '   XXXXX   ',
-  '  XXXXXXX  ',
-  ' XXXXXXXXX ',
-  'XXXXXXXXXXX',
-  '    TT     ',
-  '    TT     ',
-  '    TT     ',
-  '    TT     ',
-  '    TT     ',
-]);
-
-const TREE_C = px([
-  '    X    ',
-  '   XXX   ',
-  '  XXXXX  ',
-  ' XXXXXXX ',
-  '   XXX   ',
-  '  XXXXX  ',
-  ' XXXXXXX ',
-  'XXXXXXXXX',
-  '   XXX   ',
-  '  XXXXX  ',
-  ' XXXXXXX ',
-  'XXXXXXXXX',
-  '   TT    ',
-  '   TT    ',
-  '   TT    ',
-  '   TT    ',
-]);
-
-const TREE_D = px([
-  '   X   ',
-  '  XXX  ',
-  ' XXXXX ',
-  '  XXX  ',
-  ' XXXXX ',
-  'XXXXXXX',
-  '  XXX  ',
-  ' XXXXX ',
-  'XXXXXXX',
-  '  TT   ',
-  '  TT   ',
-  '  TT   ',
-]);
-
-// ── Tree heights (row count) ─────────────────────────────────────────────────
-
-const HEIGHTS: Record<string, number> = {
-  A: 28, B: 21, C: 16, D: 12,
-};
-
-// ── Scene: which trees, x-offset in pixel-grid units, tree key ───────────────
-
-const SCENE: Array<{ tree: ReturnType<typeof px>; cols: number; rows: number; gridX: number; opacity: number }> = [
-  { tree: TREE_A, cols: 13, rows: HEIGHTS.A, gridX: 0,  opacity: 1    },
-  { tree: TREE_C, cols:  9, rows: HEIGHTS.C, gridX: 15, opacity: 0.75 },
-  { tree: TREE_B, cols: 11, rows: HEIGHTS.B, gridX: 26, opacity: 0.9  },
-  { tree: TREE_D, cols:  7, rows: HEIGHTS.D, gridX: 39, opacity: 0.55 },
+const fireflies = [
+  { id: 1, left: '30%', top: '48%', duration: '5.2s', delay: '0s', size: 3 },
+  { id: 2, left: '52%', top: '32%', duration: '6.8s', delay: '1.8s', size: 2.5 },
+  { id: 3, left: '68%', top: '50%', duration: '5.9s', delay: '3.1s', size: 3 },
+  { id: 4, left: '40%', top: '68%', duration: '7.4s', delay: '0.9s', size: 2 },
+  { id: 5, left: '78%', top: '62%', duration: '6.1s', delay: '2.4s', size: 2.5 },
 ];
 
-// ── SVG dimensions ────────────────────────────────────────────────────────────
-
-const TOTAL_COLS = 47; // 39 + 7 + 1
-const TOTAL_ROWS = HEIGHTS.A;
-const SVG_W = TOTAL_COLS * P;
-const SVG_H = TOTAL_ROWS * P;
-
-// ── Colour palette ────────────────────────────────────────────────────────────
-// Very dark muted forest greens — subtle against #050505
-
-const LEAF_DARK   = '#162516';
-const LEAF_BASE   = '#1c2e1c';
-const LEAF_MID    = '#233323';
-const LEAF_LIGHT  = '#2a3d2a';
-const TRUNK_COLOR = '#1a1208';
-
-const leafShade = (col: number, totalCols: number): string => {
-  const t = col / (totalCols - 1);
-  if (t < 0.15) return LEAF_DARK;
-  if (t < 0.4)  return LEAF_BASE;
-  if (t < 0.7)  return LEAF_MID;
-  return LEAF_LIGHT;
-};
-
 export default function PixelForest() {
+  const { totalCols, totalRows, layers } = forestData as {
+    totalCols: number;
+    totalRows: number;
+    layers: Record<string, LayerData>;
+  };
+
   return (
     <div
-      style={{
-        position: 'fixed',
-        right: 0,
-        bottom: 0,
-        width: SVG_W,
-        height: SVG_H,
-        pointerEvents: 'none',
-        zIndex: 1,
-        opacity: 0.9,
-      }}
+      className="fixed bottom-0 right-0 md:right-3 lg:right-8 pointer-events-none select-none z-0 flex items-end justify-end overflow-hidden"
       aria-hidden="true"
     >
-      <svg
-        width={SVG_W}
-        height={SVG_H}
-        viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ display: 'block', imageRendering: 'pixelated' }}
-      >
-        {SCENE.map(({ tree, cols, rows, gridX, opacity }) => {
-          // bottom-align all trees
-          const yOffset = TOTAL_ROWS - rows;
-          return (
-            <g key={gridX} opacity={opacity}>
-              {tree.map(({ x, y, t }, i) => (
-                <rect
-                  key={i}
-                  x={(gridX + x) * P}
-                  y={(yOffset + y) * P}
-                  width={P}
-                  height={P}
-                  fill={t === 'trunk' ? TRUNK_COLOR : leafShade(x, cols)}
-                />
-              ))}
-            </g>
-          );
-        })}
-      </svg>
+      <div className="relative">
+        {/* Floating pixel forest motes / fireflies */}
+        {fireflies.map((f) => (
+          <div
+            key={f.id}
+            className="absolute rounded-none pointer-events-none animate-pulse"
+            style={{
+              left: f.left,
+              top: f.top,
+              width: `${f.size}px`,
+              height: `${f.size}px`,
+              backgroundColor: '#a3e635',
+              boxShadow: '0 0 7px rgba(163, 230, 53, 0.85)',
+              animationDuration: f.duration,
+              animationDelay: f.delay,
+              opacity: 0.8,
+            }}
+          />
+        ))}
+
+        {/* Handcrafted pixel art pine forest SVG with transparent background */}
+        <svg
+          viewBox={`0 0 ${totalCols} ${totalRows}`}
+          className="w-[220px] sm:w-[280px] md:w-[340px] lg:w-[380px] xl:w-[420px] h-auto block filter drop-shadow-[0_16px_36px_rgba(0,0,0,0.95)]"
+          shapeRendering="crispEdges"
+          style={{
+            transformOrigin: 'bottom right',
+            animation: 'pineSway 10s ease-in-out infinite alternate',
+          }}
+        >
+          {Object.entries(layers).map(([key, layer]) => (
+            <path key={key} d={layer.d} fill={layer.color} />
+          ))}
+        </svg>
+      </div>
     </div>
   );
 }
