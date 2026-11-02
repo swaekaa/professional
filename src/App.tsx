@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import PixelTrex from './components/PixelTrex';
 import PixelForest from './components/PixelForest';
 import PixelBarn from './components/PixelBarn';
+import FadeContent from './components/FadeContent';
 import './index.css';
 
 function PortfolioContent() {
@@ -66,18 +67,36 @@ function PortfolioContent() {
 
         {/* Main Content Column (Restrained narrow width: ~500–540px, journal style) */}
         <main className="w-full md:max-w-[540px] flex-1 min-w-0">
-          <HeroSection />
-          <GithubHeatmap />
-          <LeetCodeStats />
-          <ExperienceTimeline />
-          <ProjectList />
-          <ResearchSection />
-          <WritingSection />
-          <CommunityAndJourney />
-          <ContactAndNote
-            isNoteModalOpen={isNoteModalOpen}
-            onCloseNoteModal={() => setIsNoteModalOpen(false)}
-          />
+          <FadeContent trigger="mount" duration={1} blur={false}>
+            <HeroSection />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <GithubHeatmap />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <LeetCodeStats />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <ExperienceTimeline />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <ProjectList />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <ResearchSection />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <WritingSection />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <CommunityAndJourney />
+          </FadeContent>
+          <FadeContent threshold={0.12} duration={1}>
+            <ContactAndNote
+              isNoteModalOpen={isNoteModalOpen}
+              onCloseNoteModal={() => setIsNoteModalOpen(false)}
+            />
+          </FadeContent>
           <Footer />
         </main>
       </div>
