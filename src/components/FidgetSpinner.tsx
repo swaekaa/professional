@@ -130,16 +130,16 @@ export default function FidgetSpinner({
           e.stopPropagation();
         }}
         title="Flick or click to spin!"
-        className="relative cursor-grab active:cursor-grabbing touch-none flex items-center justify-center p-2 rounded-lg bg-[#0e0e0e] border border-[#202020] hover:border-[var(--accent)] transition-colors group"
-        style={{ width: `${size + 16}px`, height: `${size + 16}px` }}
+        className="relative cursor-grab active:cursor-grabbing touch-none flex items-center justify-center group"
+        style={{ width: `${size + 12}px`, height: `${size + 12}px` }}
       >
-        {/* Subtle accent speed glow */}
+        {/* Subtle circular accent speed glow behind spinning lobes */}
         <div
-          className="absolute inset-0 rounded-lg pointer-events-none transition-opacity duration-300"
+          className="absolute inset-1 rounded-full pointer-events-none transition-opacity duration-300"
           style={{
             backgroundColor: 'var(--accent)',
-            opacity: Math.min(rpm / 2500, 0.3),
-            filter: 'blur(8px)',
+            opacity: Math.min(rpm / 2500, 0.35),
+            filter: 'blur(12px)',
           }}
         />
 
@@ -248,3 +248,4 @@ export default function FidgetSpinner({
     </div>
   );
 }
+
