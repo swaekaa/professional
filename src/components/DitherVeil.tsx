@@ -431,8 +431,8 @@ export default function DitherVeil({
     let destroyed = false;
 
     // State
-    const mouse = { x: -9999, y: -9999 };
-    const prev = { x: -9999, y: -9999 };
+    const mouse = { x: -99999, y: -99999 };
+    const prev = { x: -99999, y: -99999 };
     let introStart = performance.now();
     const bursts: Array<{ x: number; y: number; t: number; r: number }> = [];
 
@@ -677,8 +677,8 @@ export default function DitherVeil({
       }
       viewProg.uniforms.uBursts.value = burstUniforms;
 
-      // Intro
-      const introT = Math.min((now - introStart) / INTRO_MS, 1);
+      // Intro — skip if no reveal radius (always-dithered mode)
+      const introT = revealRadius > 0 ? Math.min((now - introStart) / INTRO_MS, 1) : 0;
       viewProg.uniforms.uIntro.value = introT < 1 ? introT : 0;
 
       renderer.render({ scene: viewMesh });

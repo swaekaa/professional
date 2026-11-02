@@ -49,29 +49,29 @@ function PortfolioContent() {
       <div className="scanlines-overlay" aria-hidden="true" />
       <div className="vignette-overlay" aria-hidden="true" />
 
-      {/* DitherVeil WebGL dithered forest background — right side, pointer-events-none */}
+      {/* DitherVeil WebGL dithered art — right side, always-visible stipple on dark bg */}
       <div
         className="fixed right-0 top-0 h-screen pointer-events-none"
-        style={{ width: '52%', zIndex: 0, opacity: 0.28 }}
+        style={{ width: '55%', zIndex: 0, opacity: 0.82 }}
         aria-hidden="true"
       >
         <DitherVeil
-          src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1400&auto=format&fit=crop"
-          pattern="bayer"
-          pixelSize={2}
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1400&auto=format&fit=crop"
+          pattern="noise"
+          pixelSize={1.5}
           inkColor="#050505"
-          paperColor="#2a2a2a"
-          revealRadius={180}
-          softness={0.55}
-          linger={1.2}
-          fit="cover"
-          palette="duotone"
-          levels={2}
-          contrast={1.2}
-          brightness={0}
+          paperColor="#c8c8c8"
+          revealRadius={0}
+          softness={0}
+          linger={0}
+          fit="contain"
+          palette="mono"
+          levels={3}
+          contrast={1.4}
+          brightness={0.05}
           rim={0}
           reverse={false}
-          wander={true}
+          wander={false}
           clickBurst={false}
         />
       </div>
