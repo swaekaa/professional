@@ -138,6 +138,48 @@ body {
   image-rendering: crisp-edges;
 }
 
+/* Orbiting Dizzy Stars & Wobble Animations */
+@keyframes dizzyOrbit1 {
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(18px) rotate(0deg) scale(0.9); opacity: 0.9; }
+  50% { transform: translate(-50%, -50%) rotate(180deg) translateX(18px) rotate(-180deg) scale(1.15); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(18px) rotate(-360deg) scale(0.9); opacity: 0.9; }
+}
+
+@keyframes dizzyOrbit2 {
+  0% { transform: translate(-50%, -50%) rotate(120deg) translateX(18px) rotate(-120deg) scale(1.15); opacity: 1; }
+  50% { transform: translate(-50%, -50%) rotate(300deg) translateX(18px) rotate(-300deg) scale(0.85); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) rotate(480deg) translateX(18px) rotate(-480deg) scale(1.15); opacity: 1; }
+}
+
+@keyframes dizzyOrbit3 {
+  0% { transform: translate(-50%, -50%) rotate(240deg) translateX(18px) rotate(-240deg) scale(0.85); opacity: 0.85; }
+  50% { transform: translate(-50%, -50%) rotate(420deg) translateX(18px) rotate(-420deg) scale(1.15); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(600deg) translateX(18px) rotate(-600deg) scale(0.85); opacity: 0.85; }
+}
+
+.dizzy-star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 13px;
+  line-height: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.9));
+}
+
+.star-1 { animation: dizzyOrbit1 1.1s linear infinite; }
+.star-2 { animation: dizzyOrbit2 1.1s linear infinite; }
+.star-3 { animation: dizzyOrbit3 1.1s linear infinite; }
+
+@keyframes trexWobble {
+  0%, 100% { transform: rotate(-13deg); }
+  50% { transform: rotate(13deg); }
+}
+
+.animate-trex-wobble {
+  animation: trexWobble 0.28s ease-in-out infinite;
+}
+
 /* Scroll progress indicator */
 #scroll-progress {
   position: fixed;
