@@ -12,7 +12,7 @@ import CommunityAndJourney from './components/CommunityAndJourney';
 import ContactAndNote from './components/ContactAndNote';
 import Footer from './components/Footer';
 import PixelTrex from './components/PixelTrex';
-import DitherVeil from './components/DitherVeil';
+import PixelForest from './components/PixelForest';
 import './index.css';
 
 function PortfolioContent() {
@@ -49,32 +49,8 @@ function PortfolioContent() {
       <div className="scanlines-overlay" aria-hidden="true" />
       <div className="vignette-overlay" aria-hidden="true" />
 
-      {/* DitherVeil WebGL dithered art — right side, always-visible stipple on dark bg */}
-      <div
-        className="fixed right-0 top-0 h-screen pointer-events-none"
-        style={{ width: '55%', zIndex: 0, opacity: 0.82 }}
-        aria-hidden="true"
-      >
-        <DitherVeil
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1400&auto=format&fit=crop"
-          pattern="noise"
-          pixelSize={1.5}
-          inkColor="#050505"
-          paperColor="#c8c8c8"
-          revealRadius={0}
-          softness={0}
-          linger={0}
-          fit="contain"
-          palette="mono"
-          levels={3}
-          contrast={1.4}
-          brightness={0.05}
-          rim={0}
-          reverse={false}
-          wander={false}
-          clickBurst={false}
-        />
-      </div>
+      {/* Pixel art forest — fixed bottom-right, transparent bg, no image */}
+      <PixelForest />
 
       {/* Interactive Pixel Art T-Rex Companion Following Cursor (Bottom-Right) */}
       <PixelTrex />
