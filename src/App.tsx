@@ -13,7 +13,6 @@ import ContactAndNote from './components/ContactAndNote';
 import Footer from './components/Footer';
 import PixelTrex from './components/PixelTrex';
 import PixelForest from './components/PixelForest';
-import PixelBarn from './components/PixelBarn';
 import FadeContent from './components/FadeContent';
 import './index.css';
 
@@ -53,9 +52,6 @@ function PortfolioContent() {
 
       {/* Pixel art forest — fixed bottom-right, transparent bg, no image */}
       <PixelForest />
-
-      {/* Pixel art barn hut shed — fixed bottom-left, warm glowing lantern & window, transparent bg */}
-      <PixelBarn />
 
       {/* Interactive Pixel Art T-Rex Companion Following Cursor (Bottom-Right) */}
       <PixelTrex />
