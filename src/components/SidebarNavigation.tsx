@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useTheme, ACCENT_COLORS } from '../context/ThemeContext';
-import FidgetSpinner from './FidgetSpinner';
 
 const mainNavItems = [
   { id: 'about', label: 'about' },
@@ -147,14 +146,9 @@ export default function SidebarNavigation({
           </nav>
         </div>
 
-        {/* Bottom Utility, Fidget Spinner & Accent Color Picker */}
+        {/* Bottom Utility & Accent Color Picker */}
         <div className="space-y-3 pt-4 text-[11px] font-mono text-[#555555]">
-          {/* Interactive Fidget Spinner (Flick or Click to spin) */}
-          <div className="pt-2 pb-1">
-            <FidgetSpinner size={58} />
-          </div>
-
-          {/* Accent Color Picker (directly below fidget spinner) */}
+          {/* Accent Color Picker */}
           <div className="pt-1 border-t border-[#141414]">
             <div className="flex items-center gap-1.5 mb-1.5 text-[9.5px] text-[#444444] uppercase tracking-wider">
               <span>accent</span>
@@ -205,7 +199,6 @@ export default function SidebarNavigation({
       <header className="md:hidden sticky top-0 left-0 right-0 z-40 bg-[#050505]/95 backdrop-blur-md border-b border-[#141414] px-5 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <FidgetSpinner size={20} />
             <a
               href="#about"
               className="font-mono text-[11px] font-semibold text-[#888888] tracking-wider"
