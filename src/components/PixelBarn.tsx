@@ -20,7 +20,7 @@ export default function PixelBarn() {
 
   return (
     <div
-      className="fixed bottom-0 left-0 md:left-2 lg:left-6 pointer-events-none select-none z-0 flex items-end justify-start overflow-hidden"
+      className="fixed bottom-0 left-0 md:-left-1 lg:-left-2 pointer-events-none select-none z-0 flex items-end justify-start overflow-hidden"
       aria-hidden="true"
     >
       <div className="relative">
@@ -49,9 +49,9 @@ export default function PixelBarn() {
           style={{
             left: '52%',
             top: '55%',
-            width: '90px',
-            height: '90px',
-            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0) 70%)',
+            width: '130px',
+            height: '130px',
+            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0) 70%)',
             transform: 'translate(-50%, -50%)',
           }}
         />
@@ -59,7 +59,7 @@ export default function PixelBarn() {
         {/* Handcrafted pixel art barn / hut shed SVG with transparent background */}
         <svg
           viewBox={`0 0 ${totalCols} ${totalRows}`}
-          className="w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] xl:w-[330px] h-auto block filter drop-shadow-[0_16px_36px_rgba(0,0,0,0.95)]"
+          className="w-[240px] sm:w-[290px] md:w-[340px] lg:w-[390px] xl:w-[440px] h-auto block filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.95)]"
           shapeRendering="crispEdges"
         >
           {Object.entries(layers).map(([key, layer]) => (
@@ -80,3 +80,4 @@ export default function PixelBarn() {
     </div>
   );
 }
+
