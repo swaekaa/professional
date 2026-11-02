@@ -12,6 +12,7 @@ import CommunityAndJourney from './components/CommunityAndJourney';
 import ContactAndNote from './components/ContactAndNote';
 import Footer from './components/Footer';
 import PixelTrex from './components/PixelTrex';
+import DitherVeil from './components/DitherVeil';
 import './index.css';
 
 function PortfolioContent() {
@@ -47,6 +48,33 @@ function PortfolioContent() {
       {/* Subtle CRT Scanlines & Vignette Overlay */}
       <div className="scanlines-overlay" aria-hidden="true" />
       <div className="vignette-overlay" aria-hidden="true" />
+
+      {/* DitherVeil WebGL dithered forest background — right side, pointer-events-none */}
+      <div
+        className="fixed right-0 top-0 h-screen pointer-events-none"
+        style={{ width: '52%', zIndex: 0, opacity: 0.28 }}
+        aria-hidden="true"
+      >
+        <DitherVeil
+          src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1400&auto=format&fit=crop"
+          pattern="bayer"
+          pixelSize={2}
+          inkColor="#050505"
+          paperColor="#2a2a2a"
+          revealRadius={180}
+          softness={0.55}
+          linger={1.2}
+          fit="cover"
+          palette="duotone"
+          levels={2}
+          contrast={1.2}
+          brightness={0}
+          rim={0}
+          reverse={false}
+          wander={true}
+          clickBurst={false}
+        />
+      </div>
 
       {/* Interactive Pixel Art T-Rex Companion Following Cursor (Bottom-Right) */}
       <PixelTrex />
