@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTheme, ACCENT_COLORS } from '../context/ThemeContext';
+import FidgetSpinner from './FidgetSpinner';
 
 const mainNavItems = [
   { id: 'about', label: 'about' },
@@ -23,7 +24,6 @@ export default function SidebarNavigation({
   onOpenNoteModal: () => void;
 }) {
   const [activeSection, setActiveSection] = useState('about');
-  const [activeLang, setActiveLang] = useState('EN');
   const { accent, setAccentColor } = useTheme();
 
   // Scroll spy to highlight active section as user scrolls
@@ -58,50 +58,6 @@ export default function SidebarNavigation({
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Clickable Mascot State
-  const [mascotBubble, setMascotBubble] = useState<string | null>(null);
-  const [mascotJumping, setMascotJumping] = useState(false);
-  const [mascotJumpOffset, setMascotJumpOffset] = useState(0);
-  const [mascotParticles, setMascotParticles] = useState<{ id: number; char: string; x: number; y: number }[]>([]);
-
-  const handleMascotClick = () => {
-    if (mascotJumping) return;
-    setMascotJumping(true);
-
-    const quips = ['rawr! :D', 'let us build!', 'turbo mode!', '100% verified', 'feed me data!'];
-    const chosen = quips[Math.floor(Math.random() * quips.length)];
-    setMascotBubble(chosen);
-
-    // Parabolic jump animation
-    let frame = 0;
-    const animateJump = () => {
-      frame++;
-      const t = frame / 16;
-      if (t <= 1) {
-        setMascotJumpOffset(-Math.sin(t * Math.PI) * 16);
-        requestAnimationFrame(animateJump);
-      } else {
-        setMascotJumpOffset(0);
-        setMascotJumping(false);
-      }
-    };
-    requestAnimationFrame(animateJump);
-
-    // Spawn sparkles
-    const sparkles = ['★', '♥', '✦'].map((char, i) => ({
-      id: Date.now() + i,
-      char,
-      x: (Math.random() - 0.5) * 24,
-      y: -15 - Math.random() * 10,
-    }));
-    setMascotParticles(sparkles);
-
-    setTimeout(() => {
-      setMascotBubble(null);
-      setMascotParticles([]);
-    }, 2400);
-  };
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -191,75 +147,14 @@ export default function SidebarNavigation({
           </nav>
         </div>
 
-        {/* Bottom Utility, Clickable Mascot & Accent Color Picker */}
+        {/* Bottom Utility, Fidget Spinner & Accent Color Picker */}
         <div className="space-y-3 pt-4 text-[11px] font-mono text-[#555555]">
-          {/* Clickable Sidebar Mascot (Prominent, High-Visibility Avatar) */}
-          <div className="relative pt-2 pb-1">
-            {/* Mascot Speech Bubble */}
-            {mascotBubble && (
-              <div
-                className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-[#121212] border border-[#333333] font-mono text-[10px] px-2.5 py-1 rounded shadow-xl animate-fade-in z-20 pointer-events-none"
-                style={{ color: 'var(--accent)', boxShadow: '0 4px 12px rgba(0,0,0,0.9)' }}
-              >
-                <span>{mascotBubble}</span>
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#121212] border-b border-r border-[#333333] rotate-45" />
-              </div>
-            )}
-
-            {/* Floating Sparkles */}
-            {mascotParticles.map((p) => (
-              <span
-                key={p.id}
-                className="absolute font-mono text-[13px] animate-fade-in pointer-events-none z-20"
-                style={{
-                  left: `${50 + p.x}px`,
-                  top: `${p.y}px`,
-                  color: 'var(--accent)',
-                  filter: 'drop-shadow(0 0 4px var(--accent))',
-                }}
-              >
-                {p.char}
-              </span>
-            ))}
-
-            {/* Mascot Showcase Card */}
-            <button
-              onClick={handleMascotClick}
-              className="group w-full block text-left cursor-pointer transition-all select-none p-2 rounded-lg bg-[#0c0c0c] border border-[#1f1f1f] hover:border-[#3a3a3a] transition-all"
-              title="Click T-Rex mascot!"
-              style={{ transform: `translateY(${mascotJumpOffset}px)` }}
-            >
-              <div className="flex flex-col items-center justify-center text-center">
-                {/* Large high-visibility avatar frame */}
-                <div className="w-20 h-20 rounded-md bg-[#131313] border border-[#282828] group-hover:border-[var(--accent)] flex items-center justify-center p-1 relative overflow-hidden transition-all shadow-inner">
-                  {/* Subtle accent backdrop aura */}
-                  <div
-                    className="absolute inset-0 opacity-15 group-hover:opacity-30 transition-opacity pointer-events-none"
-                    style={{ backgroundColor: 'var(--accent)' }}
-                  />
-                  <img
-                    src={mascotJumping ? '/images/trex/jump.png' : '/images/trex/idle.png'}
-                    alt="T-Rex mascot"
-                    className="w-16 h-16 object-contain pixelated filter brightness-125 contrast-110 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:scale-110 active:scale-90 transition-transform relative z-10"
-                  />
-                </div>
-
-                <div className="mt-1.5 w-full">
-                  <div className="flex items-center justify-center gap-1.5">
-                    <span className="font-mono text-[11px] font-semibold text-[#E0E0E0] group-hover:text-white transition-colors">
-                      rex
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  </div>
-                  <span className="font-mono text-[9px] text-[#666666] group-hover:text-[#999999] block mt-0.5 transition-colors">
-                    click to play
-                  </span>
-                </div>
-              </div>
-            </button>
+          {/* Interactive Fidget Spinner (Flick or Click to spin) */}
+          <div className="pt-2 pb-1">
+            <FidgetSpinner size={58} />
           </div>
 
-          {/* Accent Color Picker (directly below mascot) */}
+          {/* Accent Color Picker (directly below fidget spinner) */}
           <div className="pt-1 border-t border-[#141414]">
             <div className="flex items-center gap-1.5 mb-1.5 text-[9.5px] text-[#444444] uppercase tracking-wider">
               <span>accent</span>
@@ -302,31 +197,6 @@ export default function SidebarNavigation({
             >
               anonymous note
             </button>
-            <div className="flex items-center gap-1.5 pt-0.5 text-[9.5px] text-[#333333]">
-              <span className="w-1 h-1 rounded-full bg-emerald-500/80" />
-              <span>system: online</span>
-            </div>
-          </div>
-
-          {/* Plain text language switcher */}
-          <div className="flex items-center gap-2 pt-2 border-t border-[#141414] text-[10px]">
-            {['EN', '日本語', '中文', '한국어'].map((lang) => {
-              const isSelected = activeLang === lang;
-              return (
-                <button
-                  key={lang}
-                  onClick={() => setActiveLang(lang)}
-                  className={`transition-colors cursor-pointer ${
-                    isSelected
-                      ? 'font-medium'
-                      : 'text-[#444444] hover:text-[#777777]'
-                  }`}
-                  style={{ color: isSelected ? 'var(--accent)' : undefined }}
-                >
-                  {lang}
-                </button>
-              );
-            })}
           </div>
         </div>
       </aside>
@@ -335,21 +205,7 @@ export default function SidebarNavigation({
       <header className="md:hidden sticky top-0 left-0 right-0 z-40 bg-[#050505]/95 backdrop-blur-md border-b border-[#141414] px-5 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <button
-              onClick={handleMascotClick}
-              className="w-8 h-8 rounded bg-[#111111] border border-[#282828] hover:border-[var(--accent)] flex items-center justify-center p-0.5 active:scale-90 transition-all cursor-pointer relative overflow-hidden"
-              title="Tap T-Rex mascot!"
-            >
-              <div
-                className="absolute inset-0 opacity-15 pointer-events-none"
-                style={{ backgroundColor: 'var(--accent)' }}
-              />
-              <img
-                src={mascotJumping ? '/images/trex/jump.png' : '/images/trex/idle.png'}
-                alt="T-Rex mascot"
-                className="w-6 h-6 object-contain pixelated filter brightness-125 relative z-10"
-              />
-            </button>
+            <FidgetSpinner size={20} />
             <a
               href="#about"
               className="font-mono text-[11px] font-semibold text-[#888888] tracking-wider"
