@@ -12,7 +12,8 @@ import CommunityAndJourney from './components/CommunityAndJourney';
 import ContactAndNote from './components/ContactAndNote';
 import Footer from './components/Footer';
 import PixelTrex from './components/PixelTrex';
-import PixelForest from './components/PixelForest';
+import PixelTreesLeft from './components/PixelTreesLeft';
+import PixelTreesRight from './components/PixelTreesRight';
 import FadeContent from './components/FadeContent';
 import './index.css';
 
@@ -50,8 +51,9 @@ function PortfolioContent() {
       <div className="scanlines-overlay" aria-hidden="true" />
       <div className="vignette-overlay" aria-hidden="true" />
 
-      {/* Pixel art forest — fixed bottom-right, transparent bg, no image */}
-      <PixelForest />
+      {/* Diverse pixel art trees flanking both sides — non-overlapping side gutters */}
+      <PixelTreesLeft />
+      <PixelTreesRight />
 
       {/* Interactive Pixel Art T-Rex Companion Following Cursor (Bottom-Right) */}
       <PixelTrex />
