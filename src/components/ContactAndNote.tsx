@@ -190,9 +190,7 @@ export default function ContactAndNote({
                 <button
                   type="submit"
                   disabled={formState === 'sending'}
-                  className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#121212] hover:bg-[#1A1A1A] border border-[#282828] text-white font-mono text-[12px] font-bold rounded-md transition-colors cursor-pointer"
-                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#282828')}
+                  className="btn-cyber-pop inline-flex items-center gap-2 px-4 py-1.5 bg-[#121212] border border-[#282828] text-white font-mono text-[12px] font-bold rounded-md cursor-pointer"
                 >
                   <Send size={12} />
                   <span>{formState === 'sending' ? 'sending...' : 'send message'}</span>
@@ -263,9 +261,7 @@ export default function ContactAndNote({
                     <span className="font-mono text-[10px] text-[#888888]">ephemeral · encrypted</span>
                     <button
                       type="submit"
-                      className="px-3.5 py-1.5 bg-[#141414] hover:bg-[#1E1E1E] border border-[#282828] text-white font-mono text-[11.5px] font-bold rounded transition-colors cursor-pointer"
-                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#282828')}
+                      className="btn-cyber-pop px-3.5 py-1.5 bg-[#141414] border border-[#282828] text-white font-mono text-[11.5px] font-bold rounded cursor-pointer"
                     >
                       leave note
                     </button>

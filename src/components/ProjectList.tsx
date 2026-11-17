@@ -311,9 +311,7 @@ export default function ProjectList() {
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#161616] hover:bg-[#202020] border border-[#2A2A2A] rounded-lg font-mono text-[12px] font-medium text-white transition-colors"
-                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#2A2A2A')}
+                      className="btn-cyber-pop inline-flex items-center gap-2 px-3.5 py-2 bg-[#161616] border border-[#2A2A2A] rounded-lg font-mono text-[12px] font-medium text-white cursor-pointer"
                     >
                       <GithubIcon size={14} />
                       <span>View Repository</span>
@@ -324,9 +322,7 @@ export default function ProjectList() {
                       href={selectedProject.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#161616] hover:bg-[#202020] border border-[#2A2A2A] rounded-lg font-mono text-[12px] font-medium text-white transition-colors"
-                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#2A2A2A')}
+                      className="btn-cyber-pop inline-flex items-center gap-2 px-3.5 py-2 bg-[#161616] border border-[#2A2A2A] rounded-lg font-mono text-[12px] font-medium text-white cursor-pointer"
                     >
                       <ExternalLink size={14} />
                       <span>Live Demo</span>

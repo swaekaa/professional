@@ -120,9 +120,7 @@ export default function ResearchSection() {
                         href={item.code}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#121212] hover:bg-[#1A1A1A] border border-[#262626] rounded font-mono text-[11.5px] font-medium text-white transition-colors"
-                        onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                        onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#262626')}
+                        className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#121212] border border-[#262626] rounded font-mono text-[11.5px] font-medium text-white cursor-pointer"
                       >
                         <GithubIcon size={12} />
                         <span>View Experiment Code</span>

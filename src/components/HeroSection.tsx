@@ -60,9 +60,7 @@ export default function HeroSection() {
             href={personal.x}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] hover:bg-[#161616] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white transition-all group cursor-pointer"
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#262626')}
+            className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white group cursor-pointer"
           >
             <XIcon size={12} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
             <span>X / Twitter</span>
@@ -72,9 +70,7 @@ export default function HeroSection() {
             href={personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] hover:bg-[#161616] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white transition-all group cursor-pointer"
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#262626')}
+            className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white group cursor-pointer"
           >
             <GithubIcon size={13} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
             <span>GitHub</span>
@@ -84,9 +80,7 @@ export default function HeroSection() {
             href={personal.leetcode}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] hover:bg-[#161616] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white transition-all group cursor-pointer"
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#262626')}
+            className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white group cursor-pointer"
           >
             <LeetcodeIcon size={13} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
             <span>LeetCode</span>
@@ -94,9 +88,7 @@ export default function HeroSection() {
 
           <a
             href={`mailto:${personal.email}`}
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] hover:bg-[#161616] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white transition-all group cursor-pointer"
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#262626')}
+            className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white group cursor-pointer"
           >
             <Mail size={13} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
             <span>Email</span>
@@ -106,9 +98,7 @@ export default function HeroSection() {
             href={personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] hover:bg-[#161616] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white transition-all group cursor-pointer"
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#262626')}
+            className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white group cursor-pointer"
           >
             <LinkedinIcon size={13} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
             <span>LinkedIn</span>
@@ -118,13 +108,11 @@ export default function HeroSection() {
             href={personal.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] hover:bg-[#161616] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white transition-all group cursor-pointer"
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#262626')}
+            className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white group cursor-pointer"
           >
             <FileText size={13} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
             <span>Resume</span>
-            <ArrowUpRight size={11} className="text-[#777777] group-hover:text-white transition-colors" />
+            <ArrowUpRight size={11} className="arrow-pop text-[#777777] group-hover:text-white transition-all duration-150" />
           </a>
         </div>
       </div>
