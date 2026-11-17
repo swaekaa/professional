@@ -15,8 +15,8 @@ export const personal = {
   githubUsername: "swaekaa",
   leetcode: "https://leetcode.com/u/meanturtle/",
   leetcodeUsername: "meanturtle",
-  x: "https://x.com/swaekaa",
-  xHandle: "@swaekaa",
+  x: "https://x.com/swaaeka",
+  xHandle: "@swaaeka",
   linkedin: "https://www.linkedin.com/in/ekaansh-sawaria/",
   resume: "/resume.pdf",
   bioHeadline: "Building intelligent systems that read, reason and retrieve.",
@@ -351,42 +351,42 @@ export const xPosts = [
   {
     id: "x-rag",
     date: "May 2026",
-    handle: "@swaekaa",
+    handle: "@swaaeka",
     author: "Ekaansh",
     text: "Why naive cosine distance over dense vector embeddings fails in production document retrieval:\n\nWhen documents share semantic domain vocabulary across 10,000+ enterprise files, dense vectors collapse into overlapping clusters. The fix isn't bigger chunk sizes.\n\nIt's hybrid retrieval (BM25 sparse + dense embeddings) layered with Cross-Encoder reranking and QuadRank scoring. We saw a +35% relevance jump immediately.",
     metrics: { replies: 14, retweets: 38, likes: 142, views: "8.4K" },
     tags: ["#RAG", "#MachineLearning", "#Systems", "#FastAPI"],
-    url: "https://x.com/swaekaa"
+    url: "https://x.com/swaaeka"
   },
   {
     id: "x-ast",
     date: "Apr 2026",
-    handle: "@swaekaa",
+    handle: "@swaaeka",
     author: "Ekaansh",
     text: "Building RExplain taught me one big lesson about codebase AI:\n\nStop doing full git clones on the backend.\n\nFetching the repo tree structure via the GitHub Tree API and selectively parsing ASTs + config files allows sub-second architectural mapping. Pair that with a persistent PostgreSQL embedding cache by commit SHA, and repeated visits are instantaneous.",
     metrics: { replies: 9, retweets: 24, likes: 96, views: "5.1K" },
     tags: ["#Python", "#FastAPI", "#DevTools", "#PostgreSQL"],
-    url: "https://x.com/swaekaa"
+    url: "https://x.com/swaaeka"
   },
   {
     id: "x-gradcam",
     date: "Mar 2026",
-    handle: "@swaekaa",
+    handle: "@swaaeka",
     author: "Ekaansh",
     text: "If you're training deep convolutional networks on satellite imagery without explainability, you're flying blind.\n\nIn VisionSat, Grad-CAM visual heatmaps proved whether ResNet-18 was looking at actual building foundations and highway contours or just spurious background contrast. When explainability confirms true feature activations, model trust goes through the roof.",
     metrics: { replies: 18, retweets: 29, likes: 118, views: "6.7K" },
     tags: ["#ComputerVision", "#PyTorch", "#GradCAM", "#AI"],
-    url: "https://x.com/swaekaa"
+    url: "https://x.com/swaaeka"
   },
   {
     id: "x-quant",
     date: "Feb 2026",
-    handle: "@swaekaa",
+    handle: "@swaaeka",
     author: "Ekaansh",
     text: "Not all transformer layers are created equal under quantization.\n\nBy injecting calibrated Gaussian noise as a sensitivity proxy, we showed early attention projections are ~3.4x more fragile than intermediate FFN layers. Keep just 20% critical weights in FP16, and INT4 perplexity remains rock solid while saving 67% memory.",
     metrics: { replies: 22, retweets: 45, likes: 164, views: "9.2K" },
     tags: ["#LLMs", "#DeepLearning", "#Quantization", "#Research"],
-    url: "https://x.com/swaekaa"
+    url: "https://x.com/swaaeka"
   }
 ];
 

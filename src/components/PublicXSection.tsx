@@ -18,7 +18,7 @@ export default function PublicXSection() {
           rel="noopener noreferrer"
           className="text-[#AAAAAA] hover:text-white flex items-center gap-1.5 transition-colors font-medium"
         >
-          <span>x.com/{personal.handle}</span>
+          <span>x.com/{personal.xHandle.replace('@', '')}</span>
           <ArrowUpRight size={13} />
         </a>
       </div>
@@ -54,7 +54,7 @@ export default function PublicXSection() {
           className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white text-black hover:bg-[#E5E5E5] rounded-full font-mono text-[12px] font-bold transition-all shrink-0 cursor-pointer shadow-xs"
         >
           <XIcon size={12} />
-          <span>Follow @{personal.handle}</span>
+          <span>Follow {personal.xHandle}</span>
         </a>
       </div>
 
