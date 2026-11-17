@@ -105,8 +105,8 @@ export default function PixelTrex() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    const initialX = window.innerWidth * 0.65;
-    const initialY = 180;
+    const initialX = window.innerWidth - 60;
+    const initialY = 240;
     mouseRef.current = { x: initialX, y: initialY };
     lastMousePosRef.current = { x: initialX, y: initialY };
     posRef.current = { x: initialX, y: initialY };
@@ -180,12 +180,12 @@ export default function PixelTrex() {
         if (text.includes('Accenture')) comment = 'multi-agent rag';
         else comment = 'work experience';
       } else if (target.closest('[id="leetcode"]')) {
-        if (text.includes('Easy')) comment = '142 easy solved';
-        else if (text.includes('Med')) comment = '198 medium solved';
-        else if (text.includes('Hard')) comment = '42 hard solved';
+        if (text.includes('Easy')) comment = '112 easy solved';
+        else if (text.includes('Medium')) comment = '180 medium solved';
+        else if (text.includes('Hard')) comment = '15 hard solved';
         else comment = 'leetcode profile';
       } else if (target.closest('[id="github"]')) {
-        comment = 'contributions';
+        comment = '848 contributions';
       } else if (target.closest('[id="research"]')) {
         comment = 'measuring hypothesis';
       } else if (target.closest('[id="writing"]')) {

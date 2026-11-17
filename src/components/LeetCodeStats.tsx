@@ -1,8 +1,8 @@
-import { ArrowUpRight, Award, Trophy, Zap, Code2 } from 'lucide-react';
+import { ArrowUpRight, Award, Trophy, Zap, Code2, CheckCircle2 } from 'lucide-react';
 import { personal, leetcodeStats } from '../data/portfolio';
 
 export default function LeetCodeStats() {
-  const { totalSolved, easy, medium, hard, acceptanceRate, ranking, contestRating, streak, languages, topTopics } = leetcodeStats;
+  const { totalSolved, easy, medium, hard, totalSubmissions, acceptanceRate, ranking, contestRating, streak, activeDays, languages, topTopics, badges } = leetcodeStats;
   const total = easy + medium + hard;
   const easyPct = (easy / total) * 100;
   const medPct = (medium / total) * 100;
@@ -10,10 +10,10 @@ export default function LeetCodeStats() {
 
   return (
     <section id="leetcode" className="py-10 border-b border-[#181818] animate-fade-in">
-      {/* Section Header */}
+      {/* Section Header with Accent Color */}
       <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
-        <div className="text-white flex items-center gap-1.5 font-bold">
-          <span style={{ color: 'var(--accent)' }}>/</span>
+        <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
+          <span>/</span>
           <span className="uppercase tracking-wider">leetcode</span>
           <span className="text-[#888888] font-normal text-[11px]">· @{personal.leetcodeUsername}</span>
         </div>
@@ -28,102 +28,146 @@ export default function LeetCodeStats() {
         </a>
       </div>
 
-      {/* Main LeetCode Card */}
+      {/* Main LeetCode Container */}
       <div className="bg-[#080808] border border-[#1A1A1A] rounded-xl p-5 sm:p-6 space-y-5">
-        {/* Top Summary Row */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-baseline gap-2.5">
-              <span className="text-[26px] font-mono font-bold text-white tracking-tight">{totalSolved}</span>
-              <span className="text-[13px] font-mono text-[#AAAAAA] uppercase tracking-wider font-semibold">Problems Solved</span>
+        {/* Balanced Top Metrics Grid (4 Equal Uniform Stat Cards) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
+            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
+              Solved
+            </span>
+            <div className="text-[22px] font-mono font-bold text-white leading-none">
+              {totalSolved}
             </div>
-            <div className="flex items-center gap-3 text-[12px] font-mono text-white mt-1">
-              <span className="flex items-center gap-1 text-amber-400 font-bold">
-                <Trophy size={13} />
-                {ranking}
-              </span>
-              <span className="text-[#444444]">·</span>
-              <span className="text-white">
-                Contest Rating: <strong className="text-white font-bold">{contestRating}</strong>
-              </span>
-              <span className="text-[#444444]">·</span>
-              <span className="flex items-center gap-1 text-emerald-400 font-bold">
-                <Zap size={13} />
-                {streak}
-              </span>
-            </div>
+            <span className="text-[10.5px] font-mono text-[#666666]">{totalSubmissions} submissions</span>
           </div>
 
-          <div className="flex items-center gap-4 text-[12px] font-mono">
-            <div className="bg-[#111111] border border-[#222222] rounded-lg px-3 py-1.5 text-center">
-              <span className="text-[#888888] block text-[10px] uppercase font-bold tracking-wider">Acceptance</span>
-              <span className="text-white font-bold text-[14px]">{acceptanceRate}</span>
+          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
+            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
+              Acceptance
+            </span>
+            <div className="text-[22px] font-mono font-bold text-white leading-none">
+              {acceptanceRate}
             </div>
-            <div className="bg-[#111111] border border-[#222222] rounded-lg px-3 py-1.5 text-center">
-              <span className="text-[#888888] block text-[10px] uppercase font-bold tracking-wider">Languages</span>
-              <span className="text-white font-bold text-[13px]">{languages.slice(0, 3).join(', ')}</span>
+            <span className="text-[10.5px] font-mono text-emerald-400 font-medium flex items-center gap-1">
+              <CheckCircle2 size={10} /> verified rate
+            </span>
+          </div>
+
+          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
+            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
+              Contest Rating
+            </span>
+            <div className="text-[22px] font-mono font-bold text-white leading-none">
+              {contestRating}
             </div>
+            <span className="text-[10.5px] font-mono text-amber-400 font-medium flex items-center gap-1">
+              <Trophy size={10} /> {ranking}
+            </span>
+          </div>
+
+          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
+            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
+              Cadence
+            </span>
+            <div className="text-[20px] font-mono font-bold text-white leading-none">
+              {streak}
+            </div>
+            <span className="text-[10.5px] font-mono text-[#666666] flex items-center gap-1">
+              <Zap size={10} className="text-amber-400" /> {activeDays} active days
+            </span>
           </div>
         </div>
 
-        {/* Progress Bar Breakdown */}
-        <div className="space-y-2.5 pt-2 border-t border-[#181818]">
-          <div className="h-2 w-full bg-[#141414] rounded-full overflow-hidden flex">
+        {/* Difficulty Distribution Bar & Aligned 3-Column Breakdown */}
+        <div className="space-y-2.5 pt-2 border-t border-[#161616]">
+          <div className="flex items-center justify-between text-[11px] font-mono">
+            <span className="text-white font-bold uppercase tracking-wider">Difficulty Distribution</span>
+            <span className="text-[#777777]">Primary: <strong className="text-white">{languages[0]}</strong> ({languages.slice(1).join(', ')})</span>
+          </div>
+
+          <div className="h-2.5 w-full bg-[#141414] rounded-full overflow-hidden flex">
             <div style={{ width: `${easyPct}%` }} className="bg-emerald-500" title={`Easy: ${easy}`} />
             <div style={{ width: `${medPct}%` }} className="bg-amber-500" title={`Medium: ${medium}`} />
             <div style={{ width: `${hardPct}%` }} className="bg-rose-500" title={`Hard: ${hard}`} />
           </div>
 
-          <div className="grid grid-cols-3 gap-2 text-[12px] font-mono pt-1">
-            <div className="bg-[#0C0C0C] border border-[#1A1A1A] rounded p-2 flex items-center justify-between">
-              <span className="text-emerald-400 font-bold">Easy</span>
-              <span className="text-white font-bold">{easy} <span className="text-[#777777] font-normal text-[10px]">({Math.round(easyPct)}%)</span></span>
+          {/* Equal-height Difficulty Cards */}
+          <div className="grid grid-cols-3 gap-2.5 text-[11.5px] font-mono pt-1">
+            <div className="bg-[#0A0A0A] border border-[#1C1C1C] rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                <span className="text-emerald-400 font-bold">Easy</span>
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-white font-bold text-[14px]">{easy}</span>
+                <span className="text-[#666666] text-[10px]">({Math.round(easyPct)}%)</span>
+              </div>
             </div>
-            <div className="bg-[#0C0C0C] border border-[#1A1A1A] rounded p-2 flex items-center justify-between">
-              <span className="text-amber-400 font-bold">Medium</span>
-              <span className="text-white font-bold">{medium} <span className="text-[#777777] font-normal text-[10px]">({Math.round(medPct)}%)</span></span>
+
+            <div className="bg-[#0A0A0A] border border-[#1C1C1C] rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
+                <span className="text-amber-400 font-bold">Medium</span>
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-white font-bold text-[14px]">{medium}</span>
+                <span className="text-[#666666] text-[10px]">({Math.round(medPct)}%)</span>
+              </div>
             </div>
-            <div className="bg-[#0C0C0C] border border-[#1A1A1A] rounded p-2 flex items-center justify-between">
-              <span className="text-rose-400 font-bold">Hard</span>
-              <span className="text-white font-bold">{hard} <span className="text-[#777777] font-normal text-[10px]">({Math.round(hardPct)}%)</span></span>
+
+            <div className="bg-[#0A0A0A] border border-[#1C1C1C] rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+                <span className="text-rose-400 font-bold">Hard</span>
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-white font-bold text-[14px]">{hard}</span>
+                <span className="text-[#666666] text-[10px]">({Math.round(hardPct)}%)</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Topic Mastery Grid */}
-        <div className="pt-2 border-t border-[#181818] space-y-2.5">
+        {/* Algorithmic Topic Mastery — Clean 2-Column Grid with NO Truncation */}
+        <div className="pt-2 border-t border-[#161616] space-y-2.5">
           <div className="flex items-center justify-between text-[11px] font-mono text-[#AAAAAA]">
             <span className="text-white font-bold flex items-center gap-1.5 uppercase tracking-wider">
-              <Code2 size={12} style={{ color: 'var(--accent)' }} />
+              <Code2 size={13} style={{ color: 'var(--accent)' }} />
               Algorithmic Topic Focus
             </span>
-            <span className="text-[#777777]">Solved Count</span>
+            <span className="text-[#777777]">Solved Problems</span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {topTopics.map((topic) => (
               <div
                 key={topic.name}
-                className="bg-[#0D0D0D] border border-[#1E1E1E] rounded-md px-2.5 py-1.5 flex items-center justify-between text-[11.5px] font-mono"
+                className="bg-[#0B0B0B] border border-[#1C1C1C] hover:border-[#282828] rounded-lg px-3 py-2 flex items-center justify-between text-[12px] font-mono transition-colors"
               >
-                <span className="text-[#D0D0D0] truncate mr-1.5">{topic.name}</span>
-                <span className="text-white font-bold shrink-0">{topic.solved}</span>
+                <span className="text-[#D0D0D0] font-medium">{topic.name}</span>
+                <span
+                  className="font-bold text-white bg-[#141414] px-2 py-0.5 rounded text-[11px]"
+                  style={{ color: 'var(--accent)' }}
+                >
+                  {topic.solved}
+                </span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Badges Row */}
-        <div className="pt-2 border-t border-[#181818] flex items-center justify-between text-[11px] font-mono">
+        {/* Real Official Badges */}
+        <div className="pt-2.5 border-t border-[#161616] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-[11px] font-mono">
           <div className="flex items-center gap-1.5 text-white font-bold">
-            <Award size={12} className="text-amber-400" />
-            <span>Badges:</span>
+            <Award size={13} className="text-amber-400 shrink-0" />
+            <span>Official Badges:</span>
           </div>
-          <div className="flex items-center gap-2">
-            {leetcodeStats.badges.map((b) => (
+          <div className="flex flex-wrap items-center gap-2">
+            {badges.map((b) => (
               <span
                 key={b}
-                className="bg-[#121212] border border-[#262626] text-white px-2 py-0.5 rounded text-[10.5px]"
+                className="bg-[#111111] border border-[#242424] text-white px-2.5 py-1 rounded-md text-[11px] font-medium"
               >
                 {b}
               </span>

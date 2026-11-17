@@ -5,10 +5,10 @@ import { personal, xPosts } from '../data/portfolio';
 export default function PublicXSection() {
   return (
     <section id="public" className="py-10 border-b border-[#181818] animate-fade-in">
-      {/* Header */}
+      {/* Header with Accent Color */}
       <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
-        <div className="text-white flex items-center gap-1.5 font-bold">
-          <span style={{ color: 'var(--accent)' }}>/</span>
+        <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
+          <span>/</span>
           <span className="uppercase tracking-wider">public</span>
           <span className="text-[#888888] font-normal text-[11px]">· {personal.xHandle}</span>
         </div>

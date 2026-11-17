@@ -37,10 +37,10 @@ export default function GithubHeatmap() {
 
   return (
     <section id="github" className="py-10 border-b border-[#181818] animate-fade-in">
-      {/* Section Header */}
+      {/* Section Header with Accent Color */}
       <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
-        <div className="text-white flex items-center gap-1.5 font-bold">
-          <span style={{ color: 'var(--accent)' }}>/</span>
+        <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
+          <span>/</span>
           <span className="uppercase tracking-wider">github</span>
           <span className="text-[#888888] font-normal text-[11px]">· @{personal.githubUsername}</span>
         </div>
@@ -55,47 +55,47 @@ export default function GithubHeatmap() {
         </a>
       </div>
 
-      {/* GitHub Detailed Metrics Grid */}
+      {/* GitHub Real Metrics Grid — Uniform alignment across all 4 cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3.5">
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
-          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
-            <GitCommit size={12} style={{ color: 'var(--accent)' }} />
-            <span>CONTRIBUTIONS</span>
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
+          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
+            <GitCommit size={13} style={{ color: 'var(--accent)' }} />
+            <span>Contributions</span>
           </div>
-          <div className="text-[19px] font-mono font-bold text-white">
+          <div className="text-[22px] font-mono font-bold text-white leading-none">
             {githubStats.totalContributions}
           </div>
           <span className="text-[10.5px] font-mono text-[#666666]">past 12 months</span>
         </div>
 
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
-          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
-            <GitBranch size={12} style={{ color: 'var(--accent)' }} />
-            <span>PUBLIC REPOS</span>
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
+          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
+            <GitBranch size={13} style={{ color: 'var(--accent)' }} />
+            <span>Public Repos</span>
           </div>
-          <div className="text-[19px] font-mono font-bold text-white">
+          <div className="text-[22px] font-mono font-bold text-white leading-none">
             {githubStats.publicRepos}
           </div>
           <span className="text-[10.5px] font-mono text-[#666666]">authored & active</span>
         </div>
 
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
-          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
-            <Flame size={12} className="text-amber-500" />
-            <span>STREAK</span>
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
+          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
+            <Flame size={13} className="text-amber-500" />
+            <span>Active Streak</span>
           </div>
-          <div className="text-[19px] font-mono font-bold text-white">
+          <div className="text-[22px] font-mono font-bold text-white leading-none">
             {githubStats.currentStreak}
           </div>
-          <span className="text-[10.5px] font-mono text-[#666666]">continuous daily cadence</span>
+          <span className="text-[10.5px] font-mono text-[#666666]">continuous cadence</span>
         </div>
 
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
-          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
-            <Clock size={12} className="text-sky-400" />
-            <span>PEAK HOURS</span>
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
+          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
+            <Clock size={13} className="text-sky-400" />
+            <span>Peak Hours</span>
           </div>
-          <div className="text-[15px] font-mono font-bold text-white mt-0.5">
+          <div className="text-[18px] font-mono font-bold text-white leading-none">
             00:00 – 04:00
           </div>
           <span className="text-[10.5px] font-mono text-[#666666]">night owl engineering</span>
@@ -109,7 +109,7 @@ export default function GithubHeatmap() {
             <Terminal size={12} style={{ color: 'var(--accent)' }} />
             Commit Activity Stream
           </span>
-          <span className="text-[#888888]">53 weeks · daily density</span>
+          <span className="text-[#888888]">53 weeks · {githubStats.totalContributions} commits</span>
         </div>
         <ActivityHeatmap
           data={data}
@@ -123,14 +123,14 @@ export default function GithubHeatmap() {
       </div>
 
       {/* Language Breakdown Bar */}
-      <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 space-y-2.5">
+      <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-4 space-y-2.5">
         <div className="flex items-center justify-between text-[11px] font-mono text-[#AAAAAA]">
           <span className="text-white font-bold uppercase tracking-wider">Top Codebase Languages</span>
-          <span className="text-[#777777]">By Byte Volume</span>
+          <span className="text-[#777777]">Across 40 Repositories</span>
         </div>
 
         {/* Stacked Percentage Bar */}
-        <div className="h-2 w-full bg-[#141414] rounded-full overflow-hidden flex">
+        <div className="h-2.5 w-full bg-[#141414] rounded-full overflow-hidden flex">
           {githubStats.languages.map((l) => (
             <div
               key={l.name}
@@ -141,7 +141,7 @@ export default function GithubHeatmap() {
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] font-mono">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-1 text-[11.5px] font-mono">
           {githubStats.languages.map((l) => (
             <div key={l.name} className="flex items-center gap-1.5">
               <span

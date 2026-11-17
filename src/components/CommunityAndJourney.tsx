@@ -6,8 +6,8 @@ export default function CommunityAndJourney() {
       {/* Technical Toolkit Section */}
       <section id="skills" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
-          <div className="text-white flex items-center gap-1.5 font-bold">
-            <span style={{ color: 'var(--accent)' }}>/</span>
+          <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
+            <span>/</span>
             <span className="uppercase tracking-wider">toolkit</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">core competencies</span>
@@ -39,8 +39,8 @@ export default function CommunityAndJourney() {
       {/* Certifications Section */}
       <section id="certifications" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
-          <div className="text-white flex items-center gap-1.5 font-bold">
-            <span style={{ color: 'var(--accent)' }}>/</span>
+          <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
+            <span>/</span>
             <span className="uppercase tracking-wider">certifications</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">academic & technical</span>
@@ -72,8 +72,8 @@ export default function CommunityAndJourney() {
       {/* Education Block with Comprehensive Academic History */}
       <section id="education" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
-          <div className="text-white flex items-center gap-1.5 font-bold">
-            <span style={{ color: 'var(--accent)' }}>/</span>
+          <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
+            <span>/</span>
             <span className="uppercase tracking-wider">education</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">academic trail</span>
@@ -119,8 +119,8 @@ export default function CommunityAndJourney() {
       {/* Journey Timeline Section */}
       <section id="journey" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
-          <div className="text-white flex items-center gap-1.5 font-bold">
-            <span style={{ color: 'var(--accent)' }}>/</span>
+          <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
+            <span>/</span>
             <span className="uppercase tracking-wider">journey</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">2022 — present</span>

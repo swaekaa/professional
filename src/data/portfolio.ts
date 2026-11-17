@@ -35,9 +35,9 @@ export const personal = {
     "Experimental Products"
   ],
   stats: {
-    contributions: "2,480+",
-    repos: "24+",
-    streak: "84+ days",
+    contributions: "848",
+    repos: "40",
+    streak: "23+ days",
     retrievalRelevanceGain: "+35%",
     indexingSpeedup: "-45%"
   }
@@ -46,15 +46,16 @@ export const personal = {
 export const githubStats = {
   username: "swaekaa",
   profileUrl: "https://github.com/swaekaa",
-  totalContributions: "2,480+",
-  publicRepos: "24+",
-  currentStreak: "84 days",
+  totalContributions: "848",
+  publicRepos: "40",
+  currentStreak: "23 days",
   peakHours: "00:00 – 04:00 (Late Night Systems)",
   languages: [
-    { name: "Python", pct: 62, color: "#3572A5" },
-    { name: "TypeScript", pct: 22, color: "#3178C6" },
-    { name: "C++ / Java", pct: 10, color: "#F34B7D" },
-    { name: "SQL & Shell", pct: 6, color: "#E34C26" }
+    { name: "Python / ML", pct: 60, color: "#3572A5" },
+    { name: "TypeScript", pct: 20, color: "#3178C6" },
+    { name: "JavaScript", pct: 9, color: "#F7DF1E" },
+    { name: "Java & C", pct: 6, color: "#B07219" },
+    { name: "Shell & SQL", pct: 5, color: "#89E051" }
   ],
   pinnedHighlights: [
     { name: "RExplain", desc: "AST parsing & RAG codebase explainer", lang: "FastAPI / React" },
@@ -66,24 +67,28 @@ export const githubStats = {
 export const leetcodeStats = {
   username: "meanturtle",
   profileUrl: "https://leetcode.com/u/meanturtle/",
-  totalSolved: 382,
-  easy: 142,
-  medium: 198,
-  hard: 42,
-  acceptanceRate: "68.4%",
-  ranking: "Top 6.8%",
-  contestRating: 1740,
-  streak: "84 days",
-  languages: ["Python", "C++", "Java", "SQL"],
+  totalSolved: 307,
+  easy: 112,
+  medium: 180,
+  hard: 15,
+  totalSubmissions: 563,
+  acceptanceRate: "54.5%",
+  ranking: "Top 37.8%",
+  contestRating: 1527,
+  streak: "23 days",
+  activeDays: 134,
+  languages: ["Java", "MySQL", "C++", "C"],
   topTopics: [
-    { name: "Dynamic Programming", solved: 68 },
-    { name: "Graphs & Trees", solved: 74 },
-    { name: "Binary Search", solved: 42 },
-    { name: "Sliding Window & Two Pointers", solved: 55 },
-    { name: "Greedy & Backtracking", solved: 48 },
-    { name: "Math & Bit Manipulation", solved: 35 }
+    { name: "Arrays & Matrices", solved: 142 },
+    { name: "Strings & Parsing", solved: 74 },
+    { name: "Hash Tables & Sets", solved: 59 },
+    { name: "Two Pointers", solved: 42 },
+    { name: "Binary Trees & DFS", solved: 41 },
+    { name: "Dynamic Programming", solved: 31 },
+    { name: "Binary Search", solved: 23 },
+    { name: "Greedy Algorithms", solved: 21 }
   ],
-  badges: ["50 Days 2024", "100 Days Streak", "Top 6.8% Global"]
+  badges: ["100 Days Badge 2026", "50 Days Badge 2026", "100 Days Badge 2025", "50 Days Badge 2025"]
 };
 
 export const education = {
