@@ -1,8 +1,74 @@
+import { useState, useEffect } from 'react';
 import { ArrowUpRight, Award, Trophy, Zap, Code2 } from 'lucide-react';
 import { personal, leetcodeStats } from '../data/portfolio';
 
 export default function LeetCodeStats() {
-  const { totalSolved, easy, medium, hard, totalSubmissions, acceptanceRate, ranking, contestRating, streak, activeDays, languages, topTopics, badges } = leetcodeStats;
+  const [stats, setStats] = useState(leetcodeStats);
+
+  // Automatically update live from LeetCode APIs on page load
+  useEffect(() => {
+    let cancelled = false;
+
+    const fetchLiveStats = async () => {
+      // 1. Fetch live problem counts and submissions
+      try {
+        const res = await fetch(`https://leetcode-api-faisalshohag.vercel.app/${personal.leetcodeUsername}`, {
+          signal: AbortSignal.timeout(6000),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (!cancelled && data.totalSolved) {
+            setStats((prev) => {
+              const acTotal = data.matchedUserStats?.acSubmissionNum?.[0]?.submissions ?? prev.totalSubmissions;
+              const totalSubs = data.matchedUserStats?.totalSubmissionNum?.[0]?.submissions ?? 0;
+              const liveAccRate = totalSubs > 0 ? `${((acTotal / totalSubs) * 100).toFixed(1)}%` : prev.acceptanceRate;
+
+              return {
+                ...prev,
+                totalSolved: data.totalSolved ?? prev.totalSolved,
+                easy: data.easySolved ?? prev.easy,
+                medium: data.mediumSolved ?? prev.medium,
+                hard: data.hardSolved ?? prev.hard,
+                totalSubmissions: acTotal,
+                acceptanceRate: liveAccRate,
+              };
+            });
+          }
+        }
+      } catch {
+        // Silently use verified fallback stats
+      }
+
+      // 2. Fetch live contest rating & global percentile
+      try {
+        const contestRes = await fetch(
+          `https://alfa-leetcode-api.onrender.com/userContestRankingInfo/${personal.leetcodeUsername}`,
+          { signal: AbortSignal.timeout(6000) }
+        );
+        if (contestRes.ok) {
+          const cData = await contestRes.json();
+          if (!cancelled && cData.userContestRanking) {
+            const liveRating = Math.round(cData.userContestRanking.rating);
+            const liveTop = cData.userContestRanking.topPercentage;
+            setStats((prev) => ({
+              ...prev,
+              contestRating: liveRating || prev.contestRating,
+              ranking: liveTop ? `Top ${liveTop.toFixed(1)}%` : prev.ranking,
+            }));
+          }
+        }
+      } catch {
+        // Silently use verified fallback stats
+      }
+    };
+
+    fetchLiveStats();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const { totalSolved, easy, medium, hard, totalSubmissions, acceptanceRate, ranking, contestRating, streak, activeDays, languages, topTopics, badges } = stats;
   const total = easy + medium + hard;
   const easyPct = (easy / total) * 100;
   const medPct = (medium / total) * 100;

@@ -8,6 +8,9 @@ import initialContributions from '../data/github-contributions.json';
 export default function GithubHeatmap() {
   const { accent } = useTheme();
   const [data, setData] = useState<HeatDay[]>(initialContributions.contributions);
+  const [totalContributions, setTotalContributions] = useState(githubStats.totalContributions);
+  const [publicRepos, setPublicRepos] = useState(githubStats.publicRepos);
+  const [currentStreak, setCurrentStreak] = useState(githubStats.currentStreak);
 
   // Live update in background from GitHub contributions API for account @swaekaa
   useEffect(() => {
@@ -15,17 +18,49 @@ export default function GithubHeatmap() {
     const fetchContributions = async () => {
       try {
         const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${personal.githubUsername}?y=last`);
-        if (!res.ok) return;
-        const json = await res.json();
-        if (!cancelled && Array.isArray(json.contributions) && json.contributions.length > 0) {
-          const mapped: HeatDay[] = json.contributions.map((c: { date: string; count: number }) => ({
-            date: c.date,
-            value: c.count,
-          }));
-          setData(mapped);
+        if (res.ok) {
+          const json = await res.json();
+          if (!cancelled) {
+            if (json.total && typeof json.total.lastYear === 'number') {
+              setTotalContributions(String(json.total.lastYear));
+            }
+            if (Array.isArray(json.contributions) && json.contributions.length > 0) {
+              const mapped: HeatDay[] = json.contributions.map((c: { date: string; count: number }) => ({
+                date: c.date,
+                value: c.count,
+              }));
+              setData(mapped);
+
+              // Calculate active streak dynamically from trailing days
+              let streakCount = 0;
+              for (let i = json.contributions.length - 1; i >= 0; i--) {
+                if (json.contributions[i].count > 0) {
+                  streakCount++;
+                } else if (streakCount > 0) {
+                  break;
+                }
+              }
+              if (streakCount > 0) {
+                setCurrentStreak(`${streakCount} days`);
+              }
+            }
+          }
         }
       } catch {
         // Silently use bundled backup contributions
+      }
+
+      // Also try live public repository count
+      try {
+        const uRes = await fetch(`https://api.github.com/users/${personal.githubUsername}`);
+        if (uRes.ok) {
+          const uData = await uRes.json();
+          if (!cancelled && typeof uData.public_repos === 'number') {
+            setPublicRepos(String(uData.public_repos));
+          }
+        }
+      } catch {
+        // Silently fallback to bundled stats
       }
     };
 
@@ -63,7 +98,7 @@ export default function GithubHeatmap() {
             <span>Contributions</span>
           </div>
           <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-            {githubStats.totalContributions}
+            {totalContributions}
           </div>
           <span className="text-[11px] font-mono text-[#666666]">past 12 months</span>
         </div>
@@ -74,7 +109,7 @@ export default function GithubHeatmap() {
             <span>Public Repos</span>
           </div>
           <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-            {githubStats.publicRepos}
+            {publicRepos}
           </div>
           <span className="text-[11px] font-mono text-[#666666]">authored & active</span>
         </div>
@@ -85,7 +120,7 @@ export default function GithubHeatmap() {
             <span>Active Streak</span>
           </div>
           <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-            {githubStats.currentStreak}
+            {currentStreak}
           </div>
           <span className="text-[11px] font-mono text-[#666666]">continuous cadence</span>
         </div>
@@ -98,7 +133,7 @@ export default function GithubHeatmap() {
             <Terminal size={12} style={{ color: 'var(--accent)' }} />
             Commit Activity Stream
           </span>
-          <span className="text-[#888888]">53 weeks · {githubStats.totalContributions} commits</span>
+          <span className="text-[#888888]">53 weeks · {totalContributions} commits</span>
         </div>
         <ActivityHeatmap
           data={data}
