@@ -57,7 +57,7 @@ export default function GithubHeatmap() {
 
       {/* GitHub Real Metrics Grid — 3 Clean Balanced Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-4">
-        <div className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
+        <div data-gh-stat="contributions" className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
           <div className="flex items-center gap-2 text-[11px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
             <GitCommit size={14} style={{ color: 'var(--accent)' }} />
             <span>Contributions</span>
@@ -68,7 +68,7 @@ export default function GithubHeatmap() {
           <span className="text-[11px] font-mono text-[#666666]">past 12 months</span>
         </div>
 
-        <div className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
+        <div data-gh-stat="repos" className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
           <div className="flex items-center gap-2 text-[11px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
             <GitBranch size={14} style={{ color: 'var(--accent)' }} />
             <span>Public Repos</span>
@@ -79,7 +79,7 @@ export default function GithubHeatmap() {
           <span className="text-[11px] font-mono text-[#666666]">authored & active</span>
         </div>
 
-        <div className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
+        <div data-gh-stat="streak" className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
           <div className="flex items-center gap-2 text-[11px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
             <Flame size={14} className="text-amber-500" />
             <span>Active Streak</span>

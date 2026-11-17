@@ -43,6 +43,7 @@ export default function ProjectList() {
         {projects.map((p) => (
           <article
             key={p.id}
+            data-project={p.name}
             className="group py-4 px-4 -mx-4 rounded-lg border border-transparent hover:border-[#222222] hover:bg-[#090909]/60 transition-all duration-200 cursor-pointer"
             onClick={() => setSelectedProject(p)}
           >

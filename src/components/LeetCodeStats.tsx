@@ -32,7 +32,7 @@ export default function LeetCodeStats() {
       <div className="bg-[#080808] border border-[#1A1A1A] rounded-xl p-5 sm:p-6 space-y-5">
         {/* Balanced Top Metrics Grid — 3 Spacious Cards matching GitHub */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-          <div className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
+          <div data-lc-stat="solved" className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
             <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Solved
             </span>
@@ -42,7 +42,7 @@ export default function LeetCodeStats() {
             <span className="text-[11px] font-mono text-[#666666]">{totalSubmissions} submissions</span>
           </div>
 
-          <div className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
+          <div data-lc-stat="acceptance" className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
             <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Acceptance
             </span>
@@ -52,7 +52,7 @@ export default function LeetCodeStats() {
             <span className="text-[11px] font-mono text-[#666666]">solution accuracy</span>
           </div>
 
-          <div className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
+          <div data-lc-stat="rating" className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
             <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Contest Rating
             </span>
@@ -133,6 +133,7 @@ export default function LeetCodeStats() {
             {topTopics.map((topic) => (
               <div
                 key={topic.name}
+                data-lc-topic={topic.name}
                 className="bg-[#0B0B0B] border border-[#1C1C1C] hover:border-[#282828] rounded-lg px-3 py-2 flex items-center justify-between text-[12px] font-mono transition-colors"
               >
                 <span className="text-[#D0D0D0] font-medium">{topic.name}</span>

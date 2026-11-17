@@ -95,6 +95,7 @@ export default function SidebarNavigation({
               return (
                 <button
                   key={item.id}
+                  data-nav={item.label}
                   onClick={() => scrollTo(item.id)}
                   className={`group flex items-center gap-2 text-[13px] font-mono tracking-normal py-0.5 text-left w-full transition-colors duration-200 cursor-pointer ${
                     isActive
@@ -124,6 +125,7 @@ export default function SidebarNavigation({
               return (
                 <button
                   key={item.id}
+                  data-nav={item.label}
                   onClick={() => scrollTo(item.id)}
                   className={`group flex items-center gap-2 text-[13px] font-mono tracking-normal py-0.5 text-left w-full transition-colors duration-200 cursor-pointer ${
                     isActive
@@ -159,6 +161,7 @@ export default function SidebarNavigation({
                 return (
                   <button
                     key={c.id}
+                    data-color-btn={c.name}
                     onClick={() => setAccentColor(c.id)}
                     title={c.name}
                     aria-label={`Select ${c.name} accent`}

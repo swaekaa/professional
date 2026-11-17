@@ -12,6 +12,131 @@ type TrexState =
   | 'sleep2'
   | 'dizzy';
 
+function detectHoverItem(target: HTMLElement | null): string | null {
+  if (!target || target === document.body || target.tagName === 'HTML' || target.id === 'root') {
+    return null;
+  }
+
+  // Guard against broad generic wrappers / containers / padding
+  if (
+    target.tagName === 'MAIN' ||
+    target.classList.contains('min-h-screen') ||
+    target.classList.contains('max-w-3xl') ||
+    target.classList.contains('space-y-4') ||
+    target.classList.contains('space-y-3') ||
+    target.classList.contains('container')
+  ) {
+    return null;
+  }
+
+  // 1. Explicit data attributes (fastest & most accurate)
+  const skill = target.closest('[data-skill]')?.getAttribute('data-skill');
+  if (skill) return `skill: ${skill}`;
+
+  const proj = target.closest('[data-project]')?.getAttribute('data-project');
+  if (proj) {
+    if (target.closest('a[aria-label*="GitHub"]') || target.closest('a[href*="github.com"]')) {
+      return `github · ${proj}`;
+    }
+    if (target.closest('a[aria-label*="demo"]') || target.closest('a[href*="vercel.app"]')) {
+      return `live demo · ${proj}`;
+    }
+    return `project: ${proj}`;
+  }
+
+  const res = target.closest('[data-research]')?.getAttribute('data-research');
+  if (res) {
+    if (target.tagName === 'IMG' || target.closest('figure')) {
+      return 'empirical plot';
+    }
+    return `research: ${res}`;
+  }
+
+  const edu = target.closest('[data-edu]')?.getAttribute('data-edu');
+  if (edu) return `education: ${edu}`;
+
+  const cert = target.closest('[data-cert]')?.getAttribute('data-cert');
+  if (cert) return `cert: ${cert}`;
+
+  const journey = target.closest('[data-journey]')?.getAttribute('data-journey');
+  if (journey) return `milestone: ${journey}`;
+
+  const nav = target.closest('[data-nav]')?.getAttribute('data-nav');
+  if (nav) return `jump to ${nav}`;
+
+  const color = target.closest('[data-color-btn]')?.getAttribute('data-color-btn');
+  if (color) return `accent: ${color}`;
+
+  const exp = target.closest('[data-experience]')?.getAttribute('data-experience');
+  if (exp) {
+    if (target.closest('span[class*="rounded"]')) {
+      const tagText = target.innerText?.trim();
+      if (tagText && tagText.length < 20) return `tech: ${tagText.replace(/[\[\]]/g, '')}`;
+    }
+    return `experience: ${exp}`;
+  }
+
+  const ghStat = target.closest('[data-gh-stat]')?.getAttribute('data-gh-stat');
+  if (ghStat) {
+    if (ghStat === 'contributions') return 'github: 848 contributions';
+    if (ghStat === 'repos') return 'github: 40 public repos';
+    if (ghStat === 'streak') return 'github: 23-day streak';
+  }
+
+  const lcStat = target.closest('[data-lc-stat]')?.getAttribute('data-lc-stat');
+  if (lcStat) {
+    if (lcStat === 'solved') return 'leetcode: 307 solved';
+    if (lcStat === 'acceptance') return 'leetcode: 60.4% acceptance';
+    if (lcStat === 'rating') return 'contest rating: 1527';
+  }
+
+  const lcTopic = target.closest('[data-lc-topic]')?.getAttribute('data-lc-topic');
+  if (lcTopic) return `topic: ${lcTopic}`;
+
+  // 2. Links & social buttons
+  const link = target.closest('a');
+  if (link) {
+    const href = link.getAttribute('href') || '';
+    if (href.includes('github.com/swaekaa')) return 'github · @swaekaa';
+    if (href.includes('leetcode.com')) return 'leetcode · @meanturtle';
+    if (href.includes('linkedin.com')) return 'linkedin · sawaria-ekaansh';
+    if (href.includes('x.com/swaaeka') || href.includes('twitter.com')) return 'x / twitter · @swaaeka';
+    if (href.startsWith('mailto:')) return 'email · sawariaekaansh@gmail.com';
+    if (href.includes('resume')) return 'resume · download PDF';
+    const linkText = link.innerText?.trim();
+    if (linkText && linkText.length < 24) return `link: ${linkText}`;
+  }
+
+  // 3. LeetCode difficulty & badges
+  const lcSection = target.closest('#leetcode');
+  if (lcSection) {
+    const text = target.innerText?.trim() || '';
+    if (text.includes('Easy')) return '112 easy solved';
+    if (text.includes('Medium')) return '180 medium solved';
+    if (text.includes('Hard')) return '15 hard solved';
+    if (text.includes('Badge')) return `badge: ${text}`;
+  }
+
+  // 4. Public X posts
+  const xPost = target.closest('#public .p-4') || target.closest('#public article');
+  if (xPost) return 'x post by @swaaeka';
+
+  // 5. Interactive buttons / inputs
+  if (target.closest('input, textarea')) return 'listening...';
+  const btn = target.closest('button');
+  if (btn) {
+    const btnText = btn.innerText?.trim();
+    if (btnText && btnText.length < 25) return `button: ${btnText.toLowerCase()}`;
+  }
+
+  // 6. Avatar
+  if (target.tagName === 'IMG' && target.getAttribute('src')?.includes('profile-x')) {
+    return 'Ekaansh Sawaria (@swaaeka)';
+  }
+
+  return null;
+}
+
 export default function PixelTrex() {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [facingLeft, setFacingLeft] = useState(false);
@@ -40,9 +165,17 @@ export default function PixelTrex() {
   const dizzyCooldownRef = useRef<number>(0);
   const mouseVelocityHistoryRef = useRef<{ dist: number; time: number }[]>([]);
 
-  const showBubble = useCallback((text: string, duration = 2400) => {
-    setBubble(text);
+  const clearBubble = useCallback((delay = 200) => {
     if (bubbleTimerRef.current) clearTimeout(bubbleTimerRef.current);
+    bubbleTimerRef.current = window.setTimeout(() => {
+      setBubble(null);
+      lastTargetRef.current = '';
+    }, delay);
+  }, []);
+
+  const showBubble = useCallback((text: string, duration = 3000) => {
+    if (bubbleTimerRef.current) clearTimeout(bubbleTimerRef.current);
+    setBubble(text);
     bubbleTimerRef.current = window.setTimeout(() => {
       setBubble(null);
       lastTargetRef.current = '';
@@ -112,6 +245,30 @@ export default function PixelTrex() {
     posRef.current = { x: initialX, y: initialY };
     setPos({ x: initialX, y: initialY });
 
+    // Contextual Hover Detection: T-Rex reacts to whatever the cursor hovers over!
+    const handleHover = (target: HTMLElement | null) => {
+      // Don't interrupt dizzy state with ordinary hover comments
+      if (isDizzyRef.current) return;
+
+      const comment = detectHoverItem(target);
+
+      if (comment) {
+        if (comment !== lastTargetRef.current) {
+          lastTargetRef.current = comment;
+          showBubble(comment, 3500);
+          if (target?.closest('a, button')) {
+            if (!isJumpingRef.current) triggerHop(14);
+          }
+        }
+      } else {
+        // Idle place / background / whitespace: clear bubble smoothly
+        if (lastTargetRef.current !== '') {
+          lastTargetRef.current = '';
+          clearBubble(200);
+        }
+      }
+    };
+
     // Track mouse position & detect rapid erratic cursor movements
     const handleMouseMove = (e: MouseEvent) => {
       const now = performance.now();
@@ -120,13 +277,15 @@ export default function PixelTrex() {
       lastMousePosRef.current = { x: e.clientX, y: e.clientY };
       mouseRef.current = { x: e.clientX, y: e.clientY };
 
+      handleHover(e.target as HTMLElement | null);
+
       if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
       idleTimerRef.current = window.setTimeout(() => {
         if (!isDizzyRef.current) setState('sleep1');
       }, 12000);
 
-      // Rapid cursor movement detection (swirling / shaking cursor a lot)
-      if (!isDizzyRef.current && now > dizzyCooldownRef.current) {
+      // Rapid cursor movement detection: only detect intentional back-and-forth shaking (ignore single large teleports > 400px)
+      if (dist < 400 && !isDizzyRef.current && now > dizzyCooldownRef.current) {
         mouseVelocityHistoryRef.current = mouseVelocityHistoryRef.current.filter(
           (m) => now - m.time < 1200
         );
@@ -134,83 +293,14 @@ export default function PixelTrex() {
 
         const totalDist = mouseVelocityHistoryRef.current.reduce((sum, m) => sum + m.dist, 0);
 
-        if (totalDist > 2500) {
+        if (totalDist > 2400 && mouseVelocityHistoryRef.current.length >= 8) {
           triggerDizzy();
         }
       }
     };
 
-    // Contextual Hover Detection: T-Rex reacts to whatever the cursor hovers over!
     const handleMouseOver = (e: MouseEvent) => {
-      // Don't interrupt dizzy state with ordinary hover comments
-      if (isDizzyRef.current) return;
-
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-
-      const text = target.innerText?.trim() || '';
-      const href = target.closest('a')?.getAttribute('href') || '';
-      const ariaLabel = target.getAttribute('aria-label') || '';
-      const title = target.getAttribute('title') || '';
-      const targetInfo = `${text} ${href} ${ariaLabel} ${title}`.toLowerCase();
-
-      // Check specific elements
-      let comment = '';
-
-      if (target.closest('a[href*="github.com"]') || targetInfo.includes('github')) {
-        comment = 'view git repos';
-      } else if (target.closest('a[href*="leetcode.com"]') || targetInfo.includes('leetcode')) {
-        comment = 'grinding dsa';
-      } else if (target.closest('a[href*="linkedin.com"]') || targetInfo.includes('linkedin')) {
-        comment = "let's connect";
-      } else if (target.closest('a[href*="mailto"]') || targetInfo.includes('mailto') || targetInfo.includes('email')) {
-        comment = 'drop a message';
-      } else if (target.closest('a[href*="resume"]') || targetInfo.includes('resume')) {
-        comment = 'download cv';
-      } else if (target.closest('article') || target.closest('[id="projects"]')) {
-        const articleText = target.closest('article')?.innerText || '';
-        if (articleText.includes('RExplain')) comment = 'ast parser & diagram';
-        else if (articleText.includes('KRPO')) comment = 'autonomous racing rl';
-        else if (articleText.includes('VisionSat')) comment = 'satellite vision (97.2%)';
-        else if (articleText.includes('ARST')) comment = 'sensor fusion transformer';
-        else if (articleText.includes('NEXORA')) comment = 'agentic b2b marketplace';
-        else if (articleText.includes('Quantization')) comment = 'noise-injection proxy';
-        else comment = 'reading project';
-      } else if (target.closest('[id="experience"]')) {
-        if (text.includes('Accenture')) comment = 'multi-agent rag';
-        else comment = 'work experience';
-      } else if (target.closest('[id="leetcode"]')) {
-        if (text.includes('Easy')) comment = '112 easy solved';
-        else if (text.includes('Medium')) comment = '180 medium solved';
-        else if (text.includes('Hard')) comment = '15 hard solved';
-        else comment = 'leetcode profile';
-      } else if (target.closest('[id="github"]')) {
-        comment = '848 contributions';
-      } else if (target.closest('[id="research"]')) {
-        comment = 'measuring hypothesis';
-      } else if (target.closest('[id="writing"]')) {
-        comment = 'technical note';
-      } else if (target.closest('[id="skills"]')) {
-        if (text.includes('PYTHON')) comment = 'pythonic';
-        else if (text.includes('FASTAPI')) comment = 'async rest api';
-        else if (text.includes('PYTORCH')) comment = 'tensor calculus';
-        else if (text.includes('RAG')) comment = 'hybrid sparse-dense';
-        else if (text.includes('LANGGRAPH')) comment = 'cyclic agent graph';
-        else if (text.includes('DOCKER')) comment = 'containerized';
-        else comment = 'toolkit item';
-      } else if (target.closest('button') && target.closest('aside')) {
-        comment = `jump to ${text.toLowerCase()}`;
-      } else if (target.closest('input, textarea')) {
-        comment = 'listening...';
-      }
-
-      if (comment && comment !== lastTargetRef.current) {
-        lastTargetRef.current = comment;
-        showBubble(comment);
-        if (target.closest('a, button')) {
-          if (!isJumpingRef.current) triggerHop(14);
-        }
-      }
+      handleHover(e.target as HTMLElement | null);
     };
 
     // Section scroll awareness & fast scroll sprint

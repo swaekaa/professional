@@ -23,6 +23,7 @@ export default function ResearchSection() {
           return (
             <div
               key={item.id}
+              data-research={item.title}
               className="group border-b border-[#181818] last:border-0 pb-4 transition-colors"
             >
               <button

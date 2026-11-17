@@ -23,6 +23,7 @@ export default function CommunityAndJourney() {
                 {items.map((skill) => (
                   <span
                     key={skill}
+                    data-skill={skill}
                     className="font-mono text-[10.5px] text-white bg-transparent border border-[#222222] hover:border-[#383838] px-2.5 py-1 rounded transition-colors cursor-default"
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
                     onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#222222')}
@@ -50,6 +51,7 @@ export default function CommunityAndJourney() {
           {certifications.map((item, i) => (
             <div
               key={i}
+              data-cert={item.title}
               className="py-2.5 border-b border-[#181818] last:border-0 flex items-start justify-between gap-4"
             >
               <div className="flex items-start gap-3.5">
@@ -81,7 +83,11 @@ export default function CommunityAndJourney() {
 
         <div className="space-y-3">
           {education.schools.map((item, idx) => (
-            <div key={idx} className="p-4 bg-[#090909] border border-[#1A1A1A] rounded-lg hover:border-[#282828] transition-colors">
+            <div
+              key={idx}
+              data-edu={`${item.institution} (${item.degree})`}
+              className="p-4 bg-[#090909] border border-[#1A1A1A] rounded-lg hover:border-[#282828] transition-colors"
+            >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2">
@@ -126,7 +132,7 @@ export default function CommunityAndJourney() {
 
         <div className="relative pl-6 border-l border-[#222222] space-y-6">
           {journey.map((item, idx) => (
-            <div key={idx} className="relative group">
+            <div key={idx} data-journey={`${item.year} · ${item.event}`} className="relative group">
               {/* Timeline marker */}
               <div
                 className="absolute -left-[30px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#050505] border-2 transition-colors"

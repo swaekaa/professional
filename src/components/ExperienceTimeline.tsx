@@ -22,6 +22,7 @@ export default function ExperienceTimeline() {
           return (
             <div
               key={job.id}
+              data-experience={`${job.company} · ${job.role}`}
               className="group border-b border-[#181818] last:border-0 pb-4 transition-colors"
             >
               {/* Header Row */}
