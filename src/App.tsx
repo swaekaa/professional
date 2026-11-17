@@ -7,7 +7,7 @@ import LeetCodeStats from './components/LeetCodeStats';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import ProjectList from './components/ProjectList';
 import ResearchSection from './components/ResearchSection';
-import WritingSection from './components/WritingSection';
+import PublicXSection from './components/PublicXSection';
 import CommunityAndJourney from './components/CommunityAndJourney';
 import ContactAndNote from './components/ContactAndNote';
 import Footer from './components/Footer';
@@ -37,7 +37,7 @@ function PortfolioContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-[#E7E7E7] selection:bg-[#E45B43]/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#E45B43]/30 selection:text-white">
       {/* Tactile Dark Film Grain / Noise Texture Background */}
       <div className="noise-overlay" aria-hidden="true" />
 
@@ -63,12 +63,12 @@ function PortfolioContent() {
       <PixelTrex />
 
       {/* Centered Desktop Layout Container with Generous Negative Space */}
-      <div className="relative z-10 max-w-[780px] mx-auto px-5 sm:px-8 min-h-screen flex flex-col md:flex-row gap-8 lg:gap-14 pt-6 md:pt-14 pb-20">
+      <div className="relative z-10 max-w-[800px] mx-auto px-5 sm:px-8 min-h-screen flex flex-col md:flex-row gap-8 lg:gap-14 pt-6 md:pt-14 pb-20">
         {/* Understated Left Navigation with Accent Color Picker */}
         <SidebarNavigation onOpenNoteModal={() => setIsNoteModalOpen(true)} />
 
-        {/* Main Content Column (Restrained narrow width: ~500–540px, journal style) */}
-        <main className="w-full md:max-w-[540px] flex-1 min-w-0">
+        {/* Main Content Column (Restrained narrow width: ~540–560px, journal style) */}
+        <main className="w-full md:max-w-[560px] flex-1 min-w-0">
           <FadeContent trigger="mount" duration={1} blur={false}>
             <HeroSection />
           </FadeContent>
@@ -88,7 +88,7 @@ function PortfolioContent() {
             <ResearchSection />
           </FadeContent>
           <FadeContent threshold={0.12} duration={1}>
-            <WritingSection />
+            <PublicXSection />
           </FadeContent>
           <FadeContent threshold={0.12} duration={1}>
             <CommunityAndJourney />

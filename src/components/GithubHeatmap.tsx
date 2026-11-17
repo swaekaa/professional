@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, GitCommit, GitBranch, Terminal, Flame, Clock } from 'lucide-react';
 import { ActivityHeatmap, type HeatDay } from '@/components/ui/activity-heatmap';
 import { useTheme } from '../context/ThemeContext';
-import { personal } from '../data/portfolio';
+import { personal, githubStats } from '../data/portfolio';
 import initialContributions from '../data/github-contributions.json';
 
 export default function GithubHeatmap() {
@@ -36,27 +36,81 @@ export default function GithubHeatmap() {
   }, []);
 
   return (
-    <section id="github" className="py-10 border-b border-[#141414] animate-fade-in">
+    <section id="github" className="py-10 border-b border-[#181818] animate-fade-in">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-4 font-mono text-[11px]">
-        <div className="text-[#777777] flex items-center gap-1.5">
+      <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
+        <div className="text-white flex items-center gap-1.5 font-bold">
           <span style={{ color: 'var(--accent)' }}>/</span>
-          <span>github</span>
-          <span className="text-[#444444] text-[10px]">· @{personal.githubUsername}</span>
+          <span className="uppercase tracking-wider">github</span>
+          <span className="text-[#888888] font-normal text-[11px]">· @{personal.githubUsername}</span>
         </div>
         <a
           href={personal.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#666666] hover:text-[#D0D0D0] flex items-center gap-1 transition-colors"
+          className="text-[#AAAAAA] hover:text-white flex items-center gap-1.5 transition-colors font-medium"
         >
-          <span>Profile</span>
-          <ArrowUpRight size={10} />
+          <span>github.com/{personal.githubUsername}</span>
+          <ArrowUpRight size={13} />
         </a>
       </div>
 
+      {/* GitHub Detailed Metrics Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3.5">
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
+          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
+            <GitCommit size={12} style={{ color: 'var(--accent)' }} />
+            <span>CONTRIBUTIONS</span>
+          </div>
+          <div className="text-[19px] font-mono font-bold text-white">
+            {githubStats.totalContributions}
+          </div>
+          <span className="text-[10.5px] font-mono text-[#666666]">past 12 months</span>
+        </div>
+
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
+          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
+            <GitBranch size={12} style={{ color: 'var(--accent)' }} />
+            <span>PUBLIC REPOS</span>
+          </div>
+          <div className="text-[19px] font-mono font-bold text-white">
+            {githubStats.publicRepos}
+          </div>
+          <span className="text-[10.5px] font-mono text-[#666666]">authored & active</span>
+        </div>
+
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
+          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
+            <Flame size={12} className="text-amber-500" />
+            <span>STREAK</span>
+          </div>
+          <div className="text-[19px] font-mono font-bold text-white">
+            {githubStats.currentStreak}
+          </div>
+          <span className="text-[10.5px] font-mono text-[#666666]">continuous daily cadence</span>
+        </div>
+
+        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3">
+          <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#888888] mb-1">
+            <Clock size={12} className="text-sky-400" />
+            <span>PEAK HOURS</span>
+          </div>
+          <div className="text-[15px] font-mono font-bold text-white mt-0.5">
+            00:00 – 04:00
+          </div>
+          <span className="text-[10.5px] font-mono text-[#666666]">night owl engineering</span>
+        </div>
+      </div>
+
       {/* Heatmap Box */}
-      <div className="bg-[#080808] border border-[#161616] rounded-lg p-4 overflow-hidden">
+      <div className="bg-[#080808] border border-[#1A1A1A] rounded-lg p-4 sm:p-5 overflow-hidden mb-3.5">
+        <div className="flex items-center justify-between mb-3 text-[11.5px] font-mono">
+          <span className="text-white font-bold flex items-center gap-1.5">
+            <Terminal size={12} style={{ color: 'var(--accent)' }} />
+            Commit Activity Stream
+          </span>
+          <span className="text-[#888888]">53 weeks · daily density</span>
+        </div>
         <ActivityHeatmap
           data={data}
           weekStart={1}
@@ -64,8 +118,41 @@ export default function GithubHeatmap() {
           color={accent.primary}
           weeks={53}
           minCell={8}
-          className="w-full text-neutral-300"
+          className="w-full text-white"
         />
+      </div>
+
+      {/* Language Breakdown Bar */}
+      <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 space-y-2.5">
+        <div className="flex items-center justify-between text-[11px] font-mono text-[#AAAAAA]">
+          <span className="text-white font-bold uppercase tracking-wider">Top Codebase Languages</span>
+          <span className="text-[#777777]">By Byte Volume</span>
+        </div>
+
+        {/* Stacked Percentage Bar */}
+        <div className="h-2 w-full bg-[#141414] rounded-full overflow-hidden flex">
+          {githubStats.languages.map((l) => (
+            <div
+              key={l.name}
+              style={{ width: `${l.pct}%`, backgroundColor: l.color }}
+              title={`${l.name}: ${l.pct}%`}
+            />
+          ))}
+        </div>
+
+        {/* Legend */}
+        <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] font-mono">
+          {githubStats.languages.map((l) => (
+            <div key={l.name} className="flex items-center gap-1.5">
+              <span
+                className="w-2 h-2 rounded-full shrink-0"
+                style={{ backgroundColor: l.color }}
+              />
+              <span className="text-white font-medium">{l.name}</span>
+              <span className="text-[#888888]">{l.pct}%</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

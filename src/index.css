@@ -18,9 +18,9 @@
   --color-border: #252525;
   --color-border-subtle: #181818;
 
-  --color-text-primary: #E7E7E7;
-  --color-text-secondary: #858585;
-  --color-text-muted: #555555;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #E0E0E0;
+  --color-text-muted: #888888;
 
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
@@ -33,16 +33,21 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #050505;
-  color: #E7E7E7;
+  color: #FFFFFF;
 }
 
 body {
   background-color: #050505;
-  color: #E7E7E7;
+  color: #FFFFFF;
   font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.7;
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 /* Tactile Dark Film Grain / Noise Texture Background */
