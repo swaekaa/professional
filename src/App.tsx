@@ -12,6 +12,7 @@ import CommunityAndJourney from './components/CommunityAndJourney';
 import ContactAndNote from './components/ContactAndNote';
 import Footer from './components/Footer';
 import PixelTrex from './components/PixelTrex';
+import LastFmCapsule from './components/LastFmCapsule';
 import PixelTreesLeft from './components/PixelTreesLeft';
 import PixelTreesRight from './components/PixelTreesRight';
 import PixelForestFloor from './components/PixelForestFloor';
@@ -61,6 +62,9 @@ function PortfolioContent() {
 
       {/* Interactive Pixel Art T-Rex Companion Following Cursor (Bottom-Right) */}
       <PixelTrex />
+
+      {/* Sleek Last.fm Recently Played / Now Playing Capsule Bar (Top-Right) */}
+      <LastFmCapsule />
 
       {/* Centered Desktop Layout Container with Generous Negative Space */}
       <div className="relative z-10 max-w-[800px] mx-auto px-5 sm:px-8 min-h-screen flex flex-col md:flex-row gap-8 lg:gap-14 pt-6 md:pt-14 pb-20">

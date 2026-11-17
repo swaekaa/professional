@@ -18,6 +18,8 @@ export const personal = {
   leetcodeUsername: "meanturtle",
   x: "https://x.com/swaaeka",
   xHandle: "@swaaeka",
+  lastfm: "https://www.last.fm/user/moanturtle",
+  lastfmUsername: "moanturtle",
   avatar: "/images/profile-x.jpg",
   xBio: "very avg comp science student… also likes grapes. Ex-ASE @accenture",
   linkedin: "https://www.linkedin.com/in/sawaria-ekaansh/",

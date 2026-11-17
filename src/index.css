@@ -275,4 +275,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Music Equalizer Bars Animation */
+@keyframes musicBar {
+  0%, 100% {
+    height: 3px;
+  }
+  50% {
+    height: 10px;
+  }
+}
+.animate-music-bar-1 {
+  animation: musicBar 0.8s ease-in-out infinite;
+}
+.animate-music-bar-2 {
+  animation: musicBar 0.8s ease-in-out infinite 0.25s;
+}
+.animate-music-bar-3 {
+  animation: musicBar 0.8s ease-in-out infinite 0.5s;
+}
+
 

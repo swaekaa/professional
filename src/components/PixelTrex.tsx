@@ -30,6 +30,9 @@ function detectHoverItem(target: HTMLElement | null): string | null {
   }
 
   // 1. Explicit data attributes (fastest & most accurate)
+  const music = target.closest('[data-music]')?.getAttribute('data-music');
+  if (music) return music;
+
   const skill = target.closest('[data-skill]')?.getAttribute('data-skill');
   if (skill) {
     // Return clean formatted skill name (1-2 words)
