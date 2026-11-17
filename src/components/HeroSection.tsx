@@ -34,13 +34,13 @@ export default function HeroSection() {
         {/* Personal technical narrative with high contrast white text and bold highlights */}
         <div className="text-[15.5px] text-white leading-[1.8] space-y-3.5 font-normal">
           <p>
-            Hi, I'm <strong className="text-white font-bold">Ekaansh Sawaria</strong>. I build intelligent systems that solve real-world problems.
-            I'm a Computer Science undergraduate and <strong className="text-white font-bold">Software Engineer</strong> passionate about building AI-powered applications, scalable backend systems, and intelligent software solutions.
+            Hi, I'm <strong className="text-white font-bold">Ekaansh Sawaria</strong>. I build intelligent systems that solve real world problems.
+            I'm a Computer Science undergraduate and <strong className="text-white font-bold">Software Engineer</strong> passionate about building AI powered applications, scalable backend systems, and intelligent software solutions.
           </p>
 
           <p>
-            Currently, I'm working as an Associate Software Engineer Intern at{' '}
-            <strong className="text-white font-bold">Accenture</strong>, exploring the intersection of AI, multi-agent systems, LLMs, and software engineering.
+            I worked this summer as an Associate Software Engineer Intern at{' '}
+            <strong className="text-white font-bold">Accenture</strong>, exploring the intersection of AI, multi agent systems, LLMs, and software engineering.
           </p>
 
           <p>

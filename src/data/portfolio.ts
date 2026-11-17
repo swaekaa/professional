@@ -8,7 +8,7 @@ export const personal = {
   handle: "swaekaa",
   initials: "EK",
   title: "Software Engineer",
-  tagline: "Building intelligent systems, scalable backend infrastructure, and AI-powered applications.",
+  tagline: "Building intelligent systems, scalable backend infrastructure, and AI powered applications.",
   location: "Jaipur / Bangalore, India",
   email: "sawariaekaansh@gmail.com",
   phone: "8108700827",
@@ -26,8 +26,8 @@ export const personal = {
   resume: "/resume.pdf",
   bioHeadline: "Software Engineer · Intelligent Systems · Scalable Backends",
   bioParagraphs: [
-    "Hi, I'm Ekaansh Sawaria. I build intelligent systems that solve real-world problems. I'm a Computer Science undergraduate and Software Engineer passionate about building AI-powered applications, scalable backend systems, and intelligent software solutions.",
-    "Currently, I'm working as an Associate Software Engineer Intern at Accenture, exploring the intersection of AI, multi-agent systems, LLMs, and software engineering.",
+    "Hi, I'm Ekaansh Sawaria. I build intelligent systems that solve real world problems. I'm a Computer Science undergraduate and Software Engineer passionate about building AI powered applications, scalable backend systems, and intelligent software solutions.",
+    "I worked this summer as an Associate Software Engineer Intern at Accenture, exploring the intersection of AI, multi agent systems, LLMs, and software engineering.",
     "I enjoy taking complex ideas from concept to implementation, experimenting with emerging technologies, and building products that make a meaningful impact."
   ],
   interests: [
