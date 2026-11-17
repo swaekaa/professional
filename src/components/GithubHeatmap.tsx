@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowUpRight, GitCommit, GitBranch, Terminal, Flame, Clock } from 'lucide-react';
+import { ArrowUpRight, GitCommit, GitBranch, Terminal, Flame } from 'lucide-react';
 import { ActivityHeatmap, type HeatDay } from '@/components/ui/activity-heatmap';
 import { useTheme } from '../context/ThemeContext';
 import { personal, githubStats } from '../data/portfolio';
@@ -55,50 +55,39 @@ export default function GithubHeatmap() {
         </a>
       </div>
 
-      {/* GitHub Real Metrics Grid — Uniform alignment across all 4 cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3.5">
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
-          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
-            <GitCommit size={13} style={{ color: 'var(--accent)' }} />
+      {/* GitHub Real Metrics Grid — 3 Clean Balanced Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-4">
+        <div className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
+          <div className="flex items-center gap-2 text-[11px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
+            <GitCommit size={14} style={{ color: 'var(--accent)' }} />
             <span>Contributions</span>
           </div>
-          <div className="text-[22px] font-mono font-bold text-white leading-none">
+          <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
             {githubStats.totalContributions}
           </div>
-          <span className="text-[10.5px] font-mono text-[#666666]">past 12 months</span>
+          <span className="text-[11px] font-mono text-[#666666]">past 12 months</span>
         </div>
 
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
-          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
-            <GitBranch size={13} style={{ color: 'var(--accent)' }} />
+        <div className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
+          <div className="flex items-center gap-2 text-[11px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
+            <GitBranch size={14} style={{ color: 'var(--accent)' }} />
             <span>Public Repos</span>
           </div>
-          <div className="text-[22px] font-mono font-bold text-white leading-none">
+          <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
             {githubStats.publicRepos}
           </div>
-          <span className="text-[10.5px] font-mono text-[#666666]">authored & active</span>
+          <span className="text-[11px] font-mono text-[#666666]">authored & active</span>
         </div>
 
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
-          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
-            <Flame size={13} className="text-amber-500" />
+        <div className="bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl p-4 flex flex-col justify-between h-[100px] transition-all duration-200">
+          <div className="flex items-center gap-2 text-[11px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
+            <Flame size={14} className="text-amber-500" />
             <span>Active Streak</span>
           </div>
-          <div className="text-[22px] font-mono font-bold text-white leading-none">
+          <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
             {githubStats.currentStreak}
           </div>
-          <span className="text-[10.5px] font-mono text-[#666666]">continuous cadence</span>
-        </div>
-
-        <div className="bg-[#090909] border border-[#1A1A1A] rounded-lg p-3.5 flex flex-col justify-between h-[96px]">
-          <div className="flex items-center gap-1.5 text-[10.5px] font-mono text-[#888888] uppercase tracking-wider font-semibold">
-            <Clock size={13} className="text-sky-400" />
-            <span>Peak Hours</span>
-          </div>
-          <div className="text-[18px] font-mono font-bold text-white leading-none">
-            00:00 – 04:00
-          </div>
-          <span className="text-[10.5px] font-mono text-[#666666]">night owl engineering</span>
+          <span className="text-[11px] font-mono text-[#666666]">continuous cadence</span>
         </div>
       </div>
 

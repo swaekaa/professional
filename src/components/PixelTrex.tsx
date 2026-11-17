@@ -249,9 +249,9 @@ export default function PixelTrex() {
     const updateLoop = () => {
       tick++;
 
-      // Follow cursor positioned comfortably to the bottom-right
-      const targetX = Math.min(window.innerWidth - 36, mouseRef.current.x + 48);
-      const targetY = Math.min(window.innerHeight - 36, mouseRef.current.y + 42);
+      // Follow cursor positioned comfortably to the bottom-right so it stays clearly visible and never obscures text or cards
+      const targetX = Math.min(window.innerWidth - 44, mouseRef.current.x + 85);
+      const targetY = Math.min(window.innerHeight - 44, mouseRef.current.y + 75);
 
       const dx = targetX - posRef.current.x;
       const dy = targetY - posRef.current.y;
