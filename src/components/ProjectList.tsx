@@ -35,7 +35,7 @@ export default function ProjectList() {
           <span>/</span>
           <span className="uppercase tracking-wider">projects</span>
         </div>
-        <span className="text-[#888888] font-mono text-[11px]">06 selected</span>
+        <span className="text-[#888888] font-mono text-[11px]">0{projects.length} selected</span>
       </div>
 
       {/* Editorial Typographic List of Projects (Thumbnails Removed) */}
@@ -172,6 +172,91 @@ export default function ProjectList() {
                   </h4>
                   <p className="text-white leading-relaxed">{selectedProject.architecture}</p>
                 </div>
+
+                {/* Picture Graphs & Visual Architecture Diagrams */}
+                {selectedProject.id === 'rexplain' && (
+                  <div className="bg-[#080808] border border-[#202020] rounded-xl p-4 font-mono text-[11px]">
+                    <div className="text-[10px] uppercase tracking-wider mb-2.5 font-bold flex items-center gap-1.5" style={{ color: 'var(--accent)' }}>
+                      <span>Pipeline Architecture</span>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-center">
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">GitHub URL</span>
+                      <span className="text-[#666666]">→</span>
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">Tree API (Selective)</span>
+                      <span className="text-[#666666]">→</span>
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">AST & Graphviz</span>
+                      <span className="text-[#666666]">→</span>
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">MiniLM Embedding</span>
+                      <span className="text-[#666666]">→</span>
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">Groq RAG Chat</span>
+                    </div>
+                  </div>
+                )}
+
+                {selectedProject.id === 'nexora' && 'image' in selectedProject && selectedProject.image && (
+                  <div className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden">
+                    <div className="flex items-center justify-center bg-[#070707] rounded-lg p-2 overflow-hidden">
+                      <img
+                        src={selectedProject.image}
+                        alt={`${selectedProject.name} Architecture`}
+                        className="w-full h-auto max-h-[260px] object-contain filter contrast-110"
+                      />
+                    </div>
+                    <p className="font-mono text-[10.5px] text-[#AAAAAA] text-center mt-2">
+                      Fig 1. Deterministic Policy Engine validation floor & Razorpay settlement architecture
+                    </p>
+                  </div>
+                )}
+
+                {selectedProject.id === 'visionsat' && (
+                  <div className="bg-[#080808] border border-[#202020] rounded-xl p-4 font-mono text-[11px]">
+                    <div className="text-[10px] uppercase tracking-wider mb-2.5 font-bold flex items-center gap-1.5" style={{ color: 'var(--accent)' }}>
+                      <span>Grad-CAM Spatial Interpretability Pipeline</span>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-center">
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">EuroSAT Satellite Image</span>
+                      <span className="text-[#666666]">→</span>
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">ResNet-18 Conv5</span>
+                      <span className="text-[#666666]">→</span>
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">Gradient Pooling (ReLU)</span>
+                      <span className="text-[#666666]">→</span>
+                      <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">Spatial Heatmap</span>
+                    </div>
+                  </div>
+                )}
+
+                {selectedProject.id === 'klustor' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {'image' in selectedProject && selectedProject.image && (
+                      <div className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden flex flex-col justify-between">
+                        <div className="flex items-center justify-center bg-[#070707] rounded-lg p-2">
+                          <img
+                            src={selectedProject.image}
+                            alt="Design Score Analysis"
+                            className="w-full h-auto max-h-[180px] object-contain"
+                          />
+                        </div>
+                        <p className="font-mono text-[10.5px] text-[#AAAAAA] text-center mt-2">
+                          Fig 1. Algorithmic Design Scoring canvas analyzer
+                        </p>
+                      </div>
+                    )}
+                    {'image2' in selectedProject && selectedProject.image2 && (
+                      <div className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden flex flex-col justify-between">
+                        <div className="flex items-center justify-center bg-[#070707] rounded-lg p-2">
+                          <img
+                            src={selectedProject.image2}
+                            alt="Multiplayer Lobby Sync"
+                            className="w-full h-auto max-h-[180px] object-contain"
+                          />
+                        </div>
+                        <p className="font-mono text-[10.5px] text-[#AAAAAA] text-center mt-2">
+                          Fig 2. Socket.IO live multiplayer lobby sync
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <div>
                   <h4 className="font-mono text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2.5">

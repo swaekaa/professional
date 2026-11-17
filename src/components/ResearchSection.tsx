@@ -4,7 +4,7 @@ import { GithubIcon } from './Icons';
 import { research } from '../data/portfolio';
 
 export default function ResearchSection() {
-  const [openId, setOpenId] = useState<string | null>('transformer-quant');
+  const [openId, setOpenId] = useState<string | null>('llm-quant-sense');
 
   return (
     <section id="research" className="py-10 border-b border-[#181818] animate-fade-in">
@@ -53,28 +53,28 @@ export default function ResearchSection() {
                     <p className="text-white leading-relaxed">{item.approach}</p>
                   </div>
 
-                  {/* Research plots */}
-                  {item.id === 'transformer-quant' && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-1">
-                      <div className="rounded-lg border border-[#222222] bg-black p-2.5 overflow-hidden">
-                        <img
-                          src="/images/projects/llm_quant_fp16.png"
-                          alt="FP16 Layer Sensitivity Benchmark"
-                          className="w-full h-auto object-contain filter contrast-125"
-                        />
-                        <p className="font-mono text-[10px] text-[#888888] text-center mt-1.5">
-                          Fig 1. Layer-wise noise sensitivity in DistilBERT
-                        </p>
-                      </div>
-                      <div className="rounded-lg border border-[#222222] bg-black p-2.5 overflow-hidden">
-                        <img
-                          src="/images/projects/llm_quant_rank.png"
-                          alt="Layer Sensitivity Ranking"
-                          className="w-full h-auto object-contain filter contrast-125"
-                        />
-                        <p className="font-mono text-[10px] text-[#888888] text-center mt-1.5">
-                          Fig 2. Sensitivity score distribution ranking
-                        </p>
+                  {/* Empirical Picture Graphs & Plots */}
+                  {'images' in item && Array.isArray(item.images) && item.images.length > 0 && (
+                    <div className="space-y-2 py-1">
+                      <div className={`grid grid-cols-1 ${item.images.length > 1 ? 'sm:grid-cols-2' : ''} gap-3`}>
+                        {item.images.map((img: { src: string; caption: string }, idx: number) => (
+                          <div
+                            key={idx}
+                            className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden flex flex-col justify-between"
+                          >
+                            <div className="flex items-center justify-center min-h-[160px] bg-[#060606] rounded-lg p-1 overflow-hidden">
+                              <img
+                                src={img.src}
+                                alt={img.caption}
+                                className="w-full h-auto max-h-[220px] object-contain filter contrast-110"
+                                loading="lazy"
+                              />
+                            </div>
+                            <p className="font-mono text-[10.5px] text-[#AAAAAA] text-center mt-2 leading-tight">
+                              {img.caption}
+                            </p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
