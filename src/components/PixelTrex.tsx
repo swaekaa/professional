@@ -31,107 +31,132 @@ function detectHoverItem(target: HTMLElement | null): string | null {
 
   // 1. Explicit data attributes (fastest & most accurate)
   const skill = target.closest('[data-skill]')?.getAttribute('data-skill');
-  if (skill) return `skill: ${skill}`;
+  if (skill) {
+    // Return clean formatted skill name (1-2 words)
+    return skill.replace(/[\[\]]/g, '');
+  }
 
   const proj = target.closest('[data-project]')?.getAttribute('data-project');
   if (proj) {
     if (target.closest('a[aria-label*="GitHub"]') || target.closest('a[href*="github.com"]')) {
-      return `github · ${proj}`;
+      return 'github repo';
     }
     if (target.closest('a[aria-label*="demo"]') || target.closest('a[href*="vercel.app"]')) {
-      return `live demo · ${proj}`;
+      return 'live demo';
     }
-    return `project: ${proj}`;
+    return proj;
   }
 
   const res = target.closest('[data-research]')?.getAttribute('data-research');
   if (res) {
     if (target.tagName === 'IMG' || target.closest('figure')) {
-      return 'empirical plot';
+      return 'research plot';
     }
-    return `research: ${res}`;
+    if (res.includes('Quantization')) return 'quant sensitivity';
+    if (res.includes('SHAP')) return 'SHAP vs Grad-CAM';
+    if (res.includes('KRPO')) return 'KRPO racing';
+    return 'research';
   }
 
   const edu = target.closest('[data-edu]')?.getAttribute('data-edu');
-  if (edu) return `education: ${edu}`;
+  if (edu) {
+    if (edu.includes('Manipal')) return 'Manipal University';
+    if (edu.includes('Class XII')) return 'Class XII (CBSE)';
+    if (edu.includes('Class X')) return 'Class X (CBSE)';
+    return 'education';
+  }
 
   const cert = target.closest('[data-cert]')?.getAttribute('data-cert');
-  if (cert) return `cert: ${cert}`;
+  if (cert) {
+    if (cert.includes('Neural Networks')) return 'neural networks';
+    if (cert.includes('Hyperparameter')) return 'hyperparameter tuning';
+    if (cert.includes('Convolutional')) return 'CNN vision';
+    if (cert.includes('Badge')) return 'Credly badge';
+    if (cert.includes('HackerzStreet')) return 'HackerzStreet';
+    return 'certification';
+  }
 
   const journey = target.closest('[data-journey]')?.getAttribute('data-journey');
-  if (journey) return `milestone: ${journey}`;
+  if (journey) {
+    if (journey.includes('2026')) return '2026 Accenture';
+    if (journey.includes('2025')) return '2025 research';
+    if (journey.includes('2024')) return '2024 VisionSat';
+    if (journey.includes('2023')) return '2023 Manipal';
+    return 'journey';
+  }
 
   const nav = target.closest('[data-nav]')?.getAttribute('data-nav');
-  if (nav) return `jump to ${nav}`;
+  if (nav) return nav;
 
   const color = target.closest('[data-color-btn]')?.getAttribute('data-color-btn');
-  if (color) return `accent: ${color}`;
+  if (color) return color;
 
   const exp = target.closest('[data-experience]')?.getAttribute('data-experience');
   if (exp) {
     if (target.closest('span[class*="rounded"]')) {
       const tagText = target.innerText?.trim();
-      if (tagText && tagText.length < 20) return `tech: ${tagText.replace(/[\[\]]/g, '')}`;
+      if (tagText && tagText.length < 20) return tagText.replace(/[\[\]]/g, '');
     }
-    return `experience: ${exp}`;
+    return 'Accenture ASE';
   }
 
   const ghStat = target.closest('[data-gh-stat]')?.getAttribute('data-gh-stat');
   if (ghStat) {
-    if (ghStat === 'contributions') return 'github: 848 contributions';
-    if (ghStat === 'repos') return 'github: 40 public repos';
-    if (ghStat === 'streak') return 'github: 23-day streak';
+    if (ghStat === 'contributions') return '848 contributions';
+    if (ghStat === 'repos') return '40 repos';
+    if (ghStat === 'streak') return '23-day streak';
   }
 
   const lcStat = target.closest('[data-lc-stat]')?.getAttribute('data-lc-stat');
   if (lcStat) {
-    if (lcStat === 'solved') return 'leetcode: 307 solved';
-    if (lcStat === 'acceptance') return 'leetcode: 60.4% acceptance';
-    if (lcStat === 'rating') return 'contest rating: 1527';
+    if (lcStat === 'solved') return '307 solved';
+    if (lcStat === 'acceptance') return '60.4% acceptance';
+    if (lcStat === 'rating') return '1527 rating';
   }
 
   const lcTopic = target.closest('[data-lc-topic]')?.getAttribute('data-lc-topic');
-  if (lcTopic) return `topic: ${lcTopic}`;
+  if (lcTopic) return lcTopic.toLowerCase();
 
   // 2. Links & social buttons
   const link = target.closest('a');
   if (link) {
     const href = link.getAttribute('href') || '';
-    if (href.includes('github.com/swaekaa')) return 'github · @swaekaa';
-    if (href.includes('leetcode.com')) return 'leetcode · @meanturtle';
-    if (href.includes('linkedin.com')) return 'linkedin · sawaria-ekaansh';
-    if (href.includes('x.com/swaaeka') || href.includes('twitter.com')) return 'x / twitter · @swaaeka';
-    if (href.startsWith('mailto:')) return 'email · sawariaekaansh@gmail.com';
-    if (href.includes('resume')) return 'resume · download PDF';
+    if (href.includes('github.com/swaekaa')) return 'GitHub';
+    if (href.includes('leetcode.com')) return 'LeetCode';
+    if (href.includes('linkedin.com')) return 'LinkedIn';
+    if (href.includes('x.com/swaaeka') || href.includes('twitter.com')) return 'X / Twitter';
+    if (href.startsWith('mailto:')) return 'send email';
+    if (href.includes('resume')) return 'resume PDF';
     const linkText = link.innerText?.trim();
-    if (linkText && linkText.length < 24) return `link: ${linkText}`;
+    if (linkText && linkText.length < 18) return linkText.toLowerCase();
+    return 'link';
   }
 
   // 3. LeetCode difficulty & badges
   const lcSection = target.closest('#leetcode');
   if (lcSection) {
     const text = target.innerText?.trim() || '';
-    if (text.includes('Easy')) return '112 easy solved';
-    if (text.includes('Medium')) return '180 medium solved';
-    if (text.includes('Hard')) return '15 hard solved';
-    if (text.includes('Badge')) return `badge: ${text}`;
+    if (text.includes('Easy')) return '112 easy';
+    if (text.includes('Medium')) return '180 medium';
+    if (text.includes('Hard')) return '15 hard';
+    if (text.includes('Badge')) return 'LeetCode badge';
   }
 
   // 4. Public X posts
   const xPost = target.closest('#public .p-4') || target.closest('#public article');
-  if (xPost) return 'x post by @swaaeka';
+  if (xPost) return 'x post';
 
   // 5. Interactive buttons / inputs
-  if (target.closest('input, textarea')) return 'listening...';
+  if (target.closest('input, textarea')) return 'typing...';
   const btn = target.closest('button');
   if (btn) {
     const btnText = btn.innerText?.trim();
-    if (btnText && btnText.length < 25) return `button: ${btnText.toLowerCase()}`;
+    if (btnText && btnText.length < 18) return btnText.toLowerCase();
   }
 
   // 6. Avatar
   if (target.tagName === 'IMG' && target.getAttribute('src')?.includes('profile-x')) {
-    return 'Ekaansh Sawaria (@swaaeka)';
+    return 'Ekaansh';
   }
 
   return null;
