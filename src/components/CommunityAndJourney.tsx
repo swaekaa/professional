@@ -79,40 +79,38 @@ export default function CommunityAndJourney() {
           <span className="text-[#888888] font-mono text-[11px]">academic trail</span>
         </div>
 
-        <div className="space-y-4">
-          {/* Undergraduate Degree */}
-          <div className="p-4 bg-[#090909] border border-[#1A1A1A] rounded-lg">
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-              <div>
-                <h3 className="text-[16px] font-bold text-white">
-                  {education.institution}
-                </h3>
-                <p className="text-[14px] text-white font-medium mt-0.5">{education.degree}</p>
-                <p className="font-mono text-[11.5px] text-[#888888] mt-1">
-                  {education.location} · {education.period}
-                </p>
-              </div>
-
-              <div className="text-left sm:text-right shrink-0">
-                <span className="font-mono text-[10px] text-[#888888] block uppercase tracking-wider">Cumulative GPA</span>
-                <span
-                  className="font-mono text-[16px] font-bold"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  {education.cgpa}
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-3 pt-3 border-t border-[#141414] space-y-1">
-              {education.highlights.map((h, idx) => (
-                <div key={idx} className="flex items-start gap-2 text-[13px] text-white leading-relaxed">
-                  <span className="font-mono text-[11px] mt-0.5 shrink-0" style={{ color: 'var(--accent)' }}>&gt;</span>
-                  <span>{h}</span>
+        <div className="space-y-3">
+          {education.schools.map((item, idx) => (
+            <div key={idx} className="p-4 bg-[#090909] border border-[#1A1A1A] rounded-lg hover:border-[#282828] transition-colors">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-[15.5px] font-bold text-white">
+                      {item.institution}
+                    </h3>
+                    <span className="text-[#555555]">·</span>
+                    <span className="font-mono text-[11px] text-[#888888] uppercase tracking-wider">{item.type}</span>
+                  </div>
+                  <p className="text-[14px] text-white font-medium mt-0.5">{item.degree}</p>
+                  {item.details && (
+                    <p className="font-mono text-[11.5px] text-[#999999] mt-1">{item.details}</p>
+                  )}
                 </div>
-              ))}
+
+                <div className="text-left sm:text-right shrink-0 mt-1 sm:mt-0">
+                  <span
+                    className="font-mono text-[14.5px] font-bold"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    {item.score}
+                  </span>
+                  <span className="font-mono text-[11.5px] text-[#888888] block mt-0.5">
+                    {item.period}
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 

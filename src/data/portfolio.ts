@@ -7,10 +7,11 @@ export const personal = {
   name: "Ekaansh Sawaria",
   handle: "swaekaa",
   initials: "EK",
-  title: "Software Engineer · Applied AI",
-  tagline: "Building intelligent systems that read, reason and retrieve.",
-  location: "Bangalore, India",
+  title: "Backend and AI Engineer",
+  tagline: "Agentic AI, RAG, LLM systems, and scalable backend infrastructure.",
+  location: "Jaipur / Bangalore, India",
   email: "sawariaekaansh@gmail.com",
+  phone: "8108700827",
   github: "https://github.com/swaekaa",
   githubUsername: "swaekaa",
   leetcode: "https://leetcode.com/u/meanturtle/",
@@ -19,25 +20,25 @@ export const personal = {
   xHandle: "@swaaeka",
   avatar: "/images/profile-x.jpg",
   xBio: "very avg comp science student… also likes grapes. Ex-ASE @accenture",
-  linkedin: "https://www.linkedin.com/in/ekaansh-sawaria/",
+  linkedin: "https://www.linkedin.com/in/sawaria-ekaansh/",
   resume: "/resume.pdf",
-  bioHeadline: "Building intelligent systems that read, reason and retrieve.",
+  bioHeadline: "Agentic AI · RAG · Scalable Backend Infrastructure",
   bioParagraphs: [
-    "I am a Computer Science undergraduate at Manipal University Jaipur and software / AI engineer. I spend most of my time somewhere between research papers and production code, teaching machines to read documents, see images, and reason over knowledge.",
-    "Currently an Associate Software Engineer Intern at Accenture in Bangalore, architecting enterprise multi-agent RAG pipelines across 10,000+ documents with hybrid BM25 + dense retrieval, PageIndexer for structure-aware parsing, and cross-encoder reranking.",
+    "Backend and AI Engineer focused on Agentic AI, RAG, LLM systems, and scalable backend infrastructure, with experience in multi-agent orchestration, deterministic decision systems, payment APIs, distributed systems, and system design.",
+    "Pursuing B.Tech in Computer Science at Manipal University Jaipur (CGPA: 8.51/10). Previously Associate Software Engineering Intern at Accenture, architecting enterprise multi-agent RAG platforms and hybrid search engines across 10,000+ files.",
     "I gravitate towards problems that are half research, half engineering: the ones where the paper stops and the production pipeline has to start."
   ],
   interests: [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Full-stack Development",
-    "LLMs / RAG Systems",
-    "Computer Vision",
-    "Research",
-    "Experimental Products"
+    "Agentic AI & Multi-Agent Orchestration",
+    "RAG & Hybrid Search Engines",
+    "Scalable Backend & Microservices",
+    "Deterministic Decision Systems",
+    "Transformer Quantization",
+    "Distributed Systems & Payment APIs",
+    "Computer Vision & Explainable AI"
   ],
   stats: {
-    contributions: "848",
+    contributions: "950+",
     repos: "40",
     streak: "23+ days",
     retrievalRelevanceGain: "+35%",
@@ -95,15 +96,41 @@ export const leetcodeStats = {
 
 export const education = {
   institution: "Manipal University Jaipur",
-  degree: "Bachelor of Technology — Computer Science & Engineering",
-  period: "2022 – 2026",
+  degree: "B.Tech in Computer Science",
+  period: "Aug 2023 – Present",
   cgpa: "8.51 / 10",
   location: "Jaipur, Rajasthan",
+  schools: [
+    {
+      institution: "Manipal University Jaipur",
+      degree: "B.Tech in Computer Science",
+      score: "CGPA: 8.51 / 10",
+      period: "Aug 2023 – Present",
+      type: "Undergraduate Degree",
+      details: "Core focus: DSA, OOP, DBMS, Operating Systems, Computer Networks, Distributed Systems, System Design"
+    },
+    {
+      institution: "Hiranandani Foundation School",
+      degree: "Class XII (CBSE)",
+      score: "81%",
+      period: "2023",
+      type: "Senior Secondary",
+      details: "Physics, Chemistry, Mathematics, Computer Science"
+    },
+    {
+      institution: "Hiranandani Foundation School",
+      degree: "Class X (CBSE)",
+      score: "96%",
+      period: "2021",
+      type: "Secondary School",
+      details: "High Academic Distinction (96% aggregate)"
+    }
+  ],
   highlights: [
-    "Core focus: Artificial Intelligence, Distributed Systems, Operating Systems, Neural Networks, Database Internals",
-    "Academic Merit: CGPA 8.51 across foundational and advanced CS curriculum",
-    "Senior Secondary - Class XII (CBSE): 81% (2022)",
-    "Secondary - Class X (CBSE): 96% (2020)"
+    "Core CS: DSA, OOP, DBMS, Operating Systems, Computer Networks, Distributed Systems, System Design",
+    "Manipal University Jaipur – B.Tech in Computer Science: CGPA 8.51 / 10 (Aug 2023 – Present)",
+    "Hiranandani Foundation School – Class XII (CBSE): 81% (2023)",
+    "Hiranandani Foundation School – Class X (CBSE): 96% (2021)"
   ]
 };
 
@@ -111,30 +138,27 @@ export const experience = [
   {
     id: "accenture",
     company: "Accenture",
-    role: "Associate Software Engineer Intern",
+    role: "Associate Software Engineering Intern",
     location: "Bangalore, India",
-    period: "2026 – Present",
+    period: "May 2026 – July 2026",
     active: true,
     summary:
-      "Enterprise-scale multi-agent RAG platform: system architecture, agent orchestration, document intelligence, and high-throughput retrieval optimization across 10,000+ files.",
+      "Enterprise-scale multi-agent RAG platform: system architecture, agent orchestration, retrieval workflows, and high-precision product discovery.",
     contributions: [
-      "Built production RAG pipelines for enterprise document processing across 10,000+ multi-format files.",
-      "Engineered PageIndexer for structure-aware document parsing, partitioning, and hierarchical indexing.",
-      "Implemented hybrid retrieval combining sparse BM25 keyword matching with dense embedding vector search.",
-      "Layered Cross-Encoder reranking and QuadRank scoring to eliminate semantic drift and boost retrieval relevance by +35%.",
-      "Designed and deployed multi-agent LLM systems exposed through high-concurrency FastAPI REST APIs.",
-      "Optimized document indexing pipelines with persistent embedding caching, cutting re-indexing latency by 45%."
+      "Led and collaborated with a team of 3 interns to architect an enterprise-scale multi-agent RAG platform, defining system architecture, retrieval workflows, and agent orchestration.",
+      "Engineered a Grok Build 0.1 agentic framework with multiple AI agents and 6 dynamically callable tools for context-aware execution.",
+      "Integrated PageIndexer, BM25, dense retrieval, Cross-Encoder reranking, and QuadRank into a hybrid search engine for high-precision enterprise product discovery."
     ],
     technologies: [
       "PYTHON",
       "FASTAPI",
+      "LANGGRAPH",
+      "MULTI-AGENT",
       "RAG PIPELINES",
       "BM25",
       "DENSE RETRIEVAL",
       "CROSS-ENCODER",
-      "MULTI-AGENT",
-      "POSTGRESQL",
-      "REST APIS"
+      "QUADRANK"
     ]
   }
 ];
@@ -348,51 +372,82 @@ export const xPosts = [
 export const certifications = [
   {
     year: "2025",
-    title: "Deep Learning & Neural Network Architectures",
-    issuer: "Specialized Coursework",
-    credential: "Verified Academic Distinction"
+    title: "Neural Networks & Deep Learning",
+    issuer: "DeepLearning.AI (Coursera)",
+    credential: "Verified Certificate"
   },
   {
-    year: "2024",
-    title: "Applied Machine Learning & Statistical Methods",
-    issuer: "NPTEL / Academic Honors",
-    credential: "Top 5% Percentile"
+    year: "2025",
+    title: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization & Optimization",
+    issuer: "DeepLearning.AI (Coursera)",
+    credential: "Verified Certificate"
   },
   {
-    year: "2023",
-    title: "Data Structures & Algorithmic Problem Solving",
-    issuer: "Manipal University Jaipur",
-    credential: "Grade: S / Outstanding"
+    year: "2025",
+    title: "Convolutional Neural Networks",
+    issuer: "DeepLearning.AI (Coursera)",
+    credential: "Verified Certificate"
+  },
+  {
+    year: "2025",
+    title: "Deep Learning Specialization Badge",
+    issuer: "Credly",
+    credential: "Verified Badge"
+  },
+  {
+    year: "2025",
+    title: "HackerzStreet 2025 Finalist & Sparkathon 2025",
+    issuer: "National Hackathons",
+    credential: "Finalist & Recognition"
   }
 ];
 
 export const journey = [
   {
     year: "2026",
-    event: "Accenture — Associate Software Engineer Intern",
-    desc: "Architecting enterprise multi-agent RAG system, implementing PageIndexer and QuadRank across 10k+ enterprise documents in Bangalore."
+    event: "Accenture — Associate Software Engineering Intern",
+    desc: "Led team of 3 interns architecting enterprise multi-agent RAG platform with Grok Build 0.1, PageIndexer, BM25, dense retrieval, and QuadRank."
   },
   {
     year: "2025",
-    event: "Sensitivity-Aware Quantization & KRPO",
-    desc: "Layer-wise sensitivity profiling for LLM quantization and Three.js deep reinforcement learning racing simulation."
+    event: "HackerzStreet Finalist & Quantization Sensitivity Research",
+    desc: "Finalist at HackerzStreet 2025 and recognized at Sparkathon 2025. Conducted layer-wise sensitivity profiling on DistilBERT & Phi-2 and trained KRPO autonomous RL racing policies."
   },
   {
     year: "2024",
-    event: "VisionSat & Multilingual Health RAG",
-    desc: "EuroSAT ResNet-18 model with Grad-CAM heatmaps (97.24% acc); engineered 9-language voice-driven health RAG for HackerzStreet."
+    event: "VisionSat Satellite Land-Use Classification",
+    desc: "Engineered ResNet-18 model achieving 97.24% accuracy across 10 land-use classes with real-time Grad-CAM spatial explainability."
   },
   {
-    year: "2022",
-    event: "B.Tech in Computer Science & Engineering",
-    desc: "Joined Manipal University Jaipur, focusing on machine learning, systems architecture, and algorithmic problem solving."
+    year: "2023",
+    event: "Manipal University Jaipur — B.Tech in Computer Science",
+    desc: "Commenced B.Tech in CS (current CGPA: 8.51/10). Graduated Class XII CBSE from Hiranandani Foundation School (81%)."
   }
 ];
 
 export const skills = {
-  "PROGRAMMING LANGUAGES": ["PYTHON", "JAVA", "C", "C++", "JAVASCRIPT", "TYPESCRIPT", "SQL"],
-  "AI & MACHINE LEARNING": ["PYTORCH", "SCIKIT-LEARN", "TRANSFORMERS", "GRAD-CAM", "SHAP", "REINFORCEMENT LEARNING", "COMPUTER VISION"],
-  "RAG & AGENTIC SYSTEMS": ["FASTAPI", "LANGCHAIN", "LANGGRAPH", "BM25", "DENSE RETRIEVAL", "CROSS-ENCODER", "QUADRANK", "CHROMADB", "EMBEDDINGS"],
-  "BACKEND & DATA": ["POSTGRESQL", "SQLALIGN", "DOCKER", "REST APIS", "ASYNCIO", "REDIS"],
-  "FRONTEND & TOOLS": ["REACT", "NEXT.JS", "TYPESCRIPT", "TAILWINDCSS", "GIT", "GITHUB", "VITE", "LINUX"]
+  "LANGUAGES": ["PYTHON", "JAVA", "C++", "JAVASCRIPT", "SQL"],
+  "BACKEND": ["FASTAPI", "FLASK", "REST APIS", "MICROSERVICES", "SQLALCHEMY", "PAYMENT APIS"],
+  "AI / ML": [
+    "AGENTIC AI",
+    "LLMS",
+    "RAG",
+    "LANGGRAPH",
+    "TRANSFORMERS",
+    "PYTORCH",
+    "TENSORFLOW",
+    "SCIKIT-LEARN",
+    "SENTENCETRANSFORMERS"
+  ],
+  "DATABASES": ["POSTGRESQL", "MYSQL", "VECTOR DATABASES"],
+  "DEVOPS": ["DOCKER", "GIT", "GITHUB", "CI/CD"],
+  "CORE CS": [
+    "DSA",
+    "OOP",
+    "DBMS",
+    "OPERATING SYSTEMS",
+    "COMPUTER NETWORKS",
+    "DISTRIBUTED SYSTEMS",
+    "SYSTEM DESIGN"
+  ]
 };

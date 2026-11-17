@@ -34,25 +34,23 @@ export default function HeroSection() {
         {/* Personal technical narrative with high contrast white text and bold highlights */}
         <div className="text-[15.5px] text-white leading-[1.8] space-y-3.5 font-normal">
           <p>
-            I'm a Computer Science undergraduate at{' '}
-            <strong className="text-white font-bold">Manipal University Jaipur</strong>,
-            working at the intersection of applied AI, scalable backend architecture, and intelligent agent systems.
+            Backend and AI Engineer focused on{' '}
+            <strong className="text-white font-bold">Agentic AI, RAG, LLM systems, and scalable backend infrastructure</strong>,
+            with experience in multi-agent orchestration, deterministic decision systems, payment APIs, distributed systems, and system design.
           </p>
 
           <p>
-            Currently working as an{' '}
-            <strong className="text-white font-bold">Associate Software Engineer Intern</strong> at{' '}
-            <strong className="text-white font-bold">Accenture</strong> (Bangalore), where I architect
-            an enterprise multi-agent RAG platform across 10,000+ documents with hybrid BM25 + dense
-            retrieval, PageIndexer structure-aware partitioning, and cross-encoder reranking.
+            Associate Software Engineering Intern at{' '}
+            <strong className="text-white font-bold">Accenture</strong> (Bangalore), where I led and collaborated with a team of 3 interns to architect an enterprise-scale multi-agent RAG platform, engineering a Grok Build 0.1 agentic framework with 6 dynamically callable tools and a hybrid search engine (PageIndexer, BM25, dense retrieval, Cross-Encoder reranking, and QuadRank).
           </p>
 
           <p>
-            I gravitate towards problems that are{' '}
+            Pursuing B.Tech in Computer Science at{' '}
+            <strong className="text-white font-bold">Manipal University Jaipur</strong> (CGPA: 8.51/10). I gravitate towards problems that are{' '}
             <span className="italic underline decoration-1" style={{ textDecorationColor: 'var(--accent)' }}>
               half research, half engineering
             </span>
-            : the ones where the paper stops and the production pipeline has to start. Outside work, I build explainable satellite vision systems, investigate layer-wise sensitivity in quantized transformer inference, and experiment with reinforcement learning racing lines.
+            : the ones where the paper stops and the production pipeline has to start.
           </p>
         </div>
 
