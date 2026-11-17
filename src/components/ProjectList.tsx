@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ExternalLink, X, ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { projects } from '../data/portfolio';
@@ -7,6 +8,24 @@ type Project = typeof projects[0];
 
 export default function ProjectList() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Lock body scroll and listen for Escape key when deep-dive modal is open
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedProject(null);
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject]);
 
   return (
     <section id="projects" className="py-10 border-b border-[#181818] animate-fade-in">
@@ -97,134 +116,149 @@ export default function ProjectList() {
         ))}
       </div>
 
-      {/* Project Deep Dive Modal with smooth fade (No Thumbnail) */}
-      {selectedProject && (
-        <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-fade-in"
-          onClick={() => setSelectedProject(null)}
-          role="dialog"
-          aria-modal="true"
-        >
+      {/* Project Deep Dive Modal rendered via Portal to escape any transformed parent containers */}
+      {selectedProject &&
+        createPortal(
           <div
-            className="bg-[#0A0A0A] border border-[#262626] rounded-xl w-full max-w-xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative transition-all"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[9999] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-fade-in"
+            onClick={() => setSelectedProject(null)}
+            role="dialog"
+            aria-modal="true"
           >
-            {/* Close button */}
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-5 right-5 text-[#888888] hover:text-white transition-colors p-1 cursor-pointer"
-              aria-label="Close dialog"
-            >
-              <X size={18} />
-            </button>
-
-            {/* Header */}
             <div
-              className="font-mono text-[11px] mb-1 font-bold tracking-wider"
-              style={{ color: 'var(--accent)' }}
+              className="bg-[#0C0C0C] border border-[#262626] rounded-2xl w-full max-w-2xl max-h-[88vh] flex flex-col shadow-2xl overflow-hidden relative text-white animate-scale-in"
+              onClick={(e) => e.stopPropagation()}
             >
-              {selectedProject.number} · {selectedProject.category}
-            </div>
-            <h2 className="text-[22px] font-bold text-white mb-1">
-              {selectedProject.name}
-            </h2>
-            {selectedProject.subtitle && (
-              <p className="text-[14px] text-[#A0A0A0] font-medium mb-5">
-                {selectedProject.subtitle}
-              </p>
-            )}
+              {/* Sticky Top Header (Never scrolls away) */}
+              <div className="px-6 py-5 border-b border-[#1E1E1E] flex items-start justify-between gap-4 bg-[#0F0F0F] shrink-0">
+                <div className="min-w-0 flex-1">
+                  <div
+                    className="font-mono text-[11px] mb-1 font-bold tracking-wider uppercase"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    {selectedProject.number} · {selectedProject.category}
+                  </div>
+                  <h2 className="text-[20px] sm:text-[22px] font-bold text-white leading-tight">
+                    {selectedProject.name}
+                  </h2>
+                  {selectedProject.subtitle && (
+                    <p className="text-[13px] text-[#A0A0A0] font-normal mt-1 leading-snug">
+                      {selectedProject.subtitle}
+                    </p>
+                  )}
+                </div>
 
-            <div className="space-y-5 text-[15px] leading-relaxed text-white">
-              <div>
-                <h4 className="font-mono text-[11px] font-bold text-[#A0A0A0] uppercase tracking-wider mb-1.5">
-                  PROBLEM STATEMENT
-                </h4>
-                <p className="text-white leading-relaxed">{selectedProject.problem}</p>
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="p-2 -mr-1 -mt-1 rounded-lg text-[#888888] hover:text-white hover:bg-[#1E1E1E] transition-colors cursor-pointer shrink-0"
+                  aria-label="Close dialog"
+                >
+                  <X size={18} />
+                </button>
               </div>
 
-              <div>
-                <h4 className="font-mono text-[11px] font-bold text-[#A0A0A0] uppercase tracking-wider mb-1.5">
-                  SYSTEM ARCHITECTURE
-                </h4>
-                <p className="text-white leading-relaxed">{selectedProject.architecture}</p>
-              </div>
+              {/* Scrollable Content Body */}
+              <div className="p-6 sm:p-7 overflow-y-auto space-y-6 flex-1 text-[14.5px] leading-relaxed">
+                <div>
+                  <h4 className="font-mono text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2">
+                    PROBLEM STATEMENT
+                  </h4>
+                  <p className="text-white leading-relaxed">{selectedProject.problem}</p>
+                </div>
 
-              <div>
-                <h4 className="font-mono text-[11px] font-bold text-[#A0A0A0] uppercase tracking-wider mb-2">
-                  ENGINEERING HIGHLIGHTS
-                </h4>
-                <ul className="space-y-1.5">
-                  {selectedProject.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-white leading-relaxed">
+                <div>
+                  <h4 className="font-mono text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2">
+                    SYSTEM ARCHITECTURE
+                  </h4>
+                  <p className="text-white leading-relaxed">{selectedProject.architecture}</p>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2.5">
+                    ENGINEERING HIGHLIGHTS
+                  </h4>
+                  <ul className="space-y-2">
+                    {selectedProject.highlights.map((h, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-white leading-relaxed">
+                        <span
+                          className="font-mono text-[12px] mt-0.5 shrink-0 font-bold"
+                          style={{ color: 'var(--accent)' }}
+                        >
+                          -&gt;
+                        </span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2">
+                    KEY CHALLENGE & SOLUTION
+                  </h4>
+                  <p className="text-white leading-relaxed">{selectedProject.challenges}</p>
+                </div>
+
+                {/* Technologies */}
+                <div>
+                  <h4 className="font-mono text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2.5">
+                    TECHNOLOGIES
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedProject.technologies.map((t) => (
                       <span
-                        className="font-mono text-[12px] mt-0.5 shrink-0 font-bold"
-                        style={{ color: 'var(--accent)' }}
+                        key={t}
+                        className="font-mono text-[11px] text-[#E0E0E0] bg-[#141414] border border-[#242424] px-2.5 py-1 rounded"
                       >
-                        -&gt;
+                        [{t}]
                       </span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-mono text-[11px] font-bold text-[#A0A0A0] uppercase tracking-wider mb-1.5">
-                  KEY CHALLENGE & SOLUTION
-                </h4>
-                <p className="text-white leading-relaxed">{selectedProject.challenges}</p>
-              </div>
-
-              {/* Technologies */}
-              <div>
-                <h4 className="font-mono text-[11px] font-bold text-[#A0A0A0] uppercase tracking-wider mb-2">
-                  TECHNOLOGIES
-                </h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedProject.technologies.map((t) => (
-                    <span
-                      key={t}
-                      className="font-mono text-[10px] text-[#E0E0E0] bg-transparent border border-[#262626] px-2 py-0.5 rounded"
-                    >
-                      [{t}]
-                    </span>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Links */}
-              <div className="pt-4 border-t border-[#1C1C1C] flex items-center gap-3">
-                {selectedProject.github && (
-                  <a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#121212] hover:bg-[#1A1A1A] border border-[#2A2A2A] rounded font-mono text-[12px] font-medium text-white transition-colors"
-                    onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#2A2A2A')}
-                  >
-                    <GithubIcon size={13} />
-                    <span>View Repository</span>
-                  </a>
-                )}
-                {selectedProject.demo && (
-                  <a
-                    href={selectedProject.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#121212] hover:bg-[#1A1A1A] border border-[#2A2A2A] rounded font-mono text-[12px] font-medium text-white transition-colors"
-                    onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#2A2A2A')}
-                  >
-                    <ExternalLink size={13} />
-                    <span>Live Demo</span>
-                  </a>
-                )}
+              {/* Sticky Bottom Actions Footer */}
+              <div className="px-6 py-4 border-t border-[#1E1E1E] flex flex-wrap items-center justify-between gap-3 bg-[#0F0F0F] shrink-0">
+                <div className="flex items-center gap-3">
+                  {selectedProject.github && (
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#161616] hover:bg-[#202020] border border-[#2A2A2A] rounded-lg font-mono text-[12px] font-medium text-white transition-colors"
+                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#2A2A2A')}
+                    >
+                      <GithubIcon size={14} />
+                      <span>View Repository</span>
+                    </a>
+                  )}
+                  {selectedProject.demo && (
+                    <a
+                      href={selectedProject.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#161616] hover:bg-[#202020] border border-[#2A2A2A] rounded-lg font-mono text-[12px] font-medium text-white transition-colors"
+                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#2A2A2A')}
+                    >
+                      <ExternalLink size={14} />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="font-mono text-[12px] text-[#888888] hover:text-white px-2 py-1 transition-colors cursor-pointer"
+                >
+                  [close esc]
+                </button>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

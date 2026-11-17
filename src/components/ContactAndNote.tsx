@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
+import { createPortal } from 'react-dom';
 import { Send, CheckCircle, X, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, LeetcodeIcon, XIcon } from './Icons';
 import { personal } from '../data/portfolio';
@@ -15,6 +16,24 @@ export default function ContactAndNote({
 
   const [noteState, setNoteState] = useState<'idle' | 'sending' | 'success'>('idle');
   const [noteContent, setNoteContent] = useState('');
+
+  // Lock body scroll and listen for Escape key when note modal is open
+  useEffect(() => {
+    if (!isNoteModalOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onCloseNoteModal();
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isNoteModalOpen, onCloseNoteModal]);
 
   const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -185,76 +204,78 @@ export default function ContactAndNote({
       </section>
 
       {/* Anonymous Note Modal with smooth fade in */}
-      {isNoteModalOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs flex items-center justify-center p-4 animate-fade-in"
-          onClick={onCloseNoteModal}
-          role="dialog"
-          aria-modal="true"
-        >
+      {isNoteModalOpen &&
+        createPortal(
           <div
-            className="bg-[#0A0A0A] border border-[#262626] rounded-xl w-full max-w-sm p-6 relative shadow-2xl transition-all"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[9999] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
+            onClick={onCloseNoteModal}
+            role="dialog"
+            aria-modal="true"
           >
-            <button
-              onClick={onCloseNoteModal}
-              className="absolute top-4 right-4 text-[#888888] hover:text-white transition-colors p-1 cursor-pointer"
-            >
-              <X size={16} />
-            </button>
-
             <div
-              className="font-mono text-[11px] mb-1 font-bold"
-              style={{ color: 'var(--accent)' }}
+              className="bg-[#0C0C0C] border border-[#262626] rounded-xl w-full max-w-sm p-6 relative shadow-2xl transition-all"
+              onClick={(e) => e.stopPropagation()}
             >
-              ANONYMOUS NOTE
-            </div>
-            <h3 className="text-[16px] font-bold text-white mb-1">Leave an anonymous thought</h3>
-            <p className="text-[13px] text-white mb-4">
-              Feedback, critique, or just say hello. No personal data recorded.
-            </p>
+              <button
+                onClick={onCloseNoteModal}
+                className="absolute top-4 right-4 text-[#888888] hover:text-white transition-colors p-1 cursor-pointer"
+              >
+                <X size={16} />
+              </button>
 
-            {noteState === 'success' ? (
-              <div className="py-4 text-center animate-fade-in">
-                <CheckCircle size={20} className="mx-auto mb-1.5" style={{ color: 'var(--accent)' }} />
-                <p className="font-mono text-[13px] font-bold text-white">Note recorded anonymously.</p>
-                <button
-                  onClick={onCloseNoteModal}
-                  className="mt-3 text-[12px] font-mono font-bold hover:underline cursor-pointer"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  close
-                </button>
+              <div
+                className="font-mono text-[11px] mb-1 font-bold"
+                style={{ color: 'var(--accent)' }}
+              >
+                ANONYMOUS NOTE
               </div>
-            ) : (
-              <form onSubmit={handleNoteSubmit} className="space-y-3">
-                <textarea
-                  required
-                  rows={4}
-                  placeholder="type your note here..."
-                  value={noteContent}
-                  onChange={(e) => setNoteContent(e.target.value)}
-                  className="w-full bg-[#111111] border border-[#222222] rounded-md px-3 py-2 text-[12.5px] font-mono text-white placeholder:text-[#666666] focus:outline-hidden resize-none transition-colors"
-                  onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = '#222222')}
-                />
+              <h3 className="text-[16px] font-bold text-white mb-1">Leave an anonymous thought</h3>
+              <p className="text-[13px] text-white mb-4">
+                Feedback, critique, or just say hello. No personal data recorded.
+              </p>
 
-                <div className="flex items-center justify-between pt-1">
-                  <span className="font-mono text-[10px] text-[#888888]">ephemeral · encrypted</span>
+              {noteState === 'success' ? (
+                <div className="py-4 text-center animate-fade-in">
+                  <CheckCircle size={20} className="mx-auto mb-1.5" style={{ color: 'var(--accent)' }} />
+                  <p className="font-mono text-[13px] font-bold text-white">Note recorded anonymously.</p>
                   <button
-                    type="submit"
-                    className="px-3.5 py-1.5 bg-[#141414] hover:bg-[#1E1E1E] border border-[#282828] text-white font-mono text-[11.5px] font-bold rounded transition-colors cursor-pointer"
-                    onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#282828')}
+                    onClick={onCloseNoteModal}
+                    className="mt-3 text-[12px] font-mono font-bold hover:underline cursor-pointer"
+                    style={{ color: 'var(--accent)' }}
                   >
-                    leave note
+                    close
                   </button>
                 </div>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
+              ) : (
+                <form onSubmit={handleNoteSubmit} className="space-y-3">
+                  <textarea
+                    required
+                    rows={4}
+                    placeholder="type your note here..."
+                    value={noteContent}
+                    onChange={(e) => setNoteContent(e.target.value)}
+                    className="w-full bg-[#111111] border border-[#222222] rounded-md px-3 py-2 text-[12.5px] font-mono text-white placeholder:text-[#666666] focus:outline-hidden resize-none transition-colors"
+                    onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = '#222222')}
+                  />
+
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="font-mono text-[10px] text-[#888888]">ephemeral · encrypted</span>
+                    <button
+                      type="submit"
+                      className="px-3.5 py-1.5 bg-[#141414] hover:bg-[#1E1E1E] border border-[#282828] text-white font-mono text-[11.5px] font-bold rounded transition-colors cursor-pointer"
+                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#282828')}
+                    >
+                      leave note
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }
