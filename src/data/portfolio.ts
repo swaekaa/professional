@@ -8,7 +8,7 @@ export const personal = {
   handle: "swaekaa",
   initials: "EK",
   title: "Software Engineer",
-  tagline: "Scalable backend systems, distributed architectures, and applied AI.",
+  tagline: "Building intelligent systems, scalable backend infrastructure, and AI-powered applications.",
   location: "Jaipur / Bangalore, India",
   email: "sawariaekaansh@gmail.com",
   phone: "8108700827",
@@ -24,11 +24,11 @@ export const personal = {
   xBio: "very avg comp science student… also likes grapes. Ex-ASE @accenture",
   linkedin: "https://www.linkedin.com/in/sawaria-ekaansh/",
   resume: "/resume.pdf",
-  bioHeadline: "Software Engineer · Backend Systems · Applied AI",
+  bioHeadline: "Software Engineer · Intelligent Systems · Scalable Backends",
   bioParagraphs: [
-    "Software Engineer specializing in scalable backend infrastructure, distributed systems, and applied AI. I focus on building reliable, end-to-end software—architecting low-latency microservices, designing deterministic APIs, and orchestrating multi-agent systems.",
-    "Previously Associate Software Engineering Intern at Accenture (Bangalore), leading a 3-engineer intern team to build an enterprise multi-agent platform with modular tool execution and hybrid retrieval across 10,000+ documents.",
-    "Pursuing B.Tech in Computer Science at Manipal University Jaipur (CGPA: 8.51/10). I gravitate towards problems that are half research, half engineering: the ones where the paper stops and the production pipeline has to start."
+    "Hi, I'm Ekaansh Sawaria. I build intelligent systems that solve real-world problems. I'm a Computer Science undergraduate and Software Engineer passionate about building AI-powered applications, scalable backend systems, and intelligent software solutions.",
+    "Currently, I'm working as an Associate Software Engineer Intern at Accenture, exploring the intersection of AI, multi-agent systems, LLMs, and software engineering.",
+    "I enjoy taking complex ideas from concept to implementation, experimenting with emerging technologies, and building products that make a meaningful impact."
   ],
   interests: [
     "Agentic AI & Multi-Agent Orchestration",

@@ -34,23 +34,17 @@ export default function HeroSection() {
         {/* Personal technical narrative with high contrast white text and bold highlights */}
         <div className="text-[15.5px] text-white leading-[1.8] space-y-3.5 font-normal">
           <p>
-            I'm a <strong className="text-white font-bold">Software Engineer</strong> specializing in{' '}
-            <strong className="text-white font-bold">scalable backend infrastructure, distributed systems, and applied AI</strong>.
-            I focus on building reliable, production-ready software—whether that means architecting low-latency microservices, designing deterministic APIs, or orchestrating multi-agent systems to solve complex workflow problems.
+            Hi, I'm <strong className="text-white font-bold">Ekaansh Sawaria</strong>. I build intelligent systems that solve real-world problems.
+            I'm a Computer Science undergraduate and <strong className="text-white font-bold">Software Engineer</strong> passionate about building AI-powered applications, scalable backend systems, and intelligent software solutions.
           </p>
 
           <p>
-            Most recently, I was an Associate Software Engineering Intern at{' '}
-            <strong className="text-white font-bold">Accenture</strong> (Bangalore), where I led a team of 3 interns to design and build an enterprise-scale multi-agent platform. I focused on core backend engineering: architecting a modular tool execution engine with dynamic tool calling and engineering a high-precision hybrid retrieval engine across enterprise documents.
+            Currently, I'm working as an Associate Software Engineer Intern at{' '}
+            <strong className="text-white font-bold">Accenture</strong>, exploring the intersection of AI, multi-agent systems, LLMs, and software engineering.
           </p>
 
           <p>
-            Pursuing my B.Tech in Computer Science at{' '}
-            <strong className="text-white font-bold">Manipal University Jaipur</strong> (CGPA: 8.51/10) with deep foundations in data structures, algorithms, and system design. I gravitate towards problems that are{' '}
-            <span className="italic underline decoration-1" style={{ textDecorationColor: 'var(--accent)' }}>
-              half research, half engineering
-            </span>
-            : the ones where the paper stops and the production pipeline has to start.
+            I enjoy taking complex ideas from concept to implementation, experimenting with emerging technologies, and building products that make a meaningful impact.
           </p>
         </div>
 
