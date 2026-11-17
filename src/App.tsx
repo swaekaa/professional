@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import PixelTrex from './components/PixelTrex';
 import PixelTreesLeft from './components/PixelTreesLeft';
 import PixelTreesRight from './components/PixelTreesRight';
+import PixelForestFloor from './components/PixelForestFloor';
 import FadeContent from './components/FadeContent';
 import './index.css';
 
@@ -54,6 +55,9 @@ function PortfolioContent() {
       {/* Diverse pixel art trees flanking both sides — non-overlapping side gutters */}
       <PixelTreesLeft />
       <PixelTreesRight />
+
+      {/* Seamless pixel forest floor connecting the spring/autumn and winter themes across the bottom */}
+      <PixelForestFloor />
 
       {/* Interactive Pixel Art T-Rex Companion Following Cursor (Bottom-Right) */}
       <PixelTrex />
