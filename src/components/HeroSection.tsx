@@ -7,19 +7,28 @@ export default function HeroSection() {
     <section id="about" className="pt-2 pb-12 border-b border-[#181818] animate-fade-in">
       {/* Identity Header */}
       <div className="space-y-4">
-        <div>
-          <h1 className="text-[25px] sm:text-[27px] font-bold text-white tracking-tight">
-            {personal.name}{' '}
-            <span className="text-[#888888] font-normal text-[17px] sm:text-[18px]">
-              ({personal.handle})
-            </span>
-          </h1>
-          <p
-            className="font-mono text-[12.5px] font-bold tracking-wide uppercase mt-1.5 transition-colors"
-            style={{ color: 'var(--accent)' }}
-          >
-            {personal.bioHeadline}
-          </p>
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden shrink-0 border border-[#2A2A2A] bg-black shadow-md">
+            <img
+              src={personal.avatar}
+              alt={personal.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <h1 className="text-[25px] sm:text-[27px] font-bold text-white tracking-tight">
+              {personal.name}{' '}
+              <span className="text-[#888888] font-normal text-[17px] sm:text-[18px]">
+                ({personal.xHandle})
+              </span>
+            </h1>
+            <p
+              className="font-mono text-[12px] font-bold tracking-wide uppercase mt-1 transition-colors"
+              style={{ color: 'var(--accent)' }}
+            >
+              {personal.bioHeadline}
+            </p>
+          </div>
         </div>
 
         {/* Personal technical narrative with high contrast white text and bold highlights */}

@@ -17,6 +17,8 @@ export const personal = {
   leetcodeUsername: "meanturtle",
   x: "https://x.com/swaaeka",
   xHandle: "@swaaeka",
+  avatar: "/images/profile-x.jpg",
+  xBio: "very avg comp science student… also likes grapes. Ex-ASE @accenture",
   linkedin: "https://www.linkedin.com/in/ekaansh-sawaria/",
   resume: "/resume.pdf",
   bioHeadline: "Building intelligent systems that read, reason and retrieve.",
@@ -349,44 +351,31 @@ export const research = [
 
 export const xPosts = [
   {
-    id: "x-rag",
-    date: "May 2026",
+    id: "post-krpo-eval",
+    date: "Oct 29",
     handle: "@swaaeka",
-    author: "Ekaansh",
-    text: "Why naive cosine distance over dense vector embeddings fails in production document retrieval:\n\nWhen documents share semantic domain vocabulary across 10,000+ enterprise files, dense vectors collapse into overlapping clusters. The fix isn't bigger chunk sizes.\n\nIt's hybrid retrieval (BM25 sparse + dense embeddings) layered with Cross-Encoder reranking and QuadRank scoring. We saw a +35% relevance jump immediately.",
-    metrics: { replies: 14, retweets: 38, likes: 142, views: "8.4K" },
-    tags: ["#RAG", "#MachineLearning", "#Systems", "#FastAPI"],
-    url: "https://x.com/swaaeka"
+    author: "Ekaansh Sawaria",
+    avatar: "/images/profile-x.jpg",
+    text: "My biggest takeaway from KRPO so far:\n\nA reward curve improving doesn't automatically mean the driving policy is improving.\n\nYou need independent evaluation, collision counts, lap validity, and replay inspection.",
+    url: "https://x.com/swaaeka/status/2115843601829945501"
   },
   {
-    id: "x-ast",
-    date: "Apr 2026",
+    id: "post-krpo-replay",
+    date: "Oct 29",
     handle: "@swaaeka",
-    author: "Ekaansh",
-    text: "Building RExplain taught me one big lesson about codebase AI:\n\nStop doing full git clones on the backend.\n\nFetching the repo tree structure via the GitHub Tree API and selectively parsing ASTs + config files allows sub-second architectural mapping. Pair that with a persistent PostgreSQL embedding cache by commit SHA, and repeated visits are instantaneous.",
-    metrics: { replies: 9, retweets: 24, likes: 96, views: "5.1K" },
-    tags: ["#Python", "#FastAPI", "#DevTools", "#PostgreSQL"],
-    url: "https://x.com/swaaeka"
+    author: "Ekaansh Sawaria",
+    avatar: "/images/profile-x.jpg",
+    text: "replay was designed as part of the evaluation pipeline.\n\npython simulation runs into JSON containing position, heading, wheel velocities, steering, and boost state.\n\nThree.js scene can then visualize the run.\n\nThis connects numerical benchmarks with the actual driving behavior.",
+    url: "https://x.com/swaaeka/status/2115841958455464316"
   },
   {
-    id: "x-gradcam",
-    date: "Mar 2026",
+    id: "post-krpo-reward",
+    date: "Oct 29",
     handle: "@swaaeka",
-    author: "Ekaansh",
-    text: "If you're training deep convolutional networks on satellite imagery without explainability, you're flying blind.\n\nIn VisionSat, Grad-CAM visual heatmaps proved whether ResNet-18 was looking at actual building foundations and highway contours or just spurious background contrast. When explainability confirms true feature activations, model trust goes through the roof.",
-    metrics: { replies: 18, retweets: 29, likes: 118, views: "6.7K" },
-    tags: ["#ComputerVision", "#PyTorch", "#GradCAM", "#AI"],
-    url: "https://x.com/swaaeka"
-  },
-  {
-    id: "x-quant",
-    date: "Feb 2026",
-    handle: "@swaaeka",
-    author: "Ekaansh",
-    text: "Not all transformer layers are created equal under quantization.\n\nBy injecting calibrated Gaussian noise as a sensitivity proxy, we showed early attention projections are ~3.4x more fragile than intermediate FFN layers. Keep just 20% critical weights in FP16, and INT4 perplexity remains rock solid while saving 67% memory.",
-    metrics: { replies: 22, retweets: 45, likes: 164, views: "9.2K" },
-    tags: ["#LLMs", "#DeepLearning", "#Quantization", "#Research"],
-    url: "https://x.com/swaaeka"
+    author: "Ekaansh Sawaria",
+    avatar: "/images/profile-x.jpg",
+    text: "hardest parts of RL racing is reward design.\n\nreward speed and progress too aggressively, the agent can learn to optimize the score rather than drive cleanly.\n\nit combines progress, velocity, boost usage, racing-line behavior, proximity, deviation, collisions, and lap completion.",
+    url: "https://x.com/swaaeka/status/2115839417055379574"
   }
 ];
 
