@@ -34,19 +34,19 @@ export default function HeroSection() {
         {/* Personal technical narrative with high contrast white text and bold highlights */}
         <div className="text-[15.5px] text-white leading-[1.8] space-y-3.5 font-normal">
           <p>
-            Backend and AI Engineer focused on{' '}
-            <strong className="text-white font-bold">Agentic AI, RAG, LLM systems, and scalable backend infrastructure</strong>,
-            with experience in multi-agent orchestration, deterministic decision systems, payment APIs, distributed systems, and system design.
+            I'm a <strong className="text-white font-bold">Software Engineer</strong> specializing in{' '}
+            <strong className="text-white font-bold">scalable backend infrastructure, distributed systems, and applied AI</strong>.
+            I focus on building reliable, production-ready software—whether that means architecting low-latency microservices, designing deterministic APIs, or orchestrating multi-agent systems to solve complex workflow problems.
           </p>
 
           <p>
-            Associate Software Engineering Intern at{' '}
-            <strong className="text-white font-bold">Accenture</strong> (Bangalore), where I led and collaborated with a team of 3 interns to architect an enterprise-scale multi-agent RAG platform, engineering a Grok Build 0.1 agentic framework with 6 dynamically callable tools and a hybrid search engine (PageIndexer, BM25, dense retrieval, Cross-Encoder reranking, and QuadRank).
+            Most recently, I was an Associate Software Engineering Intern at{' '}
+            <strong className="text-white font-bold">Accenture</strong> (Bangalore), where I led a team of 3 interns to design and build an enterprise-scale multi-agent platform. I focused on core backend engineering: architecting a modular tool execution engine with dynamic tool calling and engineering a high-precision hybrid retrieval engine across enterprise documents.
           </p>
 
           <p>
-            Pursuing B.Tech in Computer Science at{' '}
-            <strong className="text-white font-bold">Manipal University Jaipur</strong> (CGPA: 8.51/10). I gravitate towards problems that are{' '}
+            Pursuing my B.Tech in Computer Science at{' '}
+            <strong className="text-white font-bold">Manipal University Jaipur</strong> (CGPA: 8.51/10) with deep foundations in data structures, algorithms, and system design. I gravitate towards problems that are{' '}
             <span className="italic underline decoration-1" style={{ textDecorationColor: 'var(--accent)' }}>
               half research, half engineering
             </span>

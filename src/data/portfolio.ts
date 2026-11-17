@@ -7,8 +7,8 @@ export const personal = {
   name: "Ekaansh Sawaria",
   handle: "swaekaa",
   initials: "EK",
-  title: "Backend and AI Engineer",
-  tagline: "Agentic AI, RAG, LLM systems, and scalable backend infrastructure.",
+  title: "Software Engineer",
+  tagline: "Scalable backend systems, distributed architectures, and applied AI.",
   location: "Jaipur / Bangalore, India",
   email: "sawariaekaansh@gmail.com",
   phone: "8108700827",
@@ -24,11 +24,11 @@ export const personal = {
   xBio: "very avg comp science student… also likes grapes. Ex-ASE @accenture",
   linkedin: "https://www.linkedin.com/in/sawaria-ekaansh/",
   resume: "/resume.pdf",
-  bioHeadline: "Agentic AI · RAG · Scalable Backend Infrastructure",
+  bioHeadline: "Software Engineer · Backend Systems · Applied AI",
   bioParagraphs: [
-    "Backend and AI Engineer focused on Agentic AI, RAG, LLM systems, and scalable backend infrastructure, with experience in multi-agent orchestration, deterministic decision systems, payment APIs, distributed systems, and system design.",
-    "Pursuing B.Tech in Computer Science at Manipal University Jaipur (CGPA: 8.51/10). Previously Associate Software Engineering Intern at Accenture, architecting enterprise multi-agent RAG platforms and hybrid search engines across 10,000+ files.",
-    "I gravitate towards problems that are half research, half engineering: the ones where the paper stops and the production pipeline has to start."
+    "Software Engineer specializing in scalable backend infrastructure, distributed systems, and applied AI. I focus on building reliable, end-to-end software—architecting low-latency microservices, designing deterministic APIs, and orchestrating multi-agent systems.",
+    "Previously Associate Software Engineering Intern at Accenture (Bangalore), leading a 3-engineer intern team to build an enterprise multi-agent platform with modular tool execution and hybrid retrieval across 10,000+ documents.",
+    "Pursuing B.Tech in Computer Science at Manipal University Jaipur (CGPA: 8.51/10). I gravitate towards problems that are half research, half engineering: the ones where the paper stops and the production pipeline has to start."
   ],
   interests: [
     "Agentic AI & Multi-Agent Orchestration",
