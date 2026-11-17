@@ -1,4 +1,4 @@
-import { ArrowUpRight, Award, Trophy, Zap, Code2, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, Award, Trophy, Zap, Code2 } from 'lucide-react';
 import { personal, leetcodeStats } from '../data/portfolio';
 
 export default function LeetCodeStats() {
@@ -30,51 +30,37 @@ export default function LeetCodeStats() {
 
       {/* Main LeetCode Container */}
       <div className="bg-[#080808] border border-[#1A1A1A] rounded-xl p-5 sm:p-6 space-y-5">
-        {/* Balanced Top Metrics Grid (4 Equal Uniform Stat Cards) */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
-            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
+        {/* Balanced Top Metrics Grid — 3 Spacious Cards matching GitHub */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          <div className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
+            <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Solved
             </span>
-            <div className="text-[22px] font-mono font-bold text-white leading-none">
+            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
               {totalSolved}
             </div>
-            <span className="text-[10.5px] font-mono text-[#666666]">{totalSubmissions} submissions</span>
+            <span className="text-[11px] font-mono text-[#666666]">{totalSubmissions} submissions</span>
           </div>
 
-          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
-            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
+          <div className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
+            <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Acceptance
             </span>
-            <div className="text-[22px] font-mono font-bold text-white leading-none">
+            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
               {acceptanceRate}
             </div>
-            <span className="text-[10.5px] font-mono text-emerald-400 font-medium flex items-center gap-1">
-              <CheckCircle2 size={10} /> verified rate
-            </span>
+            <span className="text-[11px] font-mono text-[#666666]">solution accuracy</span>
           </div>
 
-          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
-            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
+          <div className="bg-[#0C0C0C] border border-[#1E1E1E] hover:border-[#2A2A2A] rounded-xl p-4 flex flex-col justify-between h-[96px] transition-all duration-200">
+            <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Contest Rating
             </span>
-            <div className="text-[22px] font-mono font-bold text-white leading-none">
+            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
               {contestRating}
             </div>
-            <span className="text-[10.5px] font-mono text-amber-400 font-medium flex items-center gap-1">
-              <Trophy size={10} /> {ranking}
-            </span>
-          </div>
-
-          <div className="bg-[#0C0C0C] border border-[#1E1E1E] rounded-lg p-3 flex flex-col justify-between h-[88px]">
-            <span className="text-[#888888] text-[10.5px] font-mono uppercase tracking-wider font-semibold">
-              Cadence
-            </span>
-            <div className="text-[20px] font-mono font-bold text-white leading-none">
-              {streak}
-            </div>
-            <span className="text-[10.5px] font-mono text-[#666666] flex items-center gap-1">
-              <Zap size={10} className="text-amber-400" /> {activeDays} active days
+            <span className="text-[11px] font-mono text-amber-400 font-medium flex items-center gap-1.5">
+              <Trophy size={11} /> {ranking}
             </span>
           </div>
         </div>
@@ -83,7 +69,11 @@ export default function LeetCodeStats() {
         <div className="space-y-2.5 pt-2 border-t border-[#161616]">
           <div className="flex items-center justify-between text-[11px] font-mono">
             <span className="text-white font-bold uppercase tracking-wider">Difficulty Distribution</span>
-            <span className="text-[#777777]">Primary: <strong className="text-white">{languages[0]}</strong> ({languages.slice(1).join(', ')})</span>
+            <span className="text-[#888888] flex items-center gap-1.5 whitespace-nowrap">
+              <Zap size={11} className="text-amber-400 shrink-0" />
+              <span className="text-amber-400 font-semibold">{streak}</span>
+              <span>· {activeDays} active days · Primary: <strong className="text-white">{languages[0]}</strong></span>
+            </span>
           </div>
 
           <div className="h-2.5 w-full bg-[#141414] rounded-full overflow-hidden flex">

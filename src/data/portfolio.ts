@@ -74,7 +74,7 @@ export const leetcodeStats = {
   medium: 180,
   hard: 15,
   totalSubmissions: 563,
-  acceptanceRate: "54.5%",
+  acceptanceRate: "60.4%",
   ranking: "Top 37.8%",
   contestRating: 1527,
   streak: "23 days",
