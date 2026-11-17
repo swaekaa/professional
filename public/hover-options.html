@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Hover Animations Showcase — Ekaansh Sawaria</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --accent: #10B981;
+      --accent-rgb: 16, 185, 129;
+      --accent-glow: rgba(16, 185, 129, 0.45);
+    }
+
+    body {
+      background-color: #050505;
+      color: #EDEDED;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif;
+    }
+
+    /* Option 1: Linear Ambient Glow & Spring Lift */
+    .btn-opt-1 {
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .btn-opt-1:hover {
+      transform: translateY(-2.5px);
+      border-color: var(--accent);
+      background-color: #121212;
+      box-shadow: 0 8px 24px -4px var(--accent-glow), 0 0 0 1px var(--accent);
+      color: #ffffff;
+    }
+    .btn-opt-1:active {
+      transform: translateY(0.5px) scale(0.98);
+      transition-duration: 0.08s;
+    }
+
+    /* Option 2: Retro Terminal Shimmer & Ray Beam */
+    .btn-opt-2 {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .btn-opt-2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--accent-rgb), 0.28),
+        transparent
+      );
+      transform: skewX(-25deg);
+      transition: none;
+    }
+    .btn-opt-2:hover {
+      border-color: var(--accent);
+      background-color: #0E0E0E;
+      color: #FFFFFF;
+      box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.3);
+    }
+    .btn-opt-2:hover::before {
+      left: 150%;
+      transition: all 0.75s ease-in-out;
+    }
+    .btn-opt-2:hover .arrow-nudge {
+      transform: translate(2px, -2px);
+    }
+
+    /* Option 3: Radial Spotlight Aura (Mouse-Follow Tracking) */
+    .btn-opt-3 {
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .btn-opt-3 .spotlight-layer {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      background: radial-gradient(
+        circle 65px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(var(--accent-rgb), 0.35),
+        transparent 100%
+      );
+    }
+    .btn-opt-3:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 0 12px rgba(var(--accent-rgb), 0.25);
+    }
+    .btn-opt-3:hover .spotlight-layer {
+      opacity: 1;
+    }
+    .btn-opt-3:active {
+      transform: scale(0.97);
+    }
+
+    /* Option 4: Cyberpunk Tactile Offset / Hard Shadow Pop */
+    .btn-opt-4 {
+      transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+    }
+    .btn-opt-4:hover {
+      transform: translate(-3px, -3px);
+      border-color: var(--accent);
+      background-color: #0F0F0F;
+      color: #FFFFFF;
+      box-shadow: 4px 4px 0px var(--accent);
+    }
+    .btn-opt-4:active {
+      transform: translate(0px, 0px);
+      box-shadow: 0px 0px 0px var(--accent);
+    }
+
+    /* Option 5: Translucent Fill Bloom & Gradient Underline */
+    .btn-opt-5 {
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .btn-opt-5::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .btn-opt-5:hover {
+      border-color: rgba(var(--accent-rgb), 0.5);
+      background-color: rgba(var(--accent-rgb), 0.08);
+      color: #FFFFFF;
+    }
+    .btn-opt-5:hover::after {
+      width: 80%;
+    }
+
+    /* Tab styles */
+    .tab-item {
+      transition: all 0.18s ease;
+    }
+    .tab-item:hover {
+      color: #ffffff;
+      padding-left: 0.5rem;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-8 max-w-5xl mx-auto space-y-10">
+
+  <!-- Header & Live Color Switcher -->
+  <header class="border-b border-[#202020] pb-6 space-y-3">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-bold">
+          <span>/</span>
+          <span>Interactive Playground</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
+          Hover Animation Options
+        </h1>
+        <p class="text-sm text-[#888888] mt-1 font-mono">
+          Hover over the buttons and tabs below to test each animation style with your actual buttons.
+        </p>
+      </div>
+
+      <!-- Accent Color Switcher -->
+      <div class="bg-[#0D0D0D] border border-[#222222] rounded-xl p-3 flex flex-col gap-1.5 shrink-0">
+        <span class="text-[11px] font-mono text-[#888888] uppercase tracking-wider font-semibold">Test Color</span>
+        <div class="flex items-center gap-2">
+          <button onclick="setTheme('#10B981', '16, 185, 129', 'Emerald')" class="w-6 h-6 rounded-full bg-[#10B981] ring-2 ring-white/40 hover:scale-110 transition-transform" title="Emerald"></button>
+          <button onclick="setTheme('#ea580c', '234, 88, 12', 'Burnt Orange')" class="w-6 h-6 rounded-full bg-[#ea580c] hover:scale-110 transition-transform" title="Burnt Orange"></button>
+          <button onclick="setTheme('#e11d48', '225, 29, 72', 'Crimson')" class="w-6 h-6 rounded-full bg-[#e11d48] hover:scale-110 transition-transform" title="Crimson"></button>
+          <button onclick="setTheme('#8b5cf6', '139, 92, 246', 'Cyber Violet')" class="w-6 h-6 rounded-full bg-[#8b5cf6] hover:scale-110 transition-transform" title="Cyber Violet"></button>
+          <button onclick="setTheme('#f59e0b', '245, 158, 11', 'Amber')" class="w-6 h-6 rounded-full bg-[#f59e0b] hover:scale-110 transition-transform" title="Amber"></button>
+          <button onclick="setTheme('#06b6d4', '6, 182, 212', 'Neon Cyan')" class="w-6 h-6 rounded-full bg-[#06b6d4] hover:scale-110 transition-transform" title="Neon Cyan"></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Options Showcase Grid -->
+  <main class="space-y-12">
+
+    <!-- Option 1 -->
+    <section class="bg-[#090909] border border-[#1E1E1E] rounded-xl p-6 space-y-4 hover:border-[#2C2C2C] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#181818] pb-3">
+        <div>
+          <div className="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold text-[var(--accent)] uppercase tracking-wider">Option 01</span>
+            <h2 class="text-lg font-bold text-white inline ml-2">Linear Ambient Glow & Spring Lift</h2>
+          </div>
+          <p class="text-xs text-[#888888] font-mono mt-0.5">
+            Smooth 2.5px micro-lift, soft accent color drop-shadow bloom, and tactile active press. (Clean & Modern SaaS)
+          </p>
+        </div>
+        <span class="font-mono text-[11px] text-[var(--accent)] bg-[#121212] border border-[var(--accent)]/30 px-2.5 py-1 rounded-full shrink-0">
+          Recommended
+        </span>
+      </div>
+
+      <!-- Live Button Row -->
+      <div class="pt-2 flex flex-wrap gap-2.5 items-center">
+        <a href="#demo" class="btn-opt-1 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>𝕏 X / Twitter</span>
+        </a>
+        <a href="#demo" class="btn-opt-1 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>GitHub</span>
+        </a>
+        <a href="#demo" class="btn-opt-1 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LeetCode</span>
+        </a>
+        <a href="#demo" class="btn-opt-1 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Email</span>
+        </a>
+        <a href="#demo" class="btn-opt-1 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LinkedIn</span>
+        </a>
+        <a href="#demo" class="btn-opt-1 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Resume <span class="arrow-nudge transition-transform">↗</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Option 2 -->
+    <section class="bg-[#090909] border border-[#1E1E1E] rounded-xl p-6 space-y-4 hover:border-[#2C2C2C] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#181818] pb-3">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--accent)] uppercase tracking-wider">Option 02</span>
+          <h2 class="text-lg font-bold text-white inline ml-2">Retro Terminal Shimmer & Ray Beam</h2>
+          <p class="text-xs text-[#888888] font-mono mt-0.5">
+            A luminous accent beam sweeps across the button face on hover with an arrow nudge. (Futuristic Hacker)
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Button Row -->
+      <div class="pt-2 flex flex-wrap gap-2.5 items-center">
+        <a href="#demo" class="btn-opt-2 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>𝕏 X / Twitter</span>
+        </a>
+        <a href="#demo" class="btn-opt-2 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>GitHub</span>
+        </a>
+        <a href="#demo" class="btn-opt-2 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LeetCode</span>
+        </a>
+        <a href="#demo" class="btn-opt-2 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Email</span>
+        </a>
+        <a href="#demo" class="btn-opt-2 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LinkedIn</span>
+        </a>
+        <a href="#demo" class="btn-opt-2 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Resume <span class="arrow-nudge inline-block transition-transform duration-200">↗</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Option 3 -->
+    <section class="bg-[#090909] border border-[#1E1E1E] rounded-xl p-6 space-y-4 hover:border-[#2C2C2C] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#181818] pb-3">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--accent)] uppercase tracking-wider">Option 03</span>
+          <h2 class="text-lg font-bold text-white inline ml-2">Magnetic Radial Spotlight (Raycast Aura)</h2>
+          <p class="text-xs text-[#888888] font-mono mt-0.5">
+            Internal radial glow follows cursor position inside each button with smooth scale physics. (Interactive & Tactile)
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Button Row with Cursor Tracking -->
+      <div class="pt-2 flex flex-wrap gap-2.5 items-center">
+        <a href="#demo" class="btn-opt-3 tracking-btn inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <div class="spotlight-layer"></div>
+          <span class="relative z-10">𝕏 X / Twitter</span>
+        </a>
+        <a href="#demo" class="btn-opt-3 tracking-btn inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <div class="spotlight-layer"></div>
+          <span class="relative z-10">GitHub</span>
+        </a>
+        <a href="#demo" class="btn-opt-3 tracking-btn inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <div class="spotlight-layer"></div>
+          <span class="relative z-10">LeetCode</span>
+        </a>
+        <a href="#demo" class="btn-opt-3 tracking-btn inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <div class="spotlight-layer"></div>
+          <span class="relative z-10">Email</span>
+        </a>
+        <a href="#demo" class="btn-opt-3 tracking-btn inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <div class="spotlight-layer"></div>
+          <span class="relative z-10">LinkedIn</span>
+        </a>
+        <a href="#demo" class="btn-opt-3 tracking-btn inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <div class="spotlight-layer"></div>
+          <span class="relative z-10">Resume ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Option 4 -->
+    <section class="bg-[#090909] border border-[#1E1E1E] rounded-xl p-6 space-y-4 hover:border-[#2C2C2C] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#181818] pb-3">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--accent)] uppercase tracking-wider">Option 04</span>
+          <h2 class="text-lg font-bold text-white inline ml-2">Cyberpunk Hard Offset / Pixel Pop</h2>
+          <p class="text-xs text-[#888888] font-mono mt-0.5">
+            Snappy isometric offset shadow pops out on hover with arcade click feel. (Retro Gaming / Cyberpunk)
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Button Row -->
+      <div class="pt-2 flex flex-wrap gap-2.5 items-center">
+        <a href="#demo" class="btn-opt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>𝕏 X / Twitter</span>
+        </a>
+        <a href="#demo" class="btn-opt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>GitHub</span>
+        </a>
+        <a href="#demo" class="btn-opt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LeetCode</span>
+        </a>
+        <a href="#demo" class="btn-opt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Email</span>
+        </a>
+        <a href="#demo" class="btn-opt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LinkedIn</span>
+        </a>
+        <a href="#demo" class="btn-opt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Resume ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Option 5 -->
+    <section class="bg-[#090909] border border-[#1E1E1E] rounded-xl p-6 space-y-4 hover:border-[#2C2C2C] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#181818] pb-3">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--accent)] uppercase tracking-wider">Option 05</span>
+          <h2 class="text-lg font-bold text-white inline ml-2">Translucent Fill Bloom & Gradient Underline</h2>
+          <p class="text-xs text-[#888888] font-mono mt-0.5">
+            Background fills with a soft translucent accent tint as a glowing center underline expands. (Editorial & Subtle)
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Button Row -->
+      <div class="pt-2 flex flex-wrap gap-2.5 items-center">
+        <a href="#demo" class="btn-opt-5 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>𝕏 X / Twitter</span>
+        </a>
+        <a href="#demo" class="btn-opt-5 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>GitHub</span>
+        </a>
+        <a href="#demo" class="btn-opt-5 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LeetCode</span>
+        </a>
+        <a href="#demo" class="btn-opt-5 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Email</span>
+        </a>
+        <a href="#demo" class="btn-opt-5 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>LinkedIn</span>
+        </a>
+        <a href="#demo" class="btn-opt-5 inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white">
+          <span>Resume ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Sidebar Navigation & Tab Options -->
+    <section class="bg-[#090909] border border-[#1E1E1E] rounded-xl p-6 space-y-5">
+      <div class="border-b border-[#181818] pb-3">
+        <span class="font-mono text-xs font-bold text-[var(--accent)] uppercase tracking-wider">Navigation Tabs & Section Items</span>
+        <h2 class="text-lg font-bold text-white mt-1">Sidebar Tabs & Card Hover Interactions</h2>
+        <p class="text-xs text-[#888888] font-mono mt-0.5">
+          See how the sidebar links and project cards respond on hover.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Sidebar nav demo -->
+        <div class="bg-[#060606] border border-[#1A1A1A] rounded-lg p-4 space-y-2 font-mono text-xs">
+          <span class="text-[#666666] uppercase tracking-wider text-[10px] block mb-2">Sidebar Nav Tabs (Nudge & Glow)</span>
+          <div class="tab-item flex items-center gap-2 text-[#888888] cursor-pointer py-1 border-l-2 border-transparent hover:border-[var(--accent)] hover:text-white transition-all">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+            <span>about</span>
+          </div>
+          <div class="tab-item flex items-center gap-2 text-[#888888] cursor-pointer py-1 border-l-2 border-transparent hover:border-[var(--accent)] hover:text-white transition-all">
+            <span>github</span>
+          </div>
+          <div class="tab-item flex items-center gap-2 text-[#888888] cursor-pointer py-1 border-l-2 border-transparent hover:border-[var(--accent)] hover:text-white transition-all">
+            <span>projects</span>
+          </div>
+          <div class="tab-item flex items-center gap-2 text-[#888888] cursor-pointer py-1 border-l-2 border-transparent hover:border-[var(--accent)] hover:text-white transition-all">
+            <span>certifications</span>
+          </div>
+        </div>
+
+        <!-- Project card hover preview -->
+        <div class="bg-[#060606] border border-[#1A1A1A] hover:border-[var(--accent)] rounded-lg p-4 space-y-2 cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.8),0_0_20px_var(--accent-glow)]">
+          <span class="text-[#666666] uppercase tracking-wider text-[10px] block">Project Card Card Hover Effect</span>
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-bold text-white">01 · RExplain</h4>
+            <span class="text-xs text-[var(--accent)] font-mono font-bold">↗</span>
+          </div>
+          <p class="text-xs text-[#888888] leading-relaxed">
+            Elevates with depth shadow and border accent glow, making entire card feel tactile and responsive.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-[#1C1C1C] pt-6 pb-12 text-center text-xs text-[#666666] font-mono">
+    Tell me your favorite option (e.g. "Option 1" or "Option 3") and I will instantly apply it across your portfolio!
+  </footer>
+
+  <script>
+    function setTheme(hex, rgb, name) {
+      document.documentElement.style.setProperty('--accent', hex);
+      document.documentElement.style.setProperty('--accent-rgb', rgb);
+      document.documentElement.style.setProperty('--accent-glow', 'rgba(' + rgb + ', 0.45)');
+    }
+
+    // Dynamic mouse position tracking for Option 3 radial spotlight
+    document.querySelectorAll('.tracking-btn').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        btn.style.setProperty('--mouse-x', x + 'px');
+        btn.style.setProperty('--mouse-y', y + 'px');
+      });
+    });
+  </script>
+</body>
+</html>
