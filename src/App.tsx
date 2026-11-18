@@ -11,7 +11,6 @@ import PublicXSection from './components/PublicXSection';
 import CommunityAndJourney from './components/CommunityAndJourney';
 import ContactAndNote from './components/ContactAndNote';
 import Footer from './components/Footer';
-import PixelTrex from './components/PixelTrex';
 import LastFmCapsule from './components/LastFmCapsule';
 import PixelTreesLeft from './components/PixelTreesLeft';
 import PixelTreesRight from './components/PixelTreesRight';
@@ -59,9 +58,6 @@ function PortfolioContent() {
 
       {/* Seamless pixel forest floor connecting the spring/autumn and winter themes across the bottom */}
       <PixelForestFloor />
-
-      {/* Interactive Pixel Art T-Rex Companion Following Cursor (Bottom-Right) */}
-      <PixelTrex />
 
       {/* Sleek Last.fm Recently Played / Now Playing Capsule Bar (Top-Right) */}
       <LastFmCapsule />
