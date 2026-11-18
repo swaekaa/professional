@@ -113,7 +113,7 @@ export const education = {
     },
     {
       institution: "Hiranandani Foundation School",
-      degree: "Class XII (CBSE)",
+      degree: "Class XII (ICSE)",
       score: "81%",
       period: "2023",
       type: "Senior Secondary",
@@ -121,7 +121,7 @@ export const education = {
     },
     {
       institution: "Hiranandani Foundation School",
-      degree: "Class X (CBSE)",
+      degree: "Class X (ICSE)",
       score: "96%",
       period: "2021",
       type: "Secondary School",
@@ -131,8 +131,8 @@ export const education = {
   highlights: [
     "Core CS: DSA, OOP, DBMS, Operating Systems, Computer Networks, Distributed Systems, System Design",
     "Manipal University Jaipur – B.Tech in Computer Science: CGPA 8.51 / 10 (Aug 2023 – Present)",
-    "Hiranandani Foundation School – Class XII (CBSE): 81% (2023)",
-    "Hiranandani Foundation School – Class X (CBSE): 96% (2021)"
+    "Hiranandani Foundation School – Class XII (ICSE): 81% (2023)",
+    "Hiranandani Foundation School – Class X (ICSE): 96% (2021)"
   ]
 };
 
@@ -425,7 +425,7 @@ export const journey = [
   {
     year: "2023",
     event: "Manipal University Jaipur — B.Tech in Computer Science",
-    desc: "Commenced B.Tech in CS (current CGPA: 8.51/10). Graduated Class XII CBSE from Hiranandani Foundation School (81%)."
+    desc: "Commenced B.Tech in CS (current CGPA: 8.51/10). Graduated Class XII ICSE from Hiranandani Foundation School (81%)."
   }
 ];
 

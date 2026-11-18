@@ -64,8 +64,8 @@ function detectHoverItem(target: HTMLElement | null): string | null {
   const edu = target.closest('[data-edu]')?.getAttribute('data-edu');
   if (edu) {
     if (edu.includes('Manipal')) return 'Manipal University';
-    if (edu.includes('Class XII')) return 'Class XII (CBSE)';
-    if (edu.includes('Class X')) return 'Class X (CBSE)';
+    if (edu.includes('Class XII')) return 'Class XII (ICSE)';
+    if (edu.includes('Class X')) return 'Class X (ICSE)';
     return 'education';
   }
 
