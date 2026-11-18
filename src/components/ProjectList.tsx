@@ -174,7 +174,29 @@ export default function ProjectList() {
                   <p className="text-white leading-relaxed">{selectedProject.architecture}</p>
                 </div>
 
-                {/* Picture Graphs & Visual Architecture Diagrams */}
+                {/* Live GIF Demo / Landing Page Playing Preview */}
+                {'gif' in selectedProject && selectedProject.gif && (
+                  <div className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden shadow-2xl">
+                    <div className="relative rounded-lg overflow-hidden bg-[#070707] flex items-center justify-center">
+                      <img
+                        src={selectedProject.gif}
+                        alt={`${selectedProject.name} Live Demo Preview`}
+                        className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                      />
+                      <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded bg-black/85 border border-[#333333] font-mono text-[9.5px] font-bold text-white uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 shadow-md">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>LIVE PREVIEW</span>
+                      </div>
+                    </div>
+                    {selectedProject.gifCaption && (
+                      <p className="font-mono text-[11px] text-[#AAAAAA] text-center mt-2.5">
+                        {selectedProject.gifCaption}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Pipeline Flowchart for RExplain */}
                 {selectedProject.id === 'rexplain' && (
                   <div className="bg-[#080808] border border-[#202020] rounded-xl p-4 font-mono text-[11px]">
                     <div className="text-[10px] uppercase tracking-wider mb-2.5 font-bold flex items-center gap-1.5" style={{ color: 'var(--accent)' }}>
@@ -194,21 +216,7 @@ export default function ProjectList() {
                   </div>
                 )}
 
-                {selectedProject.id === 'nexora' && 'image' in selectedProject && selectedProject.image && (
-                  <div className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden">
-                    <div className="flex items-center justify-center bg-[#070707] rounded-lg p-2 overflow-hidden">
-                      <img
-                        src={selectedProject.image}
-                        alt={`${selectedProject.name} Architecture`}
-                        className="w-full h-auto max-h-[260px] object-contain filter contrast-110"
-                      />
-                    </div>
-                    <p className="font-mono text-[10.5px] text-[#AAAAAA] text-center mt-2">
-                      Fig 1. Deterministic Policy Engine validation floor & Razorpay settlement architecture
-                    </p>
-                  </div>
-                )}
-
+                {/* Pipeline Flowchart for VisionSat */}
                 {selectedProject.id === 'visionsat' && (
                   <div className="bg-[#080808] border border-[#202020] rounded-xl p-4 font-mono text-[11px]">
                     <div className="text-[10px] uppercase tracking-wider mb-2.5 font-bold flex items-center gap-1.5" style={{ color: 'var(--accent)' }}>
@@ -223,39 +231,6 @@ export default function ProjectList() {
                       <span className="text-[#666666]">→</span>
                       <span className="px-2.5 py-1.5 bg-[#121212] border border-[#262626] rounded text-white font-medium">Spatial Heatmap</span>
                     </div>
-                  </div>
-                )}
-
-                {selectedProject.id === 'klustor' && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {'image' in selectedProject && selectedProject.image && (
-                      <div className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden flex flex-col justify-between">
-                        <div className="flex items-center justify-center bg-[#070707] rounded-lg p-2">
-                          <img
-                            src={selectedProject.image}
-                            alt="Design Score Analysis"
-                            className="w-full h-auto max-h-[180px] object-contain"
-                          />
-                        </div>
-                        <p className="font-mono text-[10.5px] text-[#AAAAAA] text-center mt-2">
-                          Fig 1. Algorithmic Design Scoring canvas analyzer
-                        </p>
-                      </div>
-                    )}
-                    {'image2' in selectedProject && selectedProject.image2 && (
-                      <div className="rounded-xl border border-[#222222] bg-black p-3 overflow-hidden flex flex-col justify-between">
-                        <div className="flex items-center justify-center bg-[#070707] rounded-lg p-2">
-                          <img
-                            src={selectedProject.image2}
-                            alt="Multiplayer Lobby Sync"
-                            className="w-full h-auto max-h-[180px] object-contain"
-                          />
-                        </div>
-                        <p className="font-mono text-[10.5px] text-[#AAAAAA] text-center mt-2">
-                          Fig 2. Socket.IO live multiplayer lobby sync
-                        </p>
-                      </div>
-                    )}
                   </div>
                 )}
 

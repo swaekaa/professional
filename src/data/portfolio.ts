@@ -195,7 +195,9 @@ export const projects = [
     challenges:
       "Eliminating GitHub API rate throttling on massive repositories by implementing tree-pruning heuristics and persistent JSONB caching.",
     github: "https://github.com/swaekaa/rexplain",
-    demo: "https://rexplain.vercel.app/"
+    demo: "https://rexplain.vercel.app/",
+    gif: "/images/projects/rexplain_landing.gif",
+    gifCaption: "Live Interface: AI repository intelligence, AST tree analysis, and interactive RAG chat"
   },
   {
     id: "nexora",
@@ -224,7 +226,8 @@ export const projects = [
       "Guaranteeing structured negotiation outputs across multi-round agent turns while preventing adversarial prompt-injection attacks from overriding merchant minimum price bounds.",
     github: "https://github.com/swaekaa/NEXORA",
     demo: "https://github.com/swaekaa/NEXORA",
-    image: "/images/projects/nexora_policy.png"
+    gif: "/images/projects/nexora_landing.gif",
+    gifCaption: "Live Negotiation Arena: Multi-round autonomous B2B agent haggling, policy validation, and Razorpay settlement"
   },
   {
     id: "visionsat",
@@ -252,7 +255,9 @@ export const projects = [
     challenges:
       "Addressing fine-grained class overlap between permanent crop and pasture land through normalized difference indices and targeted data augmentations.",
     github: "https://github.com/swaekaa/VisionSat",
-    demo: "https://vision-sat.vercel.app/"
+    demo: "https://vision-sat.vercel.app/",
+    gif: "/images/projects/visionsat_landing.gif",
+    gifCaption: "Live Demo: EuroSAT Sentinel-2 satellite image classification and Grad-CAM spatial activation heatmaps"
   },
   {
     id: "klustor",
@@ -281,8 +286,8 @@ export const projects = [
       "Achieving sub-16ms off-screen canvas pixel ingestion and dynamic Three.js texture re-binding without causing GPU frame drops during active gameplay.",
     github: "https://github.com/swaekaa/klustor",
     demo: "https://github.com/swaekaa/klustor",
-    image: "/images/projects/klustor_score.png",
-    image2: "/images/projects/klustor_multiplayer.png"
+    gif: "/images/projects/klustor_game_start.gif",
+    gifCaption: "Live Game Start: 3D Vice Coast Circuit start grid and arcade racing engine in Three.js"
   }
 ];
 
