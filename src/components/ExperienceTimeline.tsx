@@ -62,14 +62,36 @@ export default function ExperienceTimeline() {
 
               {/* Expanded details */}
               {isExpanded && (
-                <div className="pt-3 pb-2 space-y-3.5 text-[15px] animate-fade-in text-white">
-                  <p className="text-white leading-relaxed font-normal">
-                    {job.summary}
-                  </p>
+                <div className="pt-3 pb-2 space-y-4 text-[15px] animate-fade-in text-white">
+                  {/* Core Engineering Question / Hook */}
+                  {'hook' in job && job.hook && (
+                    <div
+                      className="pl-3.5 border-l-2 py-1 bg-[#0A0A0A] rounded-r-md"
+                      style={{ borderColor: 'var(--accent)' }}
+                    >
+                      <p className="text-[13.5px] italic text-[#E5E5E5] font-sans leading-relaxed">
+                        "{job.hook}"
+                      </p>
+                    </div>
+                  )}
 
+                  {/* Narrative Body */}
+                  {'narrative' in job && Array.isArray(job.narrative) ? (
+                    <div className="space-y-2.5 text-white leading-relaxed font-normal text-[14.5px]">
+                      {job.narrative.map((para: string, i: number) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-white leading-relaxed font-normal">
+                      {job.summary}
+                    </p>
+                  )}
+
+                  {/* Concrete Engineering Highlights */}
                   <div className="space-y-2 pt-1">
                     {job.contributions.map((bullet, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-white leading-relaxed">
+                      <div key={i} className="flex items-start gap-2.5 text-white leading-relaxed text-[14px]">
                         <span
                           className="font-mono text-[12px] mt-0.5 shrink-0 font-bold"
                           style={{ color: 'var(--accent)' }}

@@ -144,23 +144,29 @@ export const experience = [
     location: "Bangalore, India",
     period: "May 2026 – July 2026",
     active: true,
+    hook: "What happens when search, reasoning, and tools stop operating independently and start working as one system?",
     summary:
       "Enterprise-scale multi-agent RAG platform: system architecture, agent orchestration, retrieval workflows, and high-precision product discovery.",
+    narrative: [
+      "At Accenture, I worked alongside a team of three interns to architect an enterprise-scale multi-agent RAG platform. One of the most interesting engineering challenges was figuring out how to make multiple AI agents coordinate reliably—moving beyond static question-answering workflows into an agentic framework where specialized agents dynamically invoke tools depending on conversation context.",
+      "Alongside the agentic stack, we engineered a retrieval pipeline that brought together BM25, dense embeddings, Cross-Encoder reranking, and hybrid ranking to surface relevant knowledge from large enterprise datasets without relying on a single search method. From designing the core architecture to refining hybrid retrieval, the project gave me a deep appreciation for what it takes to turn raw AI capabilities into an actual engineered system."
+    ],
     contributions: [
-      "Led and collaborated with a team of 3 interns to architect an enterprise-scale multi-agent RAG platform, defining system architecture, retrieval workflows, and agent orchestration.",
-      "Engineered a Grok Build 0.1 agentic framework with multiple AI agents and 6 dynamically callable tools for context-aware execution.",
-      "Integrated PageIndexer, BM25, dense retrieval, Cross-Encoder reranking, and QuadRank into a hybrid search engine for high-precision enterprise product discovery."
+      "Multi-Agent Orchestration & Tool Execution: Engineered an agentic framework where specialized agents dynamically invoke execution tools based on real-time context, turning static Q&A into flexible multi-step workflows.",
+      "Hybrid Retrieval & Reranking Stack: Integrated PageIndexer, BM25 keyword matching, dense vector embeddings, Cross-Encoder reranking, and QuadRank to eliminate search blind spots across enterprise document stores.",
+      "System Architecture & Intern Collaboration: Co-architected service interfaces, state management, and high-throughput backend APIs with a team of three interns in an enterprise production environment."
     ],
     technologies: [
       "PYTHON",
       "FASTAPI",
       "LANGGRAPH",
-      "MULTI-AGENT",
+      "MULTI-AGENT SYSTEMS",
       "RAG PIPELINES",
       "BM25",
       "DENSE RETRIEVAL",
       "CROSS-ENCODER",
-      "QUADRANK"
+      "QUADRANK",
+      "DYNAMIC TOOL CALLING"
     ]
   }
 ];
