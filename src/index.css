@@ -27,6 +27,38 @@
   --color-accent-dim: var(--accent-dim);
 }
 
+/* Custom Pixel Snowflake Cursor */
+html,
+body,
+* {
+  cursor: url('/images/cursor/snowflake.png') 14 14, auto;
+}
+
+a,
+button,
+[role="button"],
+.cursor-pointer,
+select,
+summary,
+a *,
+button *,
+[role="button"] *,
+.cursor-pointer * {
+  cursor: url('/images/cursor/snowflake.png') 14 14, pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+textarea {
+  cursor: text !important;
+}
+
+.cursor-default,
+.cursor-default * {
+  cursor: url('/images/cursor/snowflake.png') 14 14, default;
+}
+
 html {
   scroll-behavior: smooth;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
