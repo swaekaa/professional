@@ -142,29 +142,25 @@ export const experience = [
     company: "Accenture",
     role: "Associate Software Engineering Intern",
     location: "Bangalore, India",
-    period: "May 2026 – July 2026",
+    period: "May 2026 to July 2026",
     active: true,
-    hook: "What happens when search, reasoning, and tools stop operating independently and start working as one system?",
+    tagline: "Multi Agent Enterprise RAG",
     summary:
-      "Enterprise-scale multi-agent RAG platform: system architecture, agent orchestration, retrieval workflows, and high-precision product discovery.",
+      "Enterprise scale multi agent RAG platform: system architecture, agent orchestration, retrieval workflows, and high precision product discovery.",
     narrative: [
-      "At Accenture, I worked alongside a team of three interns to architect an enterprise-scale multi-agent RAG platform. One of the most interesting engineering challenges was figuring out how to make multiple AI agents coordinate reliably—moving beyond static question-answering workflows into an agentic framework where specialized agents dynamically invoke tools depending on conversation context.",
-      "Alongside the agentic stack, we engineered a retrieval pipeline that brought together BM25, dense embeddings, Cross-Encoder reranking, and hybrid ranking to surface relevant knowledge from large enterprise datasets without relying on a single search method. From designing the core architecture to refining hybrid retrieval, the project gave me a deep appreciation for what it takes to turn raw AI capabilities into an actual engineered system."
-    ],
-    contributions: [
-      "Multi-Agent Orchestration & Tool Execution: Engineered an agentic framework where specialized agents dynamically invoke execution tools based on real-time context, turning static Q&A into flexible multi-step workflows.",
-      "Hybrid Retrieval & Reranking Stack: Integrated PageIndexer, BM25 keyword matching, dense vector embeddings, Cross-Encoder reranking, and QuadRank to eliminate search blind spots across enterprise document stores.",
-      "System Architecture & Intern Collaboration: Co-architected service interfaces, state management, and high-throughput backend APIs with a team of three interns in an enterprise production environment."
+      "What happens when search, reasoning, and tools stop operating independently and start working as one system? That is the core problem I explored at Accenture while architecting an enterprise scale multi agent RAG platform alongside a team of three interns.",
+      "We focused on building an agentic framework where specialized AI agents coordinate reliably and dynamically invoke execution tools based on real time conversation context, turning static question answering workflows into a flexible multi step system. Alongside agent orchestration, we engineered a hybrid retrieval pipeline bringing together BM25 keyword matching, dense embeddings, Cross Encoder reranking, and QuadRank to surface relevant knowledge from large enterprise datasets without relying on a single search method.",
+      "From designing the architecture to experimenting with hybrid retrieval and reranking, the project gave me a deeper appreciation for what it takes to turn AI capabilities into an actual engineered system."
     ],
     technologies: [
       "PYTHON",
       "FASTAPI",
       "LANGGRAPH",
-      "MULTI-AGENT SYSTEMS",
+      "MULTI AGENT SYSTEMS",
       "RAG PIPELINES",
       "BM25",
       "DENSE RETRIEVAL",
-      "CROSS-ENCODER",
+      "CROSS ENCODER",
       "QUADRANK",
       "DYNAMIC TOOL CALLING"
     ]
