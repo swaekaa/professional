@@ -4,7 +4,7 @@ import { useTheme, ACCENT_COLORS } from '../context/ThemeContext';
 
 const navItems = [
   { id: 'about', label: 'about' },
-  { id: 'experience', label: 'accenture' },
+  { id: 'experience', label: 'experience' },
   { id: 'projects', label: 'projects' },
   { id: 'research', label: 'research' },
   { id: 'github', label: 'github' },
