@@ -92,6 +92,7 @@ export function ActivityHeatmap({
   const [rootRef, width] = useElementWidth<HTMLDivElement>(720);
   const [active, setActive] = useState<{ c: number; r: number } | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   useDismissOutside(wrapRef, active !== null, useCallback(() => setActive(null), []));
 
   const hours = mode === "hours";
@@ -186,11 +187,14 @@ export function ActivityHeatmap({
         return { r, text: narrow ? WEEKDAYS[k].slice(0, 1) : WEEKDAYS[k] };
       });
 
-  const locate = (e: ReactPointerEvent<SVGRectElement>) => {
-    const box = e.currentTarget.getBoundingClientRect();
-    const c = Math.floor((e.clientX - box.left - LW) / (cwEff + gap));
-    const r = Math.floor((e.clientY - box.top - TOP) / (ch + gap));
-    if (c < 0 || r < 0 || c >= cols || r > 6 || !byKey.has(`${c}:${r}`)) return setActive(null);
+  const locate = (e: ReactPointerEvent<SVGSVGElement | SVGRectElement>) => {
+    const el = svgRef.current ?? (e.currentTarget as SVGGraphicsElement);
+    const box = el.getBoundingClientRect();
+    const x = e.clientX - box.left - LW;
+    const y = e.clientY - box.top - TOP;
+    const c = Math.floor(x / (cwEff + gap));
+    const r = Math.floor(y / (ch + gap));
+    if (c < 0 || r < 0 || c >= cols || r > 6 || !byKey.has(`${c}:${r}`)) return;
     setActive({ c, r });
   };
   const onKey = (e: ReactKeyboardEvent) => {
@@ -236,14 +240,18 @@ export function ActivityHeatmap({
 
       <div ref={wrapRef} className="relative" style={{ height: svgH }}>
         <svg
+          ref={svgRef}
           width={width}
           height={svgH}
           role="img"
           aria-label={ariaLabel ?? `Activity heatmap. ${summary}`}
           tabIndex={0}
           onKeyDown={onKey}
+          onPointerMove={locate}
+          onPointerDown={locate}
+          onPointerLeave={(e) => e.pointerType === "mouse" && setActive(null)}
           onBlur={() => setActive(null)}
-          className="block touch-pan-y overflow-visible rounded-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-400/60 dark:focus-visible:ring-white/30"
+          className="block touch-pan-y overflow-visible rounded-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-400/60 dark:focus-visible:ring-white/30 cursor-pointer"
         >
           {topLabels.map((l) => (
             <text key={l.c} x={gx(l.c)} y={11} className="fill-neutral-500 text-[11px]">
@@ -292,7 +300,9 @@ export function ActivityHeatmap({
                 width={cwEff}
                 height={ch}
                 rx={Math.min(3, cwEff / 4)}
-                className={cx(anim && "cj-cell", l === 0 && "fill-black/[0.05] dark:fill-white/[0.06]")}
+                onPointerEnter={() => setActive({ c: x.c, r: x.r })}
+                onPointerDown={() => setActive({ c: x.c, r: x.r })}
+                className={cx(anim && "cj-cell cursor-pointer", l === 0 && "fill-black/[0.05] dark:fill-white/[0.06]")}
                 style={{ ...lvlFill(l), ["--d" as string]: anim ? `${(x.c * 0.012 + x.r * 0.02).toFixed(3)}s` : undefined } as CSSProperties}
               />
             );
@@ -305,21 +315,10 @@ export function ActivityHeatmap({
             rx={Math.min(4, cwEff / 3)}
             fill="none"
             strokeWidth={1.5}
-            className="stroke-neutral-900 dark:stroke-white"
+            className="stroke-neutral-900 dark:stroke-white pointer-events-none"
             initial={false}
             animate={{ x: gx(active?.c ?? 0) - 1, y: gy(active?.r ?? 0) - 1, opacity: active ? 1 : 0 }}
-            transition={reduce ? { duration: 0 } : { x: { duration: 0.12 }, y: { duration: 0.12 }, opacity: { duration: 0.12 } }}
-          />
-
-          <rect
-            x={LW}
-            y={TOP}
-            width={cols * (cwEff + gap)}
-            height={7 * (ch + gap)}
-            fill="transparent"
-            onPointerMove={locate}
-            onPointerDown={locate}
-            onPointerLeave={(e) => e.pointerType === "mouse" && setActive(null)}
+            transition={reduce ? { duration: 0 } : { x: { duration: 0.06 }, y: { duration: 0.06 }, opacity: { duration: 0.06 } }}
           />
         </svg>
 
