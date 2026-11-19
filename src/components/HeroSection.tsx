@@ -61,7 +61,7 @@ export default function HeroSection() {
               href={personal.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-cyber-pop inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-mono text-[12.5px] font-bold rounded-md transition-all duration-200 cursor-pointer shadow-sm group hover:bg-[var(--accent)] hover:text-white"
+              className="btn-cyber-pop inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-mono text-[12.5px] font-bold rounded-md cursor-pointer shadow-sm group"
             >
               <FileText size={14} className="text-current transition-colors" />
               <span>Resume</span>
@@ -70,9 +70,9 @@ export default function HeroSection() {
 
             <a
               href={`mailto:${personal.email}`}
-              className="btn-cyber-pop inline-flex items-center gap-2 px-4 py-2 bg-[#121212] border border-[#333333] hover:border-white text-white font-mono text-[12.5px] font-bold rounded-md transition-colors cursor-pointer group"
+              className="btn-cyber-pop inline-flex items-center gap-2 px-4 py-2 bg-[#121212] border border-[#333333] text-white font-mono text-[12.5px] font-bold rounded-md transition-colors cursor-pointer group"
             >
-              <Mail size={14} style={{ color: 'var(--accent)' }} />
+              <Mail size={14} className="text-[var(--accent)] group-hover:text-white transition-colors" />
               <span>Email</span>
             </a>
           </div>
