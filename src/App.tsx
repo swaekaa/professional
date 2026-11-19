@@ -64,20 +64,35 @@ function PortfolioContent() {
       <LastFmCapsule />
 
       {/* Centered Desktop Layout Container with Generous Negative Space */}
-      <div className="relative z-10 max-w-[800px] mx-auto px-5 sm:px-8 min-h-screen flex flex-col md:flex-row gap-8 lg:gap-14 pt-6 md:pt-14 pb-20">
+      <div className="relative z-10 max-w-[880px] mx-auto px-5 sm:px-8 min-h-screen flex flex-col md:flex-row gap-8 lg:gap-14 pt-6 md:pt-14 pb-32">
         {/* Understated Left Navigation with Accent Color Picker */}
         <SidebarNavigation onOpenNoteModal={() => setIsNoteModalOpen(true)} />
 
-        {/* Main Content Column (Restrained narrow width: ~540–560px, journal style) */}
-        <main className="w-full md:max-w-[560px] flex-1 min-w-0">
+        {/* Main Content Column (Comfortable readable width: ~620px) */}
+        <main className="w-full md:max-w-[620px] flex-1 min-w-0">
+          {/* 1. Intro */}
           <HeroSection />
+
+          {/* 2. Accenture Experience */}
+          <ExperienceTimeline />
+
+          {/* 3. Projects */}
+          <ProjectList />
+
+          {/* 4. Research */}
+          <ResearchSection />
+
+          {/* 5. GitHub & LeetCode Activity Dashboards */}
           <GithubHeatmap />
           <LeetCodeStats />
-          <ExperienceTimeline />
-          <ProjectList />
-          <ResearchSection />
-          <PublicXSection />
+
+          {/* 6. Certifications, Toolkit & Journey */}
           <CommunityAndJourney />
+
+          {/* 7. Public X */}
+          <PublicXSection />
+
+          {/* 8. Contact & Anonymous Note */}
           <ContactAndNote
             isNoteModalOpen={isNoteModalOpen}
             onCloseNoteModal={() => setIsNoteModalOpen(false)}

@@ -35,7 +35,7 @@ export default function PixelTreesRight() {
     <div
       className="fixed bottom-0 right-0 pointer-events-none select-none z-0 flex items-end justify-end overflow-hidden"
       style={{
-        maxWidth: 'calc((100vw - 780px) / 2 - 12px)',
+        maxWidth: 'calc((100vw - 880px) / 2 - 16px)',
       }}
       aria-hidden="true"
     >

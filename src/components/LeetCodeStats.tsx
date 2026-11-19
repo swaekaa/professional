@@ -4,50 +4,49 @@ import { personal, leetcodeStats } from '../data/portfolio';
 
 export default function LeetCodeStats() {
   const [stats, setStats] = useState(leetcodeStats);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Automatically update live from LeetCode APIs on page load
   useEffect(() => {
     let cancelled = false;
 
     const fetchLiveStats = async () => {
-      // 1. Fetch live problem counts and submissions
       try {
-        const res = await fetch(`https://leetcode-api-faisalshohag.vercel.app/${personal.leetcodeUsername}`, {
-          signal: AbortSignal.timeout(6000),
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (!cancelled && data.totalSolved) {
-            setStats((prev) => {
-              const acTotal = data.matchedUserStats?.acSubmissionNum?.[0]?.submissions ?? prev.totalSubmissions;
-              const totalSubs = data.matchedUserStats?.totalSubmissionNum?.[0]?.submissions ?? 0;
-              const liveAccRate = totalSubs > 0 ? `${((acTotal / totalSubs) * 100).toFixed(1)}%` : prev.acceptanceRate;
+        const [res, contestRes] = await Promise.allSettled([
+          fetch(`https://leetcode-api-faisalshohag.vercel.app/${personal.leetcodeUsername}`, {
+            signal: AbortSignal.timeout(5000),
+          }),
+          fetch(`https://alfa-leetcode-api.onrender.com/userContestRankingInfo/${personal.leetcodeUsername}`, {
+            signal: AbortSignal.timeout(5000),
+          }),
+        ]);
 
-              return {
-                ...prev,
-                totalSolved: data.totalSolved ?? prev.totalSolved,
-                easy: data.easySolved ?? prev.easy,
-                medium: data.mediumSolved ?? prev.medium,
-                hard: data.hardSolved ?? prev.hard,
-                totalSubmissions: acTotal,
-                acceptanceRate: liveAccRate,
-              };
-            });
+        if (cancelled) return;
+
+        // Process problem counts
+        if (res.status === 'fulfilled' && res.value.ok) {
+          const data = await res.value.json().catch(() => null);
+          if (data && data.totalSolved) {
+            const acTotal = data.matchedUserStats?.acSubmissionNum?.[0]?.submissions ?? stats.totalSubmissions;
+            const totalSubs = data.matchedUserStats?.totalSubmissionNum?.[0]?.submissions ?? 0;
+            const liveAccRate = totalSubs > 0 ? `${((acTotal / totalSubs) * 100).toFixed(1)}%` : stats.acceptanceRate;
+
+            setStats((prev) => ({
+              ...prev,
+              totalSolved: data.totalSolved ?? prev.totalSolved,
+              easy: data.easySolved ?? prev.easy,
+              medium: data.mediumSolved ?? prev.medium,
+              hard: data.hardSolved ?? prev.hard,
+              totalSubmissions: acTotal,
+              acceptanceRate: liveAccRate,
+            }));
           }
         }
-      } catch {
-        // Silently use verified fallback stats
-      }
 
-      // 2. Fetch live contest rating & global percentile
-      try {
-        const contestRes = await fetch(
-          `https://alfa-leetcode-api.onrender.com/userContestRankingInfo/${personal.leetcodeUsername}`,
-          { signal: AbortSignal.timeout(6000) }
-        );
-        if (contestRes.ok) {
-          const cData = await contestRes.json();
-          if (!cancelled && cData.userContestRanking) {
+        // Process contest ranking
+        if (contestRes.status === 'fulfilled' && contestRes.value.ok) {
+          const cData = await contestRes.value.json().catch(() => null);
+          if (cData && cData.userContestRanking) {
             const liveRating = Math.round(cData.userContestRanking.rating);
             const liveTop = cData.userContestRanking.topPercentage;
             setStats((prev) => ({
@@ -58,7 +57,11 @@ export default function LeetCodeStats() {
           }
         }
       } catch {
-        // Silently use verified fallback stats
+        // Fallback to verified bundled stats
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
       }
     };
 
@@ -101,9 +104,13 @@ export default function LeetCodeStats() {
             <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Solved
             </span>
-            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-              {totalSolved}
-            </div>
+            {isLoading ? (
+              <div className="h-7 w-20 bg-[#161616] rounded animate-pulse" />
+            ) : (
+              <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight animate-fade-in">
+                {totalSolved}
+              </div>
+            )}
             <span className="text-[11px] font-mono text-[#666666]">{totalSubmissions} submissions</span>
           </div>
 
@@ -111,9 +118,13 @@ export default function LeetCodeStats() {
             <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Acceptance
             </span>
-            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-              {acceptanceRate}
-            </div>
+            {isLoading ? (
+              <div className="h-7 w-20 bg-[#161616] rounded animate-pulse" />
+            ) : (
+              <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight animate-fade-in">
+                {acceptanceRate}
+              </div>
+            )}
             <span className="text-[11px] font-mono text-[#666666]">solution accuracy</span>
           </div>
 
@@ -121,9 +132,13 @@ export default function LeetCodeStats() {
             <span className="text-[#888888] text-[11px] font-mono uppercase tracking-wider font-semibold">
               Contest Rating
             </span>
-            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-              {contestRating}
-            </div>
+            {isLoading ? (
+              <div className="h-7 w-20 bg-[#161616] rounded animate-pulse" />
+            ) : (
+              <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight animate-fade-in">
+                {contestRating}
+              </div>
+            )}
             <span className="text-[11px] font-mono text-amber-400 font-medium flex items-center gap-1.5">
               <Trophy size={11} /> {ranking}
             </span>

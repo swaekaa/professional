@@ -11,16 +11,27 @@ export default function GithubHeatmap() {
   const [totalContributions, setTotalContributions] = useState(githubStats.totalContributions);
   const [publicRepos, setPublicRepos] = useState(githubStats.publicRepos);
   const [currentStreak, setCurrentStreak] = useState(githubStats.currentStreak);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Live update in background from GitHub contributions API for account @swaekaa
   useEffect(() => {
     let cancelled = false;
     const fetchContributions = async () => {
       try {
-        const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${personal.githubUsername}?y=last`);
-        if (res.ok) {
-          const json = await res.json();
-          if (!cancelled) {
+        const [cRes, uRes] = await Promise.allSettled([
+          fetch(`https://github-contributions-api.jogruber.de/v4/${personal.githubUsername}?y=last`, {
+            signal: AbortSignal.timeout(5000),
+          }),
+          fetch(`https://api.github.com/users/${personal.githubUsername}`, {
+            signal: AbortSignal.timeout(5000),
+          }),
+        ]);
+
+        if (cancelled) return;
+
+        if (cRes.status === 'fulfilled' && cRes.value.ok) {
+          const json = await cRes.value.json().catch(() => null);
+          if (json) {
             if (json.total && typeof json.total.lastYear === 'number') {
               setTotalContributions(String(json.total.lastYear));
             }
@@ -31,7 +42,6 @@ export default function GithubHeatmap() {
               }));
               setData(mapped);
 
-              // Calculate active streak dynamically from trailing days
               let streakCount = 0;
               for (let i = json.contributions.length - 1; i >= 0; i--) {
                 if (json.contributions[i].count > 0) {
@@ -46,21 +56,19 @@ export default function GithubHeatmap() {
             }
           }
         }
-      } catch {
-        // Silently use bundled backup contributions
-      }
 
-      // Also try live public repository count
-      try {
-        const uRes = await fetch(`https://api.github.com/users/${personal.githubUsername}`);
-        if (uRes.ok) {
-          const uData = await uRes.json();
-          if (!cancelled && typeof uData.public_repos === 'number') {
+        if (uRes.status === 'fulfilled' && uRes.value.ok) {
+          const uData = await uRes.value.json().catch(() => null);
+          if (uData && typeof uData.public_repos === 'number') {
             setPublicRepos(String(uData.public_repos));
           }
         }
       } catch {
         // Silently fallback to bundled stats
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
       }
     };
 
@@ -96,9 +104,13 @@ export default function GithubHeatmap() {
             <GitCommit size={14} style={{ color: 'var(--accent)' }} />
             <span>Contributions</span>
           </div>
-          <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-            {totalContributions}
-          </div>
+          {isLoading ? (
+            <div className="h-7 w-20 bg-[#161616] rounded animate-pulse" />
+          ) : (
+            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight animate-fade-in">
+              {totalContributions}
+            </div>
+          )}
           <span className="text-[11px] font-mono text-[#666666]">past 12 months</span>
         </div>
 
@@ -107,9 +119,13 @@ export default function GithubHeatmap() {
             <GitBranch size={14} style={{ color: 'var(--accent)' }} />
             <span>Public Repos</span>
           </div>
-          <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-            {publicRepos}
-          </div>
+          {isLoading ? (
+            <div className="h-7 w-14 bg-[#161616] rounded animate-pulse" />
+          ) : (
+            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight animate-fade-in">
+              {publicRepos}
+            </div>
+          )}
           <span className="text-[11px] font-mono text-[#666666]">authored & active</span>
         </div>
 
@@ -118,9 +134,13 @@ export default function GithubHeatmap() {
             <Flame size={14} className="text-amber-500" />
             <span>Active Streak</span>
           </div>
-          <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight">
-            {currentStreak}
-          </div>
+          {isLoading ? (
+            <div className="h-7 w-24 bg-[#161616] rounded animate-pulse" />
+          ) : (
+            <div className="text-[26px] font-mono font-bold text-white leading-none tracking-tight animate-fade-in">
+              {currentStreak}
+            </div>
+          )}
           <span className="text-[11px] font-mono text-[#666666]">continuous cadence</span>
         </div>
       </div>

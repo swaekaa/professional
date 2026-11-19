@@ -63,18 +63,79 @@ export default function ExperienceTimeline() {
 
               {/* Expanded details */}
               {isExpanded && (
-                <div className="pt-3 pb-2 space-y-3.5 text-[14.5px] animate-fade-in text-white">
-                  {/* Uniform narrative paragraphs */}
-                  {'narrative' in job && Array.isArray(job.narrative) ? (
-                    job.narrative.map((para: string, i: number) => (
-                      <p key={i} className="text-white leading-[1.8] font-normal">
-                        {para}
+                <div className="pt-3 pb-2 space-y-4 text-[14.5px] animate-fade-in text-white">
+                  {/* What I Built */}
+                  {'whatIBuilt' in job && job.whatIBuilt ? (
+                    <div>
+                      <h4
+                        className="font-mono text-[11px] font-bold uppercase tracking-wider mb-1.5"
+                        style={{ color: 'var(--accent)' }}
+                      >
+                        WHAT I BUILT
+                      </h4>
+                      <p className="text-white leading-[1.8] font-normal">
+                        {job.whatIBuilt}
                       </p>
-                    ))
+                    </div>
+                  ) : null}
+
+                  {/* What I Personally Owned */}
+                  {'whatIOwned' in job && Array.isArray(job.whatIOwned) ? (
+                    <div>
+                      <h4
+                        className="font-mono text-[11px] font-bold uppercase tracking-wider mb-2"
+                        style={{ color: 'var(--accent)' }}
+                      >
+                        WHAT I PERSONALLY OWNED
+                      </h4>
+                      <ul className="space-y-2">
+                        {job.whatIOwned.map((item: string, i: number) => (
+                          <li key={i} className="flex items-start gap-2.5 text-white leading-relaxed font-normal">
+                            <span
+                              className="font-mono text-[12px] mt-0.5 shrink-0 font-bold"
+                              style={{ color: 'var(--accent)' }}
+                            >
+                              -&gt;
+                            </span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {/* Defensible Outcomes */}
+                  {'defensibleOutcomes' in job && Array.isArray(job.defensibleOutcomes) ? (
+                    <div>
+                      <h4
+                        className="font-mono text-[11px] font-bold uppercase tracking-wider mb-2"
+                        style={{ color: 'var(--accent)' }}
+                      >
+                        DEFENSIBLE OUTCOMES
+                      </h4>
+                      <ul className="space-y-2">
+                        {job.defensibleOutcomes.map((item: string, i: number) => (
+                          <li key={i} className="flex items-start gap-2.5 text-white leading-relaxed font-normal">
+                            <span
+                              className="font-mono text-[12px] mt-0.5 shrink-0 font-bold"
+                              style={{ color: 'var(--accent)' }}
+                            >
+                              -&gt;
+                            </span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ) : (
-                    <p className="text-white leading-[1.8] font-normal">
-                      {job.summary}
-                    </p>
+                    /* Fallback to narrative paragraphs */
+                    'narrative' in job && Array.isArray(job.narrative) && (
+                      job.narrative.map((para: string, i: number) => (
+                        <p key={i} className="text-white leading-[1.8] font-normal">
+                          {para}
+                        </p>
+                      ))
+                    )
                   )}
 
                   {/* Technical Badges */}

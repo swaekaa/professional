@@ -207,7 +207,7 @@ export default function PixelForestFloor() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed bottom-0 left-0 right-0 w-full pointer-events-none select-none z-0"
+      className="hidden md:block fixed bottom-0 left-0 right-0 w-full pointer-events-none select-none z-0"
       style={{
         imageRendering: 'pixelated',
         height: `${FLOOR_HEIGHT}px`,

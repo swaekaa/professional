@@ -72,74 +72,123 @@ export default function LastFmCapsule() {
   }, []);
 
   return (
-    <aside
-      aria-label="Last.fm recently played"
-      className="fixed top-3 right-3 sm:top-4 sm:right-6 z-40 select-none animate-fade-in"
-    >
-      <a
-        href={track.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-music={track.nowPlaying ? 'now playing' : 'recent song'}
-        title={`${track.name} by ${track.artist} on Last.fm`}
-        className="group flex items-center gap-2 h-7 sm:h-8 pl-1.5 pr-3 max-w-[270px] sm:max-w-[340px] rounded-full bg-[#090909]/90 hover:bg-[#121212] border border-[#222222] hover:border-[#383838] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.6)] transition-all duration-200 cursor-pointer"
-        onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-        onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#222222')}
+    <>
+      {/* Desktop Floating Capsule Bar (Top-Right) */}
+      <aside
+        aria-label="Last.fm recently played"
+        className="hidden md:block fixed top-4 right-6 z-40 select-none animate-fade-in"
       >
-        {/* Album Art / Spinning Vinyl Thumbnail */}
-        <div className="relative w-5 h-5 rounded-full overflow-hidden shrink-0 border border-[#2A2A2A] bg-[#141414] flex items-center justify-center">
-          {track.image ? (
-            <img
-              src={track.image}
-              alt={track.album || track.name}
-              referrerPolicy="no-referrer"
-              className={`w-full h-full object-cover ${
-                track.nowPlaying ? 'animate-[spin_8s_linear_infinite]' : ''
-              }`}
-            />
-          ) : (
-            <Disc3 size={11} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
-          )}
-        </div>
-
-        {/* Track Title and Artist (Truncated) */}
-        <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-hidden">
-          <span className="text-[11.5px] font-semibold text-white truncate leading-none group-hover:text-white transition-colors">
-            {track.name}
-          </span>
-          <span className="text-[10.5px] text-[#AAAAAA] truncate font-normal leading-none shrink-0 max-w-[100px] sm:max-w-[130px]">
-            · {track.artist}
-          </span>
-        </div>
-
-        {/* Status Indicator: Animated Equalizer if Live, else Subtle Recent Badge */}
-        {track.nowPlaying ? (
-          <div className="flex items-end gap-[1.5px] h-2.5 w-2.5 shrink-0 ml-0.5" title="Now Playing">
-            <span
-              className="w-[2px] rounded-full animate-music-bar-1"
-              style={{ backgroundColor: 'var(--accent)' }}
-            />
-            <span
-              className="w-[2px] rounded-full animate-music-bar-2"
-              style={{ backgroundColor: 'var(--accent)' }}
-            />
-            <span
-              className="w-[2px] rounded-full animate-music-bar-3"
-              style={{ backgroundColor: 'var(--accent)' }}
-            />
+        <a
+          href={track.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-music={track.nowPlaying ? 'now playing' : 'recent song'}
+          title={`${track.name} by ${track.artist} on Last.fm`}
+          className="group flex items-center gap-2 h-8 pl-1.5 pr-3 max-w-[340px] rounded-full bg-[#090909]/90 hover:bg-[#121212] border border-[#222222] hover:border-[#383838] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.6)] transition-all duration-200 cursor-pointer"
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#222222')}
+        >
+          {/* Album Art / Spinning Vinyl Thumbnail */}
+          <div className="relative w-5 h-5 rounded-full overflow-hidden shrink-0 border border-[#2A2A2A] bg-[#141414] flex items-center justify-center">
+            {track.image ? (
+              <img
+                src={track.image}
+                alt={track.album || track.name}
+                referrerPolicy="no-referrer"
+                className={`w-full h-full object-cover ${
+                  track.nowPlaying ? 'animate-[spin_8s_linear_infinite]' : ''
+                }`}
+              />
+            ) : (
+              <Disc3 size={11} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
+            )}
           </div>
-        ) : (
-          <div className="flex items-center gap-1 shrink-0">
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ backgroundColor: 'var(--accent)' }}
-            />
-            <span className="font-mono text-[9px] text-[#888888] group-hover:text-[#CCCCCC] uppercase tracking-wider transition-colors">
-              recent
+
+          {/* Track Title and Artist (Truncated) */}
+          <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-hidden">
+            <span className="text-[11.5px] font-semibold text-white truncate leading-none group-hover:text-white transition-colors">
+              {track.name}
+            </span>
+            <span className="text-[10.5px] text-[#AAAAAA] truncate font-normal leading-none shrink-0 max-w-[130px]">
+              · {track.artist}
             </span>
           </div>
-        )}
-      </a>
-    </aside>
+
+          {/* Status Indicator */}
+          {track.nowPlaying ? (
+            <div className="flex items-end gap-[1.5px] h-2.5 w-2.5 shrink-0 ml-0.5" title="Now Playing">
+              <span
+                className="w-[2px] rounded-full animate-music-bar-1"
+                style={{ backgroundColor: 'var(--accent)' }}
+              />
+              <span
+                className="w-[2px] rounded-full animate-music-bar-2"
+                style={{ backgroundColor: 'var(--accent)' }}
+              />
+              <span
+                className="w-[2px] rounded-full animate-music-bar-3"
+                style={{ backgroundColor: 'var(--accent)' }}
+              />
+            </div>
+          ) : (
+            <div className="flex items-center gap-1 shrink-0">
+              <span
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ backgroundColor: 'var(--accent)' }}
+              />
+              <span className="font-mono text-[9px] text-[#888888] group-hover:text-[#CCCCCC] uppercase tracking-wider transition-colors">
+                recent
+              </span>
+            </div>
+          )}
+        </a>
+      </aside>
+
+      {/* Mobile Inline Capsule: cleanly nested without header overlap */}
+      <div className="md:hidden pt-3 pb-1 flex justify-center select-none animate-fade-in">
+        <a
+          href={track.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-music={track.nowPlaying ? 'now playing' : 'recent song'}
+          title={`${track.name} by ${track.artist} on Last.fm`}
+          className="group flex items-center gap-2 h-7 pl-1.5 pr-3 max-w-[300px] rounded-full bg-[#0C0C0C] border border-[#222222] shadow-sm transition-all cursor-pointer"
+        >
+          <div className="relative w-4.5 h-4.5 rounded-full overflow-hidden shrink-0 border border-[#2A2A2A] bg-[#141414] flex items-center justify-center">
+            {track.image ? (
+              <img
+                src={track.image}
+                alt={track.album || track.name}
+                referrerPolicy="no-referrer"
+                className={`w-full h-full object-cover ${
+                  track.nowPlaying ? 'animate-[spin_8s_linear_infinite]' : ''
+                }`}
+              />
+            ) : (
+              <Disc3 size={10} className="text-[#AAAAAA]" />
+            )}
+          </div>
+          <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-hidden">
+            <span className="text-[11px] font-semibold text-white truncate leading-none">
+              {track.name}
+            </span>
+            <span className="text-[10px] text-[#AAAAAA] truncate font-normal leading-none shrink-0 max-w-[100px]">
+              · {track.artist}
+            </span>
+          </div>
+          {track.nowPlaying ? (
+            <div className="flex items-end gap-[1px] h-2 w-2 shrink-0">
+              <span className="w-[1.5px] rounded-full animate-music-bar-1" style={{ backgroundColor: 'var(--accent)' }} />
+              <span className="w-[1.5px] rounded-full animate-music-bar-2" style={{ backgroundColor: 'var(--accent)' }} />
+              <span className="w-[1.5px] rounded-full animate-music-bar-3" style={{ backgroundColor: 'var(--accent)' }} />
+            </div>
+          ) : (
+            <span className="font-mono text-[8.5px] text-[#888888] uppercase tracking-wider">
+              music
+            </span>
+          )}
+        </a>
+      </div>
+    </>
   );
 }

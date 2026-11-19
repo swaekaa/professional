@@ -55,16 +55,17 @@ export default function ProjectList() {
                 <span className="text-[#A0A0A0] font-medium tracking-wider uppercase">{p.category}</span>
               </div>
 
-              <div className="flex items-center gap-2.5" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                 {p.github && (
                   <a
                     href={p.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1 text-[#888888] hover:text-white transition-colors"
-                    aria-label={`${p.name} on GitHub`}
+                    className="btn-cyber-pop inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#111111] border border-[#262626] hover:border-white rounded text-[11px] font-mono text-[#CCCCCC] hover:text-white transition-colors"
+                    aria-label={`${p.name} source code on GitHub`}
                   >
-                    <GithubIcon size={14} />
+                    <GithubIcon size={12} />
+                    <span>Code</span>
                   </a>
                 )}
                 {p.demo && (
@@ -72,17 +73,18 @@ export default function ProjectList() {
                     href={p.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1 text-[#888888] hover:text-white transition-colors"
+                    className="btn-cyber-pop inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#111111] border border-[#262626] hover:border-white rounded text-[11px] font-mono text-[#CCCCCC] hover:text-white transition-colors"
                     aria-label={`${p.name} live demo`}
                   >
-                    <ExternalLink size={14} />
+                    <ExternalLink size={12} />
+                    <span>Demo</span>
                   </a>
                 )}
               </div>
             </div>
 
             {/* Title & Subtitle */}
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               <h3 className="text-[17px] font-bold text-white group-hover:text-white transition-colors flex items-center gap-2">
                 <span>{p.name}</span>
                 {p.subtitle && (
@@ -99,9 +101,36 @@ export default function ProjectList() {
                 />
               </h3>
 
-              <p className="text-[14.5px] text-white leading-relaxed font-normal">
-                {p.shortDescription}
-              </p>
+              {/* 3-Tier Core Engineering Summary */}
+              <div className="space-y-2 text-[13.5px] leading-relaxed pt-1">
+                <div>
+                  <span className="font-mono text-[10.5px] font-bold text-[#888888] uppercase tracking-wider block mb-0.5">
+                    Problem
+                  </span>
+                  <p className="text-white font-normal">{p.problem}</p>
+                </div>
+
+                {'hardestDecision' in p && p.hardestDecision && (
+                  <div>
+                    <span
+                      className="font-mono text-[10.5px] font-bold uppercase tracking-wider block mb-0.5"
+                      style={{ color: 'var(--accent)' }}
+                    >
+                      Hardest Decision
+                    </span>
+                    <p className="text-[#E0E0E0] font-normal">{p.hardestDecision}</p>
+                  </div>
+                )}
+
+                {'results' in p && p.results && (
+                  <div>
+                    <span className="font-mono text-[10.5px] font-bold text-[#A0A0A0] uppercase tracking-wider block mb-0.5">
+                      Measured Evidence
+                    </span>
+                    <p className="text-[#CCCCCC] font-normal">{p.results}</p>
+                  </div>
+                )}
+              </div>
 
               {/* Technical Badges */}
               <div className="pt-2 flex flex-wrap gap-1.5">
@@ -168,6 +197,27 @@ export default function ProjectList() {
                   </h4>
                   <p className="text-white leading-relaxed">{selectedProject.problem}</p>
                 </div>
+
+                {'hardestDecision' in selectedProject && selectedProject.hardestDecision && (
+                  <div>
+                    <h4
+                      className="font-mono text-[11px] font-bold uppercase tracking-wider mb-2"
+                      style={{ color: 'var(--accent)' }}
+                    >
+                      HARDEST ENGINEERING DECISION
+                    </h4>
+                    <p className="text-white leading-relaxed">{selectedProject.hardestDecision}</p>
+                  </div>
+                )}
+
+                {'results' in selectedProject && selectedProject.results && (
+                  <div>
+                    <h4 className="font-mono text-[11px] font-bold text-[#CCCCCC] uppercase tracking-wider mb-2">
+                      MEASURED EVIDENCE & RESULTS
+                    </h4>
+                    <p className="text-[#DDDDDD] leading-relaxed">{selectedProject.results}</p>
+                  </div>
+                )}
 
                 <div>
                   <h4 className="font-mono text-[11px] font-bold text-[#888888] uppercase tracking-wider mb-2">

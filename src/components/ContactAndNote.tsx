@@ -15,10 +15,13 @@ export default function ContactAndNote({
   onCloseNoteModal: () => void;
 }) {
   const [formState, setFormState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState<string>('');
   const [form, setForm] = useState({ name: '', email: '', message: '' });
 
-  const [noteState, setNoteState] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [noteState, setNoteState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [noteError, setNoteError] = useState<string>('');
   const [noteContent, setNoteContent] = useState('');
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   // Lock body scroll and listen for Escape key when note modal is open
   useEffect(() => {
@@ -38,9 +41,16 @@ export default function ContactAndNote({
     };
   }, [isNoteModalOpen, onCloseNoteModal]);
 
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(personal.email);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
   const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setFormState('sending');
+    setFormError('');
 
     try {
       const res = await fetch(FORMSUBMIT_ENDPOINT, {
@@ -53,20 +63,30 @@ export default function ContactAndNote({
           name: form.name,
           email: form.email,
           message: form.message,
-          _subject: `Portfolio Message from ${form.name}`,
+          _subject: `Portfolio Inquiry from ${form.name}`,
           _template: 'table',
           _captcha: 'false',
         }),
       });
 
-      if (res.ok) {
+      const data = await res.json().catch(() => null);
+      const isAccepted = res.ok && data && (data.success === true || data.success === 'true');
+
+      if (isAccepted) {
         setFormState('success');
         setForm({ name: '', email: '', message: '' });
       } else {
         setFormState('error');
+        setFormError(
+          data?.message ||
+            `Delivery service did not accept the submission. Please send your message directly to ${personal.email}.`
+        );
       }
     } catch {
       setFormState('error');
+      setFormError(
+        `Network error delivering message. Please contact directly at ${personal.email}.`
+      );
     }
   };
 
@@ -74,6 +94,7 @@ export default function ContactAndNote({
     e.preventDefault();
     if (!noteContent.trim()) return;
     setNoteState('sending');
+    setNoteError('');
 
     try {
       const res = await fetch(FORMSUBMIT_ENDPOINT, {
@@ -92,16 +113,21 @@ export default function ContactAndNote({
         }),
       });
 
-      if (res.ok) {
+      const data = await res.json().catch(() => null);
+      const isAccepted = res.ok && data && (data.success === true || data.success === 'true');
+
+      if (isAccepted) {
         setNoteState('success');
         setNoteContent('');
       } else {
-        setNoteState('success');
-        setNoteContent('');
+        setNoteState('error');
+        setNoteError(
+          data?.message || 'Note delivery service unavailable. Please retry or email directly.'
+        );
       }
     } catch {
-      setNoteState('success');
-      setNoteContent('');
+      setNoteState('error');
+      setNoteError('Network connection issue. Please retry.');
     }
   };
 
@@ -117,15 +143,45 @@ export default function ContactAndNote({
         </div>
 
         <div className="py-1">
-          <p className="text-[15px] text-white mb-5 leading-relaxed font-normal">
-            Interested in backend architecture, AI systems, or potential collaboration? Send a message below or email directly at{' '}
-            <a
-              href={`mailto:${personal.email}`}
-              className="text-white font-bold underline transition-colors"
-              style={{ textDecorationColor: 'var(--accent)' }}
-            >
-              {personal.email}
-            </a>.
+          {/* Direct Email Card with 1-Click Copy and Mailto */}
+          <div className="mb-5 p-3.5 bg-[#0A0A0A] border border-[#222222] rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div
+                className="w-8 h-8 rounded-md bg-[#141414] border border-[#262626] flex items-center justify-center shrink-0"
+                style={{ color: 'var(--accent)' }}
+              >
+                <Mail size={15} />
+              </div>
+              <div>
+                <span className="font-mono text-[10.5px] text-[#888888] uppercase tracking-wider block">Direct Email</span>
+                <a
+                  href={`mailto:${personal.email}`}
+                  className="text-[13.5px] font-mono font-bold text-white hover:underline transition-colors"
+                  style={{ textDecorationColor: 'var(--accent)' }}
+                >
+                  {personal.email}
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="btn-cyber-pop px-3 py-1 bg-[#141414] hover:bg-[#1E1E1E] border border-[#2A2A2A] text-white font-mono text-[11px] rounded transition-colors cursor-pointer"
+              >
+                {copiedEmail ? 'copied!' : 'copy address'}
+              </button>
+              <a
+                href={`mailto:${personal.email}`}
+                className="btn-cyber-pop px-3 py-1 bg-white text-black font-mono text-[11px] font-bold rounded hover:bg-[#E0E0E0] transition-colors cursor-pointer"
+              >
+                open mail
+              </a>
+            </div>
+          </div>
+
+          <p className="text-[14.5px] text-white mb-4 leading-relaxed font-normal">
+            Or send a message via the form below:
           </p>
 
           {formState === 'success' ? (
@@ -144,15 +200,26 @@ export default function ContactAndNote({
           ) : (
             <form onSubmit={handleContactSubmit} className="space-y-3.5">
               {formState === 'error' && (
-                <div className="p-3 bg-[#1A0A0A] border border-[#552222] rounded-lg text-[13px] text-[#FFAAAA] flex items-center justify-between animate-fade-in">
-                  <span>Could not send message. Please email directly at {personal.email}.</span>
-                  <button
-                    type="button"
-                    onClick={() => setFormState('idle')}
-                    className="text-white hover:underline text-[12px] font-mono ml-2 shrink-0 cursor-pointer"
-                  >
-                    retry
-                  </button>
+                <div className="p-3.5 bg-[#1A0A0A] border border-[#552222] rounded-lg text-[13px] text-[#FFAAAA] flex flex-col sm:flex-row sm:items-center justify-between gap-2 animate-fade-in">
+                  <div className="flex items-start gap-2">
+                    <X size={16} className="text-[#FF6666] shrink-0 mt-0.5" />
+                    <span>{formError || `Could not deliver message. Please email directly at ${personal.email}.`}</span>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <a
+                      href={`mailto:${personal.email}`}
+                      className="text-white underline hover:text-[#FFAAAA] text-[12px] font-mono"
+                    >
+                      email directly
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setFormState('idle')}
+                      className="text-[#AAAAAA] hover:text-white text-[12px] font-mono ml-2 cursor-pointer"
+                    >
+                      [retry]
+                    </button>
+                  </div>
                 </div>
               )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -295,6 +362,18 @@ export default function ContactAndNote({
                 </div>
               ) : (
                 <form onSubmit={handleNoteSubmit} className="space-y-3">
+                  {noteState === 'error' && (
+                    <div className="p-2.5 bg-[#1A0A0A] border border-[#552222] rounded text-[12px] text-[#FFAAAA] flex items-center justify-between">
+                      <span>{noteError || 'Delivery service unavailable. Please retry.'}</span>
+                      <button
+                        type="button"
+                        onClick={() => setNoteState('idle')}
+                        className="text-white hover:underline text-[11px] font-mono ml-2 cursor-pointer"
+                      >
+                        retry
+                      </button>
+                    </div>
+                  )}
                   <textarea
                     required
                     rows={4}

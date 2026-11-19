@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { useTheme, ACCENT_COLORS } from '../context/ThemeContext';
 
-const mainNavItems = [
+const navItems = [
   { id: 'about', label: 'about' },
-  { id: 'github', label: 'github' },
-  { id: 'leetcode', label: 'leetcode' },
-  { id: 'experience', label: 'experience' },
+  { id: 'experience', label: 'accenture' },
   { id: 'projects', label: 'projects' },
   { id: 'research', label: 'research' },
-  { id: 'public', label: 'x · public' },
+  { id: 'github', label: 'github' },
+  { id: 'leetcode', label: 'leetcode' },
   { id: 'certifications', label: 'certifications' },
-];
-
-const secondaryNavItems = [
   { id: 'journey', label: 'journey' },
+  { id: 'public', label: 'x · public' },
+  { id: 'contact', label: 'contact' },
 ];
 
 export default function SidebarNavigation({
@@ -22,32 +21,29 @@ export default function SidebarNavigation({
   onOpenNoteModal: () => void;
 }) {
   const [activeSection, setActiveSection] = useState('about');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { accent, setAccentColor } = useTheme();
 
-  // Scroll spy to highlight active section as user scrolls
+  // Scroll spy to accurately highlight active section as user scrolls
   useEffect(() => {
-    const sectionIds = [
-      'about',
-      'github',
-      'leetcode',
-      'experience',
-      'projects',
-      'research',
-      'public',
-      'certifications',
-      'journey',
-    ];
-
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 140;
-      let current = 'about';
+      const focalLine = 180;
+      let current = navItems[0].id;
 
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollPos) {
-          current = id;
+      for (const item of navItems) {
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= focalLine) {
+          current = item.id;
         }
       }
+
+      // If scrolled near bottom of page, activate contact
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+        current = 'contact';
+      }
+
       setActiveSection(current);
     };
 
@@ -57,6 +53,7 @@ export default function SidebarNavigation({
   }, []);
 
   const scrollTo = (id: string) => {
+    setMobileMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -88,39 +85,9 @@ export default function SidebarNavigation({
             </a>
           </div>
 
-          {/* Primary Nav List */}
+          {/* Primary Nav List in exact page order */}
           <nav className="space-y-1" aria-label="Primary sections">
-            {mainNavItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  data-nav={item.label}
-                  onClick={() => scrollTo(item.id)}
-                  className={`group flex items-center gap-2 text-[13px] font-mono tracking-normal py-0.5 text-left w-full transition-colors duration-200 cursor-pointer ${
-                    isActive
-                      ? 'text-white font-bold'
-                      : 'text-[#888888] hover:text-white'
-                  }`}
-                >
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-200 ${
-                      isActive ? 'opacity-100 scale-125' : 'opacity-0 scale-75'
-                    }`}
-                    style={{ backgroundColor: 'var(--accent)' }}
-                  />
-                  <span>{item.label}</span>
-                </button>
-              );
-            })}
-
-            {/* Tiny separator */}
-            <div className="py-2.5 pl-2.5">
-              <div className="w-5 h-[1px] bg-[#222222]" />
-            </div>
-
-            {/* Secondary: journey */}
-            {secondaryNavItems.map((item) => {
+            {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
                 <button
@@ -196,25 +163,28 @@ export default function SidebarNavigation({
         </div>
       </aside>
 
-      {/* Mobile Sticky Top Navigation */}
-      <header className="md:hidden sticky top-0 left-0 right-0 z-40 bg-[#050505]/95 backdrop-blur-md border-b border-[#181818] px-5 py-3">
+      {/* Mobile Sticky Top Navigation with Compact Full-Section Menu */}
+      <header className="md:hidden sticky top-0 left-0 right-0 z-40 bg-[#050505]/95 backdrop-blur-md border-b border-[#181818] px-4 py-2.5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <a
-              href="#about"
-              className="font-mono text-[12px] font-bold text-white tracking-wider"
-            >
-              EK <span style={{ color: 'var(--accent)' }}>/</span> ekaansh
-            </a>
-          </div>
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo('about');
+            }}
+            className="font-mono text-[12px] font-bold text-white tracking-wider"
+          >
+            EK <span style={{ color: 'var(--accent)' }}>·</span> ekaansh
+          </a>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             {/* Mobile Accent Dots */}
             <div className="flex items-center gap-1">
               {ACCENT_COLORS.slice(0, 4).map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setAccentColor(c.id)}
+                  aria-label={`Select ${c.name} color`}
                   className={`w-2.5 h-2.5 rounded-full transition-transform ${
                     accent.id === c.id ? 'scale-125 ring-1 ring-white' : 'opacity-60'
                   }`}
@@ -223,19 +193,65 @@ export default function SidebarNavigation({
               ))}
             </div>
 
-            <div className="flex items-center gap-3 text-[12px] font-mono text-[#AAAAAA]">
-              <button onClick={() => scrollTo('about')} className="hover:text-white font-medium">
-                about
-              </button>
-              <button onClick={() => scrollTo('projects')} className="hover:text-white font-medium">
-                projects
-              </button>
-              <button onClick={() => scrollTo('public')} className="hover:text-white font-medium">
-                x
-              </button>
-            </div>
+            {/* Menu Toggle Button */}
+            <button
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              className="btn-cyber-pop p-1.5 rounded-md bg-[#111111] border border-[#262626] text-white font-mono text-[11px] flex items-center gap-1 cursor-pointer"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X size={14} /> : <Menu size={14} />}
+              <span className="text-[10.5px] uppercase">{mobileMenuOpen ? 'close' : 'menu'}</span>
+            </button>
           </div>
         </div>
+
+        {/* Mobile Full Dropdown Menu */}
+        {mobileMenuOpen && (
+          <nav
+            className="mt-3 pt-3 border-t border-[#1C1C1C] space-y-1 animate-fade-in"
+            aria-label="Mobile navigation links"
+          >
+            <div className="grid grid-cols-2 gap-1.5 pb-2">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollTo(item.id)}
+                    className={`flex items-center gap-2 px-2.5 py-1.5 rounded font-mono text-[12px] text-left transition-colors cursor-pointer ${
+                      isActive
+                        ? 'bg-[#141414] text-white font-bold'
+                        : 'text-[#999999] hover:text-white hover:bg-[#0E0E0E]'
+                    }`}
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                        isActive ? 'opacity-100' : 'opacity-30'
+                      }`}
+                      style={{ backgroundColor: 'var(--accent)' }}
+                    />
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="pt-2 border-t border-[#181818] flex items-center justify-between text-[11px] font-mono text-[#888888] px-1">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenNoteModal();
+                }}
+                className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+                style={{ color: 'var(--accent)' }}
+              >
+                <span>[leave anonymous note]</span>
+              </button>
+              <span>swipe or select section</span>
+            </div>
+          </nav>
+        )}
       </header>
     </>
   );

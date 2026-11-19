@@ -87,7 +87,7 @@ export default function PublicXSection() {
         // Silently use bundled static backup posts
       }
 
-      // 2. Fetch live profile info (bio & avatar updates)
+      // 2. Fetch live profile info (avatar and bio updates)
       try {
         const userRes = await fetch(`https://api.fxtwitter.com/${cleanHandle}`, {
           signal: AbortSignal.timeout(5000),
@@ -95,7 +95,16 @@ export default function PublicXSection() {
         if (userRes.ok) {
           const userData = await userRes.json();
           if (!cancelled && userData?.user) {
-            if (userData.user.description) setBio(userData.user.description);
+            // Reframe bio: filter out any self-deprecating text from older embeds
+            if (userData.user.description) {
+              const remoteBio = userData.user.description;
+              const isSelfDeprecating =
+                remoteBio.toLowerCase().includes('very avg') ||
+                remoteBio.toLowerCase().includes('avg comp science');
+              if (!isSelfDeprecating) {
+                setBio(remoteBio);
+              }
+            }
             if (userData.user.avatar_url) {
               const highRes = userData.user.avatar_url.replace('_normal', '_400x400');
               setAvatar(highRes);
