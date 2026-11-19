@@ -57,10 +57,10 @@ export const githubStats = {
   peakHours: "00:00 to 04:00 (Late Night Systems)",
   languages: [
     { name: "Python & ML", pct: 60, color: "#3572A5" },
-    { name: "TypeScript", pct: 20, color: "#3178C6" },
+    { name: "TypeScript", pct: 20, color: "#6366F1" },
     { name: "JavaScript", pct: 9, color: "#F7DF1E" },
-    { name: "Java & C", pct: 6, color: "#B07219" },
-    { name: "Shell & SQL", pct: 5, color: "#89E051" }
+    { name: "Java & C", pct: 6, color: "#E76F51" },
+    { name: "Shell & SQL", pct: 5, color: "#10B981" }
   ],
   pinnedHighlights: [
     { name: "RExplain", desc: "AST parsing & RAG codebase explainer", lang: "FastAPI & React" },
