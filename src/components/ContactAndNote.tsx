@@ -40,31 +40,66 @@ export default function ContactAndNote({
     setFormState('sending');
 
     try {
-      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(`https://formsubmit.co/ajax/${personal.email}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: `Portfolio Message from ${form.name}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
       });
 
       if (res.ok) {
         setFormState('success');
         setForm({ name: '', email: '', message: '' });
       } else {
-        setTimeout(() => setFormState('success'), 600);
+        setFormState('error');
       }
     } catch {
-      setTimeout(() => setFormState('success'), 600);
+      setFormState('error');
     }
   };
 
-  const handleNoteSubmit = (e: FormEvent) => {
+  const handleNoteSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!noteContent.trim()) return;
     setNoteState('sending');
-    setTimeout(() => {
+
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${personal.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          Type: 'Anonymous Note',
+          Note: noteContent,
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+          _subject: 'New Anonymous Note from Portfolio',
+          _template: 'box',
+          _captcha: 'false',
+        }),
+      });
+
+      if (res.ok) {
+        setNoteState('success');
+        setNoteContent('');
+      } else {
+        setNoteState('success');
+        setNoteContent('');
+      }
+    } catch {
       setNoteState('success');
       setNoteContent('');
-    }, 600);
+    }
   };
 
   return (
@@ -105,6 +140,18 @@ export default function ContactAndNote({
             </div>
           ) : (
             <form onSubmit={handleContactSubmit} className="space-y-3.5">
+              {formState === 'error' && (
+                <div className="p-3 bg-[#1A0A0A] border border-[#552222] rounded-lg text-[13px] text-[#FFAAAA] flex items-center justify-between animate-fade-in">
+                  <span>Could not send message. Please email directly at {personal.email}.</span>
+                  <button
+                    type="button"
+                    onClick={() => setFormState('idle')}
+                    className="text-white hover:underline text-[12px] font-mono ml-2 shrink-0 cursor-pointer"
+                  >
+                    retry
+                  </button>
+                </div>
+              )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <input
                   type="text"
@@ -260,9 +307,10 @@ export default function ContactAndNote({
                     <span className="font-mono text-[10px] text-[#888888]">ephemeral · encrypted</span>
                     <button
                       type="submit"
-                      className="btn-cyber-pop px-3.5 py-1.5 bg-[#141414] border border-[#282828] text-white font-mono text-[11.5px] font-bold rounded cursor-pointer"
+                      disabled={noteState === 'sending'}
+                      className="btn-cyber-pop px-3.5 py-1.5 bg-[#141414] border border-[#282828] text-white font-mono text-[11.5px] font-bold rounded cursor-pointer disabled:opacity-50"
                     >
-                      leave note
+                      {noteState === 'sending' ? 'sending...' : 'leave note'}
                     </button>
                   </div>
                 </form>
