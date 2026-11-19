@@ -4,6 +4,9 @@ import { Send, CheckCircle, X, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, LeetcodeIcon, XIcon } from './Icons';
 import { personal } from '../data/portfolio';
 
+// FormSubmit endpoint token (masks naked email from scrapers and routes to verified address)
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/6191e9eea796bb8553d65cc167a215d1';
+
 export default function ContactAndNote({
   isNoteModalOpen,
   onCloseNoteModal,
@@ -40,7 +43,7 @@ export default function ContactAndNote({
     setFormState('sending');
 
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${personal.email}`, {
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +76,7 @@ export default function ContactAndNote({
     setNoteState('sending');
 
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${personal.email}`, {
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
