@@ -305,7 +305,7 @@ export const research = [
       "Non-monotonic sensitivity: Layer 23 is catastrophic (perplexity explodes to 3,579,120) and Layer 20 is extreme (140,746 PPL), while Layer 0 MLP is foundational (1,586 PPL if masked). In DistilBERT, quantizing Layer 5 to INT4 caused only a 0.12% accuracy drop (91.06% → 90.94%). Noise injection ranking confirms Layers 9, 10, 17, 24, 20, 2 are prime candidates for 4-bit NF4 (<0.22 normalized PPL increase), while Layers 31, 27, 26, 5, 12, 4 must remain in FP16/INT8.",
     code: "https://github.com/swaekaa/llm_quant_sense",
     images: [
-      { src: "/images/research/llm_quant_fp16.png", caption: "Fig 1. Layer wise noise sensitivity across Phi 2 layers" },
+      { src: "/images/research/llm_quant_fp16.png", caption: "Fig 1. Layer wise noise sensitivity across Phi 2 layers (Log Scale)" },
       { src: "/images/research/llm_quant_rank.png", caption: "Fig 2. Layer sensitivity score ranking and Pareto allocation" },
       { src: "/images/research/llm_quant_ppl.png", caption: "Fig 3. Perplexity and throughput trade off across bit widths" }
     ]
