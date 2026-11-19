@@ -9,7 +9,7 @@ export const personal = {
   initials: "EK",
   title: "Agentic and AI Engineer",
   tagline: "Building intelligent systems, multi agent workflows, and AI powered applications.",
-  location: "Jaipur / Bangalore, India",
+  location: "Jaipur, Bangalore, India",
   email: "sawariaekaansh@gmail.com",
   phone: "8108700827",
   github: "https://github.com/swaekaa",
@@ -54,18 +54,18 @@ export const githubStats = {
   totalContributions: "848",
   publicRepos: "40",
   currentStreak: "23 days",
-  peakHours: "00:00 – 04:00 (Late Night Systems)",
+  peakHours: "00:00 to 04:00 (Late Night Systems)",
   languages: [
-    { name: "Python / ML", pct: 60, color: "#3572A5" },
+    { name: "Python & ML", pct: 60, color: "#3572A5" },
     { name: "TypeScript", pct: 20, color: "#3178C6" },
     { name: "JavaScript", pct: 9, color: "#F7DF1E" },
     { name: "Java & C", pct: 6, color: "#B07219" },
     { name: "Shell & SQL", pct: 5, color: "#89E051" }
   ],
   pinnedHighlights: [
-    { name: "RExplain", desc: "AST parsing & RAG codebase explainer", lang: "FastAPI / React" },
-    { name: "VisionSat", desc: "Grad-CAM explainable satellite vision", lang: "PyTorch / ResNet" },
-    { name: "HackerzStreet-25", desc: "Multilingual Indian language RAG", lang: "LLaMA 3 / FastText" }
+    { name: "RExplain", desc: "AST parsing & RAG codebase explainer", lang: "FastAPI & React" },
+    { name: "VisionSat", desc: "Grad-CAM explainable satellite vision", lang: "PyTorch & ResNet" },
+    { name: "HackerzStreet-25", desc: "Multilingual Indian language RAG", lang: "LLaMA 3 & FastText" }
   ]
 };
 
@@ -99,15 +99,15 @@ export const leetcodeStats = {
 export const education = {
   institution: "Manipal University Jaipur",
   degree: "B.Tech in Computer Science",
-  period: "Aug 2023 – Present",
-  cgpa: "8.51 / 10",
+  period: "Aug 2023 to Present",
+  cgpa: "8.51 out of 10",
   location: "Jaipur, Rajasthan",
   schools: [
     {
       institution: "Manipal University Jaipur",
       degree: "B.Tech in Computer Science",
-      score: "CGPA: 8.51 / 10",
-      period: "Aug 2023 – Present",
+      score: "CGPA: 8.51 out of 10",
+      period: "Aug 2023 to Present",
       type: "Undergraduate Degree",
       details: "Core focus: DSA, OOP, DBMS, Operating Systems, Computer Networks, Distributed Systems, System Design"
     },
@@ -130,9 +130,9 @@ export const education = {
   ],
   highlights: [
     "Core CS: DSA, OOP, DBMS, Operating Systems, Computer Networks, Distributed Systems, System Design",
-    "Manipal University Jaipur – B.Tech in Computer Science: CGPA 8.51 / 10 (Aug 2023 – Present)",
-    "Hiranandani Foundation School – Class XII (ICSE): 81% (2023)",
-    "Hiranandani Foundation School – Class X (ICSE): 96% (2021)"
+    "Manipal University Jaipur · B.Tech in Computer Science: CGPA 8.51 out of 10 (Aug 2023 to Present)",
+    "Hiranandani Foundation School · Class XII (ICSE): 81% (2023)",
+    "Hiranandani Foundation School · Class X (ICSE): 96% (2021)"
   ]
 };
 
@@ -172,7 +172,7 @@ export const projects = [
     id: "rexplain",
     number: "01",
     name: "RExplain",
-    category: "AI / DEVELOPER TOOLS",
+    category: "AI & DEVELOPER TOOLS",
     subtitle: "AI-Powered GitHub Repository Analysis Platform",
     shortDescription:
       "Full-stack GitHub repository comprehension platform that automatically explains unfamiliar codebases using static AST parsing, architecture extraction via Graphviz, and interactive RAG without cloning entire repositories.",
@@ -203,7 +203,7 @@ export const projects = [
     id: "nexora",
     number: "02",
     name: "NEXORA",
-    category: "AGENTIC COMMERCE / DISTRIBUTED SYSTEMS",
+    category: "AGENTIC COMMERCE & DISTRIBUTED SYSTEMS",
     subtitle: "The Agreement Layer for AI Commerce (Razorpay AI Buildathon 2026)",
     shortDescription:
       "Infrastructure for agentic commerce where autonomous AI buyers and merchants negotiate prices, quantities, and delivery schedules under a strict deterministic rule engine before processing programmatic settlements via Razorpay.",
@@ -213,7 +213,7 @@ export const projects = [
     motivation:
       "To establish a secure, deterministic protocol where AI agents can creatively negotiate commercial terms without ever crossing strict financial boundaries set by humans.",
     architecture:
-      "Strict architectural separation: 'LLMs propose. Deterministic systems decide.' Buyer and Merchant agents (LangGraph / GPT-4o) negotiate in multi-round loops. Once consensus is reached, the Agreement Engine validates terms against merchant margin floors and discount caps before invoking Razorpay programmatic order creation.",
+      "Strict architectural separation: 'LLMs propose. Deterministic systems decide.' Buyer and Merchant agents (LangGraph and GPT-4o) negotiate in multi-round loops. Once consensus is reached, the Agreement Engine validates terms against merchant margin floors and discount caps before invoking Razorpay programmatic order creation.",
     highlights: [
       "Multi-round autonomous B2B haggling over price, volume, delivery SLA, and warranty",
       "Deterministic Policy Engine enforcing mathematical merchant floors and discount caps",
@@ -233,7 +233,7 @@ export const projects = [
     id: "visionsat",
     number: "03",
     name: "VisionSat",
-    category: "COMPUTER VISION / EXPLAINABLE AI",
+    category: "COMPUTER VISION & EXPLAINABLE AI",
     subtitle: "Satellite Land-Use Classification with Grad-CAM",
     shortDescription:
       "Explainable AI platform that classifies multi-spectral Sentinel-2 satellite imagery using deep convolutional networks (ResNet-18) and generates real-time Grad-CAM spatial heatmaps to visually verify model decision focus.",
@@ -249,7 +249,7 @@ export const projects = [
       "Grad-CAM spatial interpretability overlays showing exact model focal points on buildings, highways, and rivers",
       "Verifies model attention focuses on actual morphological terrain rather than cloud or sensor artifacts",
       "FastAPI + PyTorch inference engine with batch prediction and OpenCV image processing",
-      "Docker containerization deployed on Hugging Face Spaces with modern React/TypeScript UI"
+      "Docker containerization deployed on Hugging Face Spaces with modern React & TypeScript UI"
     ],
     technologies: ["PYTORCH", "RESNET-18", "GRAD-CAM", "OPENCV", "FASTAPI", "REACT", "TYPESCRIPT", "DOCKER"],
     challenges:
@@ -263,7 +263,7 @@ export const projects = [
     id: "klustor",
     number: "04",
     name: "KLUSTOR",
-    category: "WEB GRAPHICS / CREATIVE SYSTEMS",
+    category: "WEB GRAPHICS & CREATIVE SYSTEMS",
     subtitle: "Algorithmic Livery Studio & 3D Arcade Racing Game",
     shortDescription:
       "Next-generation web-based 3D arcade racing game and livery design studio where vehicle performance (top speed, acceleration, handling) is algorithmically derived by analyzing the pixel complexity, edge density, and color variance of the player's 2D canvas designs.",
@@ -273,7 +273,7 @@ export const projects = [
     motivation:
       "To create a game where aesthetic creativity directly dictates competitive mechanical performance under the motto: 'Design your ride. Hit the track. More style = more speed.'",
     architecture:
-      "Core mechanic: 'Edit Images to Go Faster'. Players design across 5 distinct 2D template faces in Unlayer. An off-screen HTML5 Canvas context analyzes raw pixel bytes in real-time, computing edge density, complexity, and RGB color variance into a 'Design Score' that directly scales Three.js physics multipliers (Top Speed, Acceleration, Handling). Node.js/Socket.IO backend handles multiplayer lobby synchronization and live livery drafting.",
+      "Core mechanic: 'Edit Images to Go Faster'. Players design across 5 distinct 2D template faces in Unlayer. An off-screen HTML5 Canvas context analyzes raw pixel bytes in real-time, computing edge density, complexity, and RGB color variance into a 'Design Score' that directly scales Three.js physics multipliers (Top Speed, Acceleration, Handling). Node.js and Socket.IO backend handles multiplayer lobby synchronization and live livery drafting.",
     highlights: [
       "Live 2D-to-3D texture wrapping across 5 car faces (Front, Rear, Left, Right, Top) in real-time",
       "Algorithmic Design Scoring: edge-detection complexity, unique RGB color variance, and edge density calculate performance multipliers",
@@ -302,7 +302,7 @@ export const research = [
     datasets: ["WikiText-2 (Perplexity Benchmark)", "SST-2 (GLUE Benchmark Accuracy)"],
     evaluation: "Normalized Perplexity degradation, layer sensitivity ranking, and component-level (Attention vs MLP) masking on RTX 3060 12GB.",
     observations:
-      "Non-monotonic sensitivity: Layer 23 is catastrophic (perplexity explodes to 3,579,120) and Layer 20 is extreme (140,746 PPL), while Layer 0 MLP is foundational (1,586 PPL if masked). In DistilBERT, quantizing Layer 5 to INT4 caused only a 0.12% accuracy drop (91.06% → 90.94%). Noise injection ranking confirms Layers 9, 10, 17, 24, 20, 2 are prime candidates for 4-bit NF4 (<0.22 normalized PPL increase), while Layers 31, 27, 26, 5, 12, 4 must remain in FP16/INT8.",
+      "Non-monotonic sensitivity: Layer 23 is catastrophic (perplexity explodes to 3,579,120) and Layer 20 is extreme (140,746 PPL), while Layer 0 MLP is foundational (1,586 PPL if masked). In DistilBERT, quantizing Layer 5 to INT4 caused only a 0.12% accuracy drop (91.06% → 90.94%). Noise injection ranking confirms Layers 9, 10, 17, 24, 20, 2 are prime candidates for 4-bit NF4 (<0.22 normalized PPL increase), while Layers 31, 27, 26, 5, 12, 4 must remain in FP16 and INT8.",
     code: "https://github.com/swaekaa/llm_quant_sense",
     images: [
       { src: "/images/research/llm_quant_fp16.png", caption: "Fig 1. Layer wise noise sensitivity across Phi 2 layers (Log Scale)" },
@@ -320,7 +320,7 @@ export const research = [
     datasets: ["Chest X-Ray Pneumonia Dataset (624 test images: 234 Pneumonia, 390 Normal)"],
     evaluation: "Sparsity (Top 90% attribution mass), Average Output Perturbation Coherence (AOPC), and confidence degradation curves.",
     observations:
-      "Sparsity convergence: Both SHAP and Grad-CAM concentrate >90% of their attribution mass on less than 0.0005% of image pixels (5.35 × 10⁻⁶), proving the DenseNet focuses strictly on localized focal lung opacity rather than background rib/bone artifacts. SHAP achieved lower AOPC (0.0151 vs Grad-CAM 0.0221), indicating higher stability under adversarial pixel perturbations. Grad-CAM exhibits smooth monotonic confidence degradation, while SHAP shows non-monotonic dips due to negative attributions. Clinically, Grad-CAM mirrors radiologist diagnostic workflows; SHAP provides mathematical completeness required for regulatory auditing.",
+      "Sparsity convergence: Both SHAP and Grad-CAM concentrate >90% of their attribution mass on less than 0.0005% of image pixels (5.35 × 10⁻⁶), proving the DenseNet focuses strictly on localized focal lung opacity rather than background rib and bone artifacts. SHAP achieved lower AOPC (0.0151 vs Grad-CAM 0.0221), indicating higher stability under adversarial pixel perturbations. Grad-CAM exhibits smooth monotonic confidence degradation, while SHAP shows non-monotonic dips due to negative attributions. Clinically, Grad-CAM mirrors radiologist diagnostic workflows; SHAP provides mathematical completeness required for regulatory auditing.",
     code: "https://github.com/swaekaa/SHAP_VS_GradCam",
     images: [
       { src: "/images/research/shap_aopc.png", caption: "Fig 1. AOPC output perturbation coherence comparison" },
@@ -339,7 +339,7 @@ export const research = [
     datasets: ["Vice Coast Circuit (Gymnasium Simulation & Three.js Canvas)"],
     evaluation: "Reward convergence, apex speed retention, lap completion rate, collision telemetry, and lap time benchmarks.",
     observations:
-      "Reward shaping insight: Pure speed and progress rewards led to aggressive corner-cutting and high-speed wall impacts. Balancing forward velocity with curvature anticipation penalties and boost alignment enabled the agent to learn natural racing-line apexing. Evaluation lesson: Discovered that reward improvements don't inherently mean driving policy improvements—independent telemetry validation (lap validity, collision counts, replay inspection) is essential for autonomous vehicle policies. Telemetry replay bridge: Simulation outputs JSON frames directly visualizable in Three.js, bridging numerical benchmarking with physical driving behavior.",
+      "Reward shaping insight: Pure speed and progress rewards led to aggressive corner-cutting and high-speed wall impacts. Balancing forward velocity with curvature anticipation penalties and boost alignment enabled the agent to learn natural racing-line apexing. Evaluation lesson: Discovered that reward improvements don't inherently mean driving policy improvements: independent telemetry validation (lap validity, collision counts, replay inspection) is essential for autonomous vehicle policies. Telemetry replay bridge: Simulation outputs JSON frames directly visualizable in Three.js, bridging numerical benchmarking with physical driving behavior.",
     code: "https://github.com/swaekaa/KRPO",
     images: [
       { src: "/images/research/krpo_training_curves.png", caption: "Fig 1. Dueling DDQN reward convergence & training curves" },
@@ -414,7 +414,7 @@ export const certifications = [
 export const journey = [
   {
     year: "2026",
-    event: "Accenture — Associate Software Engineering Intern",
+    event: "Accenture · Associate Software Engineering Intern",
     desc: "Led team of 3 interns architecting enterprise multi-agent RAG platform with Grok Build 0.1, PageIndexer, BM25, dense retrieval, and QuadRank."
   },
   {
@@ -429,15 +429,15 @@ export const journey = [
   },
   {
     year: "2023",
-    event: "Manipal University Jaipur — B.Tech in Computer Science",
-    desc: "Commenced B.Tech in CS (current CGPA: 8.51/10). Graduated Class XII ICSE from Hiranandani Foundation School (81%)."
+    event: "Manipal University Jaipur · B.Tech in Computer Science",
+    desc: "Commenced B.Tech in CS (current CGPA: 8.51 out of 10). Graduated Class XII ICSE from Hiranandani Foundation School (81%)."
   }
 ];
 
 export const skills = {
   "LANGUAGES": ["PYTHON", "JAVA", "C++", "JAVASCRIPT", "SQL"],
   "BACKEND": ["FASTAPI", "FLASK", "REST APIS", "MICROSERVICES", "SQLALCHEMY", "PAYMENT APIS"],
-  "AI / ML": [
+  "AI & ML": [
     "AGENTIC AI",
     "LLMS",
     "RAG",
@@ -449,7 +449,7 @@ export const skills = {
     "SENTENCETRANSFORMERS"
   ],
   "DATABASES": ["POSTGRESQL", "MYSQL", "VECTOR DATABASES"],
-  "DEVOPS": ["DOCKER", "GIT", "GITHUB", "CI/CD"],
+  "DEVOPS": ["DOCKER", "GIT", "GITHUB", "CI & CD"],
   "CORE CS": [
     "DSA",
     "OOP",

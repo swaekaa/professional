@@ -155,7 +155,7 @@ export default function ResearchSection() {
                     </div>
                     <div className="bg-[#090909] border border-[#1E1E1E] rounded-lg p-3">
                       <h5 className="font-mono text-[10.5px] font-bold text-[#AAAAAA] uppercase tracking-wider mb-1.5">
-                        DATA / TESTBED
+                        DATA & TESTBED
                       </h5>
                       <div className="space-y-1">
                         {item.datasets.map((d) => (
@@ -290,7 +290,7 @@ export default function ResearchSection() {
               {/* Bottom Info Bar */}
               <div className="px-5 py-2.5 border-t border-[#181C26] bg-[#08090E] flex items-center justify-between font-mono text-[11px] text-[#777777]">
                 <span>Click image to toggle zoom {zoomScale > 1 ? 'out' : 'in'} · Press Esc to exit</span>
-                <span className="hidden sm:inline">Use + / - to scale</span>
+                <span className="hidden sm:inline">Use + or - to scale</span>
               </div>
             </div>
           </div>,

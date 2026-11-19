@@ -87,9 +87,12 @@ export default function ProjectList() {
               <h3 className="text-[17px] font-bold text-white group-hover:text-white transition-colors flex items-center gap-2">
                 <span>{p.name}</span>
                 {p.subtitle && (
-                  <span className="text-[13px] font-normal text-[#999999] hidden sm:inline">
-                    — {p.subtitle}
-                  </span>
+                  <>
+                    <span className="text-[#555555] hidden sm:inline font-normal">·</span>
+                    <span className="text-[13px] font-normal text-[#999999] hidden sm:inline">
+                      {p.subtitle}
+                    </span>
+                  </>
                 )}
                 <ArrowUpRight
                   size={15}

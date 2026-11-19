@@ -57,7 +57,7 @@ export default function HeroSection() {
             className="btn-cyber-pop inline-flex items-center gap-2 px-3 py-1.5 bg-[#0C0C0C] border border-[#262626] rounded-md text-[12px] font-mono font-medium text-white group cursor-pointer"
           >
             <XIcon size={12} className="text-[#AAAAAA] group-hover:text-white transition-colors" />
-            <span>X / Twitter</span>
+            <span>X (Twitter)</span>
           </a>
 
           <a

@@ -8,7 +8,7 @@ const mainNavItems = [
   { id: 'experience', label: 'experience' },
   { id: 'projects', label: 'projects' },
   { id: 'research', label: 'research' },
-  { id: 'public', label: 'x / public' },
+  { id: 'public', label: 'x · public' },
   { id: 'certifications', label: 'certifications' },
 ];
 
@@ -83,7 +83,7 @@ export default function SidebarNavigation({
               className="group block"
             >
               <span className="font-mono text-[11px] font-bold text-white tracking-widest uppercase block transition-colors">
-                EK / EKAANSH
+                EK · EKAANSH
               </span>
             </a>
           </div>

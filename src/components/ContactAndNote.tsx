@@ -147,7 +147,7 @@ export default function ContactAndNote({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#888888] hover:text-white transition-colors"
-                    title="X / Twitter"
+                    title="X (Twitter)"
                   >
                     <XIcon size={14} />
                   </a>
