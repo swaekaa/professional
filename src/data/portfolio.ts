@@ -225,9 +225,9 @@ export const projects = [
     challenges:
       "Guaranteeing structured negotiation outputs across multi-round agent turns while preventing adversarial prompt-injection attacks from overriding merchant minimum price bounds.",
     github: "https://github.com/swaekaa/NEXORA",
-    demo: "https://github.com/swaekaa/NEXORA",
+    demo: "https://nexora-frontend.vercel.app",
     gif: "/images/projects/nexora_landing.gif",
-    gifCaption: "Live Negotiation Arena: Multi-round autonomous B2B agent haggling, policy validation, and Razorpay settlement"
+    gifCaption: "Live Negotiation Arena: Multi round autonomous B2B agent haggling, real time dialogue exchange, policy validation, and Razorpay settlement"
   },
   {
     id: "visionsat",
