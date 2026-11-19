@@ -316,7 +316,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--accent) !important;
   border-color: #FFFFFF !important;
   color: #FFFFFF !important;
-  box-shadow: 4px 4px 0px var(--accent) !important;
+  box-shadow: 4px 4px 0px #FFFFFF !important;
+}
+.btn-cyber-pop-white:active {
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0px #FFFFFF !important;
 }
 .btn-cyber-pop-white:hover svg,
 .btn-cyber-pop-white:hover .arrow-pop {
