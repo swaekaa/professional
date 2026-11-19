@@ -380,34 +380,60 @@ export const xPosts = [
 
 export const certifications = [
   {
-    year: "2025",
-    title: "Neural Networks & Deep Learning",
-    issuer: "DeepLearning.AI (Coursera)",
-    credential: "Verified Certificate"
+    year: "2026",
+    title: "Introduction to Large Language Models",
+    issuer: "Simplilearn (SkillUp)",
+    credential: "Verified Certificate",
+    file: "/certificates/intro_to_llms.pdf"
+  },
+  {
+    year: "2026",
+    title: "Graph Theory Programming Camp",
+    issuer: "AlgoUniversity (Mentored by Codeforces Master)",
+    credential: "17 Advanced Graph Problems",
+    file: "/certificates/algouniversity_graphs.png"
   },
   {
     year: "2025",
-    title: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization & Optimization",
-    issuer: "DeepLearning.AI (Coursera)",
-    credential: "Verified Certificate"
+    title: "Deep Learning Specialization",
+    issuer: "DeepLearning.AI & Coursera (Andrew Ng)",
+    credential: "Verified Credly Specialization",
+    file: "/certificates/deep_learning_specialization.pdf"
   },
   {
     year: "2025",
-    title: "Convolutional Neural Networks",
-    issuer: "DeepLearning.AI (Coursera)",
-    credential: "Verified Certificate"
+    title: "Design and Analysis of Algorithms (DAA)",
+    issuer: "NPTEL & IIT Kharagpur (Ministry of Education)",
+    credential: "Elite Academic Certification",
+    file: "/certificates/nptel_daa.pdf"
   },
   {
     year: "2025",
-    title: "Deep Learning Specialization Badge",
-    issuer: "Credly",
-    credential: "Verified Badge"
+    title: "Red Hat System Administration (RH124 & RH134)",
+    issuer: "Red Hat Academy",
+    credential: "Enterprise Linux Certification",
+    file: "/certificates/red_hat_rh134.pdf"
   },
   {
     year: "2025",
-    title: "HackerzStreet 2025 Finalist & Sparkathon 2025",
-    issuer: "National Hackathons",
-    credential: "Finalist & Recognition"
+    title: "MUJ HackX 3.0 International Hackathon",
+    issuer: "Department of CSE & E-Cell MUJ",
+    credential: "Hackathon Recognition",
+    file: "/certificates/muj_hackx_3.jpg"
+  },
+  {
+    year: "2024",
+    title: "Database Design & Programming with SQL",
+    issuer: "Oracle Academy",
+    credential: "Enterprise Database Certification",
+    file: "/certificates/oracle_database_sql.pdf"
+  },
+  {
+    year: "2024",
+    title: "Object Oriented Programming Using Java",
+    issuer: "GeeksforGeeks (MUJ Collaboration)",
+    credential: "10 Week Course Completion",
+    file: "/certificates/gfg_java_oop.pdf"
   }
 ];
 

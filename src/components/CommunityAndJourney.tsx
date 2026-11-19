@@ -1,3 +1,4 @@
+import { ArrowUpRight } from 'lucide-react';
 import { certifications, journey, skills, education } from '../data/portfolio';
 
 export default function CommunityAndJourney() {
@@ -59,18 +60,33 @@ export default function CommunityAndJourney() {
             <div
               key={i}
               data-cert={item.title}
-              className="py-2.5 border-b border-[#181818] last:border-0 flex items-start justify-between gap-4"
+              className="py-2.5 border-b border-[#181818] last:border-0 flex items-start justify-between gap-4 group"
             >
-              <div className="flex items-start gap-3.5">
+              <div className="flex items-start gap-3.5 min-w-0">
                 <span className="font-mono text-[11.5px] text-[#888888] shrink-0 mt-0.5">
                   {item.year}
                 </span>
-                <div>
-                  <h4 className="text-[15px] font-bold text-white">{item.title}</h4>
-                  <p className="text-[13px] text-white mt-0.5 font-normal">{item.issuer}</p>
+                <div className="min-w-0">
+                  {'file' in item && item.file ? (
+                    <a
+                      href={item.file}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link text-[15px] font-bold text-white hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5"
+                    >
+                      <span>{item.title}</span>
+                      <ArrowUpRight
+                        size={13}
+                        className="text-[#666666] group-hover/link:text-[var(--accent)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all shrink-0"
+                      />
+                    </a>
+                  ) : (
+                    <h4 className="text-[15px] font-bold text-white">{item.title}</h4>
+                  )}
+                  <p className="text-[13px] text-[#999999] mt-0.5 font-normal">{item.issuer}</p>
                 </div>
               </div>
-              <span className="font-mono text-[10.5px] text-white bg-transparent border border-[#252525] px-2 py-0.5 rounded shrink-0">
+              <span className="font-mono text-[10px] text-[#CCCCCC] bg-[#0E1015] border border-[#22242E] px-2 py-0.5 rounded shrink-0 self-start mt-0.5">
                 {item.credential}
               </span>
             </div>
