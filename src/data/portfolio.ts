@@ -1,6 +1,6 @@
 // ============================================================
 // PORTFOLIO DATA — Single source of truth for all content
-// Synchronized with live dossier at https://ekaansh-sawaria.vercel.app
+// Synchronized with live dossier at https://professional-psi-ten.vercel.app
 // ============================================================
 
 export const personal = {

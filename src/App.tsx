@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ThemeProvider } from './context/ThemeContext';
 import SidebarNavigation from './components/SidebarNavigation';
 import HeroSection from './components/HeroSection';
@@ -91,6 +93,8 @@ export default function App() {
   return (
     <ThemeProvider>
       <PortfolioContent />
+      <Analytics />
+      <SpeedInsights />
     </ThemeProvider>
   );
 }
