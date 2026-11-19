@@ -9,6 +9,7 @@ const navItems = [
   { id: 'research', label: 'research' },
   { id: 'github', label: 'github' },
   { id: 'leetcode', label: 'leetcode' },
+  { id: 'toolkit', label: 'toolkit' },
   { id: 'certifications', label: 'certifications' },
   { id: 'journey', label: 'journey' },
   { id: 'public', label: 'x · public' },

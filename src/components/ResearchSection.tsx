@@ -15,6 +15,24 @@ export default function ResearchSection() {
   const [zoomImage, setZoomImage] = useState<ZoomImageData | null>(null);
   const [zoomScale, setZoomScale] = useState<number>(1);
 
+  const handleToggle = (id: string, e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const willOpen = openId !== id;
+    const buttonEl = e.currentTarget;
+    setOpenId(willOpen ? id : null);
+
+    if (willOpen) {
+      // Smoothly align viewport so the top of the section where it dropped down from stays in view
+      setTimeout(() => {
+        if (buttonEl) {
+          const rect = buttonEl.getBoundingClientRect();
+          const targetY = window.scrollY + rect.top - 80;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+        }
+      }, 40);
+    }
+  };
+
   // Handle keyboard controls (Escape to close, + / - to scale, 0 to reset)
   useEffect(() => {
     if (!zoomImage) return;
@@ -61,8 +79,9 @@ export default function ResearchSection() {
               className="group border-b border-[#181818] last:border-0 pb-4 transition-colors"
             >
               <button
-                onClick={() => setOpenId(isOpen ? null : item.id)}
-                className="w-full text-left flex items-start justify-between gap-4 cursor-pointer py-1.5"
+                type="button"
+                onClick={(e) => handleToggle(item.id, e)}
+                className="w-full text-left flex items-start justify-between gap-4 cursor-pointer py-1.5 select-none"
                 aria-expanded={isOpen}
               >
                 <div>

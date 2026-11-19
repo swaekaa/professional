@@ -8,11 +8,11 @@ export const personal = {
   handle: "swaekaa",
   initials: "EK",
   title: "Software Engineer · Multi-Agent RAG & Distributed Systems",
-  tagline: "Final-Year Computer Science @ Manipal University Jaipur · Ex-ASE Intern @ Accenture · Available for Internships Jan 2027",
+  tagline: "Final-Year Computer Science @ Manipal University Jaipur · Ex-ASE Intern @ Accenture · Available for Internships & Full-Time Roles Jan 2027",
   location: "Jaipur & Bangalore, India",
   email: "sawariaekaansh@gmail.com",
   phone: "8108700827",
-  availability: "Available for Internships · Starting January 2027",
+  availability: "Available for Internships & Full-Time Roles · Starting January 2027",
   github: "https://github.com/swaekaa",
   githubUsername: "swaekaa",
   leetcode: "https://leetcode.com/u/meanturtle/",
@@ -26,11 +26,11 @@ export const personal = {
   linkedin: "https://www.linkedin.com/in/sawaria-ekaansh/",
   resume: "/resume.pdf",
   bioHeadline: "Final-Year Computer Science @ Manipal University Jaipur",
-  subHeadline: "Ex-ASE Intern @ Accenture · Open for Jan 2027 Internships · Jaipur & Bangalore, India",
+  subHeadline: "Ex-ASE Intern @ Accenture · Open for Jan 2027 Internships & Full-Time Roles · Jaipur & Bangalore, India",
   bioParagraphs: [
     "Final-year Computer Science undergraduate at Manipal University Jaipur, specializing in multi-agent orchestration, hybrid RAG pipelines, and scalable backend systems.",
     "At Accenture, I worked as an Associate Software Engineering Intern architecting an enterprise multi-agent RAG platform, coordinating autonomous tool-using agents via LangGraph state machines and engineering hybrid BM25 and dense retrieval with cross-encoder reranking.",
-    "Available for Software Engineering internships starting January 2027 (Jaipur, Bangalore, or Remote)."
+    "Available for Software Engineering internships and full-time roles starting January 2027 (Jaipur, Bangalore, or Remote)."
   ],
   interests: [
     "Agentic AI & Multi-Agent Orchestration",

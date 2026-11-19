@@ -171,7 +171,7 @@ export default function PublicXSection() {
           href={personal.x}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white text-black hover:bg-[#E5E5E5] rounded-full font-mono text-[12px] font-bold transition-all shrink-0 cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white text-black hover:bg-[var(--accent)] hover:text-white rounded-full font-mono text-[12px] font-bold transition-all shrink-0 cursor-pointer shadow-xs"
         >
           <XIcon size={12} />
           <span>Follow {personal.xHandle}</span>

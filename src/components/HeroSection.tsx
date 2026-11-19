@@ -33,7 +33,7 @@ export default function HeroSection() {
               <span className="text-[#444444] hidden sm:inline">·</span>
               <span className="flex items-center gap-1 text-[#CCCCCC]">
                 <Calendar size={11} style={{ color: 'var(--accent)' }} />
-                <span>Available Jan 2027</span>
+                <span>Internships & Full-Time · Jan 2027</span>
               </span>
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function HeroSection() {
           </p>
 
           <p className="text-[#D4D4D4]">
-            Actively seeking Software Engineering internships starting <strong className="text-white font-bold">January 2027</strong> in Jaipur, Bangalore, or remote.
+            Actively seeking Software Engineering internships and full-time roles starting <strong className="text-white font-bold">January 2027</strong> in Jaipur, Bangalore, or remote.
           </p>
         </div>
 
@@ -61,11 +61,11 @@ export default function HeroSection() {
               href={personal.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-cyber-pop inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-mono text-[12.5px] font-bold rounded-md hover:bg-[#E5E5E5] transition-all cursor-pointer shadow-sm group"
+              className="btn-cyber-pop inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-mono text-[12.5px] font-bold rounded-md transition-all duration-200 cursor-pointer shadow-sm group hover:bg-[var(--accent)] hover:text-white"
             >
-              <FileText size={14} className="text-black" />
+              <FileText size={14} className="text-current transition-colors" />
               <span>Resume</span>
-              <ArrowUpRight size={13} className="arrow-pop transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight size={13} className="arrow-pop transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-current" />
             </a>
 
             <a
