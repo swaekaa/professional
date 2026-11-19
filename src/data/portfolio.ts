@@ -307,7 +307,8 @@ export const research = [
     images: [
       { src: "/images/research/llm_quant_fp16.png", caption: "Fig 1. Layer wise noise sensitivity across Phi 2 layers (Log Scale)" },
       { src: "/images/research/llm_quant_rank.png", caption: "Fig 2. Layer sensitivity score ranking and Pareto allocation" },
-      { src: "/images/research/llm_quant_ppl.png", caption: "Fig 3. Perplexity and throughput trade off across bit widths" }
+      { src: "/images/research/llm_quant_ppl.png", caption: "Fig 3. Perplexity and throughput trade off across bit widths" },
+      { src: "/images/research/llm_quant_comp.png", caption: "Fig 4. Component-level masking: Attention vs. MLP blocks (Log Scale)" }
     ]
   },
   {
