@@ -286,15 +286,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cyberpunk Tactile Offset / Hard Shadow Pop (Option 4) */
 .btn-cyber-pop {
-  transition: transform 0.15s cubic-bezier(0, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0, 0, 0.2, 1), border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  transition: transform 0.15s cubic-bezier(0, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0, 0, 0.2, 1), border-color 0.15s ease, background-color 0.15s ease;
   position: relative;
-  border: 1px solid transparent;
 }
 .btn-cyber-pop:hover {
   transform: translate(-3px, -3px);
-  border-color: #FFFFFF !important;
-  background-color: var(--accent) !important;
-  color: #FFFFFF !important;
+  border-color: var(--accent) !important;
+  background-color: #0F0F0F;
+  color: #FFFFFF;
   box-shadow: 4px 4px 0px var(--accent);
   z-index: 2;
 }
@@ -304,9 +303,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 .btn-cyber-pop:hover .arrow-pop {
   transform: translate(1.5px, -1.5px);
-  color: #FFFFFF !important;
+  color: #FFFFFF;
 }
-.btn-cyber-pop:hover svg {
+
+/* White buttons only (Resume in intro & Open Mail in contact): hover accent background with white outline */
+.btn-cyber-pop-white {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid transparent !important;
+}
+.btn-cyber-pop-white:hover {
+  background-color: var(--accent) !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+  box-shadow: 4px 4px 0px var(--accent) !important;
+}
+.btn-cyber-pop-white:hover svg,
+.btn-cyber-pop-white:hover .arrow-pop {
   color: #FFFFFF !important;
   stroke: #FFFFFF !important;
 }

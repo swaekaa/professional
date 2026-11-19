@@ -173,7 +173,7 @@ export default function ContactAndNote({
               </button>
               <a
                 href={`mailto:${personal.email}`}
-                className="btn-cyber-pop px-3 py-1 bg-white text-black font-mono text-[11px] font-bold rounded cursor-pointer"
+                className="btn-cyber-pop btn-cyber-pop-white px-3 py-1 font-mono text-[11px] font-bold rounded cursor-pointer"
               >
                 open mail
               </a>
