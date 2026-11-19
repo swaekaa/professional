@@ -15,7 +15,6 @@ import LastFmCapsule from './components/LastFmCapsule';
 import PixelTreesLeft from './components/PixelTreesLeft';
 import PixelTreesRight from './components/PixelTreesRight';
 import PixelForestFloor from './components/PixelForestFloor';
-import FadeContent from './components/FadeContent';
 import './index.css';
 
 function PortfolioContent() {
@@ -69,36 +68,18 @@ function PortfolioContent() {
 
         {/* Main Content Column (Restrained narrow width: ~540–560px, journal style) */}
         <main className="w-full md:max-w-[560px] flex-1 min-w-0">
-          <FadeContent trigger="mount" duration={1} blur={false}>
-            <HeroSection />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <GithubHeatmap />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <LeetCodeStats />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <ExperienceTimeline />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <ProjectList />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <ResearchSection />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <PublicXSection />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <CommunityAndJourney />
-          </FadeContent>
-          <FadeContent threshold={0.12} duration={1}>
-            <ContactAndNote
-              isNoteModalOpen={isNoteModalOpen}
-              onCloseNoteModal={() => setIsNoteModalOpen(false)}
-            />
-          </FadeContent>
+          <HeroSection />
+          <GithubHeatmap />
+          <LeetCodeStats />
+          <ExperienceTimeline />
+          <ProjectList />
+          <ResearchSection />
+          <PublicXSection />
+          <CommunityAndJourney />
+          <ContactAndNote
+            isNoteModalOpen={isNoteModalOpen}
+            onCloseNoteModal={() => setIsNoteModalOpen(false)}
+          />
           <Footer />
         </main>
       </div>
