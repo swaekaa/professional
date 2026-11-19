@@ -20,7 +20,7 @@ export const personal = {
   xHandle: "@swaaeka",
   lastfm: "https://www.last.fm/user/moanturtle",
   lastfmUsername: "moanturtle",
-  avatar: "/images/profile-portrait.png",
+  avatar: "/images/profile-x.jpg",
   xBio: "very avg comp science student… also likes grapes. Ex-ASE @accenture",
   linkedin: "https://www.linkedin.com/in/sawaria-ekaansh/",
   resume: "/resume.pdf",
@@ -355,7 +355,7 @@ export const xPosts = [
     date: "Oct 29",
     handle: "@swaaeka",
     author: "Ekaansh Sawaria",
-    avatar: "/images/profile-portrait.png",
+    avatar: "/images/profile-x.jpg",
     text: "My biggest takeaway from KRPO so far:\n\nA reward curve improving doesn't automatically mean the driving policy is improving.\n\nYou need independent evaluation, collision counts, lap validity, and replay inspection.",
     url: "https://x.com/swaaeka/status/2115843601829945501"
   },
@@ -364,7 +364,7 @@ export const xPosts = [
     date: "Oct 29",
     handle: "@swaaeka",
     author: "Ekaansh Sawaria",
-    avatar: "/images/profile-portrait.png",
+    avatar: "/images/profile-x.jpg",
     text: "replay was designed as part of the evaluation pipeline.\n\npython simulation runs into JSON containing position, heading, wheel velocities, steering, and boost state.\n\nThree.js scene can then visualize the run.\n\nThis connects numerical benchmarks with the actual driving behavior.",
     url: "https://x.com/swaaeka/status/2115841958455464316"
   },
@@ -373,7 +373,7 @@ export const xPosts = [
     date: "Oct 29",
     handle: "@swaaeka",
     author: "Ekaansh Sawaria",
-    avatar: "/images/profile-portrait.png",
+    avatar: "/images/profile-x.jpg",
     text: "hardest parts of RL racing is reward design.\n\nreward speed and progress too aggressively, the agent can learn to optimize the score rather than drive cleanly.\n\nit combines progress, velocity, boost usage, racing-line behavior, proximity, deviation, collisions, and lap completion.",
     url: "https://x.com/swaaeka/status/2115839417055379574"
   }
