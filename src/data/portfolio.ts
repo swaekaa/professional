@@ -413,24 +413,34 @@ export const certifications = [
 
 export const journey = [
   {
-    year: "2026",
-    event: "Accenture · Associate Software Engineering Intern",
-    desc: "Led team of 3 interns architecting enterprise multi-agent RAG platform with Grok Build 0.1, PageIndexer, BM25, dense retrieval, and QuadRank."
-  },
-  {
-    year: "2025",
-    event: "HackerzStreet Finalist & Quantization Sensitivity Research",
-    desc: "Finalist at HackerzStreet 2025 and recognized at Sparkathon 2025. Conducted layer-wise sensitivity profiling on DistilBERT & Phi-2 and trained KRPO autonomous RL racing policies."
-  },
-  {
-    year: "2024",
-    event: "VisionSat Satellite Land-Use Classification",
-    desc: "Engineered ResNet-18 model achieving 97.24% accuracy across 10 land-use classes with real-time Grad-CAM spatial explainability."
+    year: "2019",
+    event: "The First Spark · Java & Object Oriented Foundations",
+    desc: "In 8th grade, I picked Java as my optional subject and fell in love with the dynamic power of code, realizing you could create whatever you imagined. I started learning object oriented programming to master syntax and understand how classes, objects, and state really work."
   },
   {
     year: "2023",
-    event: "Manipal University Jaipur · B.Tech in Computer Science",
-    desc: "Commenced B.Tech in CS (current CGPA: 8.51 out of 10). Graduated Class XII ICSE from Hiranandani Foundation School (81%)."
+    event: "Manipal University Jaipur · Discovering Machine Learning",
+    desc: "Joined Manipal University Jaipur for my B.Tech in Computer Science and pivoted into AI and Machine Learning. I studied ML and deep learning through Andrew Ng's courses, learning the core mathematics and training neural networks from first principles."
+  },
+  {
+    year: "2024",
+    event: "Deep Learning in Practice · VisionSat & Hackathons",
+    desc: "Started implementing AI into working projects, building VisionSat for explainable satellite land-use classification with real-time Grad-CAM heatmaps. Participated in a bunch of hackathons: some went great, others were tough learning lessons, but each built real intuition for rapid engineering."
+  },
+  {
+    year: "2025",
+    event: "Language Models, Embeddings & RExplain",
+    desc: "Gained a deep fascination for Large Language Models, semantic search, and vector embeddings beyond basic chatbots. Built RExplain to parse complex codebases with AST tree analysis and interactive RAG, moving from toy demos to structured developer tooling."
+  },
+  {
+    year: "2026",
+    event: "Accenture · Multi Agent Orchestration",
+    desc: "Earned a spot at Accenture this summer as an Associate Software Engineering Intern, taking an agentic approach. Collaborated with a team of three interns to architect an enterprise multi agent RAG platform with dynamic tool execution and hybrid retrieval."
+  },
+  {
+    year: "Present",
+    event: "Looking Ahead · Excited for the Future",
+    desc: "Excited for what comes next: pushing the boundaries of intelligent systems, autonomous agentic workflows, and turning emerging AI capabilities into reliable software."
   }
 ];
 

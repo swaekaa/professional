@@ -131,7 +131,7 @@ export default function CommunityAndJourney() {
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
             <span className="uppercase tracking-wider">journey</span>
           </div>
-          <span className="text-[#888888] font-mono text-[11px]">2022 to present</span>
+          <span className="text-[#888888] font-mono text-[11px]">2019 to present</span>
         </div>
 
         <div className="relative pl-6 border-l border-[#222222] space-y-6">
