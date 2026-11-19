@@ -10,7 +10,6 @@ export default function ExperienceTimeline() {
       {/* Section Header with Accent Color */}
       <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
         <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
-          <span>/</span>
           <span className="uppercase tracking-wider">experience</span>
         </div>
         <span className="text-[#888888] font-mono text-[11px]">employment log</span>

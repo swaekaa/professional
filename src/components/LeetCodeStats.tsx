@@ -79,7 +79,6 @@ export default function LeetCodeStats() {
       {/* Section Header with Accent Color */}
       <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
         <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
-          <span>/</span>
           <span className="uppercase tracking-wider">leetcode</span>
           <span className="text-[#888888] font-normal text-[11px]">· @{personal.leetcodeUsername}</span>
         </div>

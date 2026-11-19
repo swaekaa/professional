@@ -7,28 +7,36 @@ export default function CommunityAndJourney() {
       <section id="skills" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
-            <span>/</span>
             <span className="uppercase tracking-wider">toolkit</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">core competencies</span>
         </div>
 
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {Object.entries(skills).map(([category, items]) => (
-            <div key={category}>
-              <h4 className="font-mono text-[10.5px] font-bold text-[#AAAAAA] tracking-widest uppercase mb-2">
-                {category}
-              </h4>
+            <div
+              key={category}
+              className="p-3.5 bg-[#090909] border border-[#1A1A1A] hover:border-[#282828] rounded-xl flex flex-col justify-between transition-colors"
+            >
+              <div className="flex items-center justify-between mb-2.5">
+                <div className="flex items-center gap-1.5 font-mono text-[11px] font-bold text-[#CCCCCC] uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--accent)' }} />
+                  <span>{category}</span>
+                </div>
+                <span className="font-mono text-[10px] text-[#666666]">
+                  {items.length} {items.length === 1 ? 'skill' : 'skills'}
+                </span>
+              </div>
               <div className="flex flex-wrap gap-1.5">
                 {items.map((skill) => (
                   <span
                     key={skill}
                     data-skill={skill}
-                    className="font-mono text-[10.5px] text-white bg-transparent border border-[#222222] hover:border-[#383838] px-2.5 py-1 rounded transition-colors cursor-default"
+                    className="font-mono text-[10.5px] text-[#DDDDDD] bg-[#111216] border border-[#20222A] hover:border-[#383E4E] px-2 py-0.5 rounded transition-colors cursor-default"
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--accent)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#222222')}
+                    onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#20222A')}
                   >
-                    [{skill}]
+                    {skill}
                   </span>
                 ))}
               </div>
@@ -41,7 +49,6 @@ export default function CommunityAndJourney() {
       <section id="certifications" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
-            <span>/</span>
             <span className="uppercase tracking-wider">certifications</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">academic & technical</span>
@@ -75,7 +82,6 @@ export default function CommunityAndJourney() {
       <section id="education" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
-            <span>/</span>
             <span className="uppercase tracking-wider">education</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">academic trail</span>
@@ -88,24 +94,23 @@ export default function CommunityAndJourney() {
               data-edu={`${item.institution} (${item.degree})`}
               className="p-4 bg-[#090909] border border-[#1A1A1A] rounded-lg hover:border-[#282828] transition-colors"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-[15.5px] font-bold text-white">
-                      {item.institution}
-                    </h3>
-                    <span className="text-[#555555]">·</span>
-                    <span className="font-mono text-[11px] text-[#888888] uppercase tracking-wider">{item.type}</span>
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h3 className="text-[16px] font-bold text-white tracking-tight">
+                    {item.institution}
+                  </h3>
+                  <div className="font-mono text-[11px] text-[#888888] uppercase tracking-wider mt-0.5">
+                    {item.type}
                   </div>
-                  <p className="text-[14px] text-white font-medium mt-0.5">{item.degree}</p>
+                  <p className="text-[14px] text-white font-medium mt-1.5">{item.degree}</p>
                   {item.details && (
-                    <p className="font-mono text-[11.5px] text-[#999999] mt-1">{item.details}</p>
+                    <p className="font-mono text-[11.5px] text-[#999999] mt-1 leading-relaxed">{item.details}</p>
                   )}
                 </div>
 
                 <div className="text-left sm:text-right shrink-0 mt-1 sm:mt-0">
                   <span
-                    className="font-mono text-[14.5px] font-bold"
+                    className="font-mono text-[14px] font-bold block"
                     style={{ color: 'var(--accent)' }}
                   >
                     {item.score}
@@ -124,7 +129,6 @@ export default function CommunityAndJourney() {
       <section id="journey" className="py-10 border-b border-[#181818] animate-fade-in">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
-            <span>/</span>
             <span className="uppercase tracking-wider">journey</span>
           </div>
           <span className="text-[#888888] font-mono text-[11px]">2022 to present</span>

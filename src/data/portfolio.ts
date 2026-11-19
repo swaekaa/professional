@@ -435,8 +435,6 @@ export const journey = [
 ];
 
 export const skills = {
-  "LANGUAGES": ["PYTHON", "JAVA", "C++", "JAVASCRIPT", "SQL"],
-  "BACKEND": ["FASTAPI", "FLASK", "REST APIS", "MICROSERVICES", "SQLALCHEMY", "PAYMENT APIS"],
   "AI & ML": [
     "AGENTIC AI",
     "LLMS",
@@ -448,8 +446,8 @@ export const skills = {
     "SCIKIT-LEARN",
     "SENTENCETRANSFORMERS"
   ],
-  "DATABASES": ["POSTGRESQL", "MYSQL", "VECTOR DATABASES"],
-  "DEVOPS": ["DOCKER", "GIT", "GITHUB", "CI & CD"],
+  "BACKEND": ["FASTAPI", "FLASK", "REST APIS", "MICROSERVICES", "SQLALCHEMY", "PAYMENT APIS"],
+  "LANGUAGES": ["PYTHON", "JAVA", "C++", "JAVASCRIPT", "SQL"],
   "CORE CS": [
     "DSA",
     "OOP",
@@ -458,5 +456,7 @@ export const skills = {
     "COMPUTER NETWORKS",
     "DISTRIBUTED SYSTEMS",
     "SYSTEM DESIGN"
-  ]
+  ],
+  "DATABASES": ["POSTGRESQL", "MYSQL", "VECTOR DATABASES"],
+  "DEVOPS": ["DOCKER", "GIT", "GITHUB", "CI & CD"]
 };

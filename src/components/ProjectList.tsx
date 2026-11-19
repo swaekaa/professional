@@ -32,7 +32,6 @@ export default function ProjectList() {
       {/* Header with Accent Color */}
       <div className="flex items-center justify-between mb-6 font-mono text-[12px]">
         <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
-          <span>/</span>
           <span className="uppercase tracking-wider">projects</span>
         </div>
         <span className="text-[#888888] font-mono text-[11px]">0{projects.length} selected</span>
