@@ -39,10 +39,7 @@ export default function PixelTreesLeft() {
 
   return (
     <div
-      className="fixed bottom-0 left-0 pointer-events-none select-none z-0 flex items-end justify-start overflow-hidden"
-      style={{
-        maxWidth: 'calc((100vw - 880px) / 2 - 16px)',
-      }}
+      className="hidden md:flex fixed bottom-0 left-0 pointer-events-none select-none z-0 items-end justify-start"
       aria-hidden="true"
     >
       <div className="relative">
