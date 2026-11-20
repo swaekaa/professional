@@ -1,6 +1,6 @@
 // ============================================================
 // PORTFOLIO DATA — Single source of truth for all content
-// Synchronized with live dossier at https://professional-psi-ten.vercel.app
+// Synchronized with live dossier at https://www.ekaanshsawaria.com
 // ============================================================
 
 export const personal = {
@@ -28,18 +28,19 @@ export const personal = {
   bioHeadline: "Final-Year Computer Science @ Manipal University Jaipur",
   subHeadline: "Ex-ASE Intern @ Accenture · Open for Jan 2027 Internships & Full-Time Roles · Jaipur & Bangalore, India",
   bioParagraphs: [
-    "Final-year Computer Science undergraduate at Manipal University Jaipur, specializing in multi-agent orchestration, hybrid RAG pipelines, and scalable backend systems.",
-    "At Accenture, I worked as an Associate Software Engineering Intern architecting an enterprise multi-agent RAG platform, coordinating autonomous tool-using agents via LangGraph state machines and engineering hybrid BM25 and dense retrieval with cross-encoder reranking.",
+    "Final-year Computer Science undergraduate at Manipal University Jaipur, having previously interned at Accenture as an Associate Software Engineering Intern. I specialize in multi-agent orchestration, deterministic retrieval architectures, and scalable backend engineering.",
+    "Outside of engineering, I am passionate about sports (both playing and watching games live), discovering eclectic music across diverse genres (tracked live via Last.fm), and watching thought-provoking films and cinema.",
     "Available for Software Engineering internships and full-time roles starting January 2027 (Jaipur, Bangalore, or Remote)."
   ],
   interests: [
     "Agentic AI & Multi-Agent Orchestration",
     "RAG & Hybrid Search Engines",
     "Scalable Backend & Microservices",
-    "Deterministic Decision Systems",
+    "Sports (Playing & Watching)",
+    "Music & Vinyl Exploration",
+    "Films & Cinema",
     "Transformer Quantization",
-    "Distributed Systems & Payment APIs",
-    "Computer Vision & Explainable AI"
+    "Distributed Systems & Payment APIs"
   ],
   stats: {
     contributions: "950+",

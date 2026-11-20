@@ -11,7 +11,7 @@ interface ZoomImageData {
 }
 
 export default function ResearchSection() {
-  const [openId, setOpenId] = useState<string | null>('llm-quant-sense');
+  const [openId, setOpenId] = useState<string | null>(null);
   const [zoomImage, setZoomImage] = useState<ZoomImageData | null>(null);
   const [zoomScale, setZoomScale] = useState<number>(1);
 

@@ -42,11 +42,11 @@ export default function HeroSection() {
         {/* Lead Narrative */}
         <div className="text-[15px] sm:text-[15.5px] text-white leading-[1.8] space-y-3.5 font-normal pt-1">
           <p>
-            Final-year Computer Science undergraduate at <strong className="text-white font-bold">Manipal University Jaipur</strong>, specializing in multi-agent orchestration, deterministic retrieval architectures, and scalable backend engineering.
+            Final-year Computer Science undergraduate at <strong className="text-white font-bold">Manipal University Jaipur</strong>, having previously interned at <strong className="text-white font-bold">Accenture</strong> as an Associate Software Engineering Intern. I specialize in multi-agent orchestration, deterministic retrieval architectures, and scalable backend engineering.
           </p>
 
           <p>
-            At <strong className="text-white font-bold">Accenture</strong>, I worked as an Associate Software Engineering Intern architecting an enterprise multi-agent RAG platform, coordinating autonomous tool-using agents via LangGraph state machines and engineering hybrid BM25 and dense retrieval with cross-encoder reranking.
+            Outside of engineering, I am passionate about sports — whether playing out on the court or following live games — discovering eclectic music across diverse genres (tracked live via the Last.fm capsule above), and watching thought-provoking films and cinema.
           </p>
 
           <p className="text-[#D4D4D4]">
