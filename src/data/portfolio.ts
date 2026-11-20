@@ -29,7 +29,7 @@ export const personal = {
   subHeadline: "Ex-ASE Intern @ Accenture · Open for Jan 2027 Internships & Full-Time Roles · Jaipur & Bangalore, India",
   bioParagraphs: [
     "Final-year Computer Science undergraduate at Manipal University Jaipur, having previously interned at Accenture as an Associate Software Engineering Intern. I specialize in multi-agent orchestration, deterministic retrieval architectures, and scalable backend engineering.",
-    "Outside of engineering, I am passionate about sports (both playing and watching games live), discovering eclectic music across diverse genres (tracked live via Last.fm), and watching thought-provoking films and cinema.",
+    "Outside of engineering, I enjoy playing and watching sports, music, and films.",
     "Available for Software Engineering internships and full-time roles starting January 2027 (Jaipur, Bangalore, or Remote)."
   ],
   interests: [

@@ -46,7 +46,7 @@ export default function HeroSection() {
           </p>
 
           <p>
-            Outside of engineering, I am passionate about sports — whether playing out on the court or following live games — discovering eclectic music across diverse genres (tracked live via the Last.fm capsule above), and watching thought-provoking films and cinema.
+            Outside of engineering, I enjoy playing and watching sports, music, and films.
           </p>
 
           <p className="text-[#D4D4D4]">
