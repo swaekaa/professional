@@ -134,7 +134,7 @@ export default function ContactAndNote({
   return (
     <>
       {/* Contact Section */}
-      <section id="contact" className="py-10 border-b border-[#181818] animate-fade-in">
+      <section id="contact" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
             <span className="uppercase tracking-wider">contact</span>

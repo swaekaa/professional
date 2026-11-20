@@ -60,7 +60,7 @@ export default function ResearchSection() {
   }, [zoomImage]);
 
   return (
-    <section id="research" className="py-10 border-b border-[#181818] animate-fade-in">
+    <section id="research" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
       {/* Header with Accent Color */}
       <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
         <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>

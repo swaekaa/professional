@@ -57,7 +57,14 @@ export default function SidebarNavigation({
     setMobileMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        const yOffset = -56;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -207,32 +214,32 @@ export default function SidebarNavigation({
           </div>
         </div>
 
-        {/* Mobile Full Dropdown Menu */}
+        {/* Mobile Full Dropdown Menu — Modern Rounded Panel */}
         {mobileMenuOpen && (
           <nav
-            className="mt-3 pt-3 border-t border-[#1C1C1C] space-y-1 animate-fade-in"
+            className="mt-2.5 p-3 rounded-2xl bg-[#0A0A0A]/95 border border-[#202020] shadow-2xl backdrop-blur-xl animate-fade-in space-y-2.5"
             aria-label="Mobile navigation links"
           >
-            <div className="grid grid-cols-2 gap-1.5 pb-2">
+            <div className="grid grid-cols-2 gap-1.5 pb-1">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
                   <button
                     key={item.id}
                     onClick={() => scrollTo(item.id)}
-                    className={`flex items-center gap-2 px-2.5 py-1.5 rounded font-mono text-[12px] text-left transition-colors cursor-pointer ${
+                    className={`flex items-center gap-2 px-3 py-2 rounded-xl font-mono text-[12px] text-left transition-all duration-200 cursor-pointer border ${
                       isActive
-                        ? 'bg-[#141414] text-white font-bold'
-                        : 'text-[#999999] hover:text-white hover:bg-[#0E0E0E]'
+                        ? 'bg-[#1A1A1A] border-[#383838] text-white font-bold shadow-sm'
+                        : 'border-[#181818] bg-[#0E0E0E]/80 text-[#999999] hover:text-white hover:bg-[#161616] hover:border-[#282828]'
                     }`}
                   >
                     <span
-                      className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                        isActive ? 'opacity-100' : 'opacity-30'
+                      className={`w-1.5 h-1.5 rounded-full shrink-0 transition-transform ${
+                        isActive ? 'scale-125' : 'opacity-40'
                       }`}
                       style={{ backgroundColor: 'var(--accent)' }}
                     />
-                    <span>{item.label}</span>
+                    <span className="truncate">{item.label}</span>
                   </button>
                 );
               })}
@@ -244,12 +251,12 @@ export default function SidebarNavigation({
                   setMobileMenuOpen(false);
                   onOpenNoteModal();
                 }}
-                className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+                className="hover:text-white transition-colors cursor-pointer px-2.5 py-1 rounded-lg bg-[#141414] border border-[#222222] flex items-center gap-1"
                 style={{ color: 'var(--accent)' }}
               >
                 <span>[leave anonymous note]</span>
               </button>
-              <span>swipe or select section</span>
+              <span className="text-[10.5px] text-[#666666]">select section</span>
             </div>
           </nav>
         )}

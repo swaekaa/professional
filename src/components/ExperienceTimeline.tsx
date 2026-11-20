@@ -6,7 +6,7 @@ export default function ExperienceTimeline() {
   const [expandedId, setExpandedId] = useState<string | null>('accenture');
 
   return (
-    <section id="experience" className="py-10 border-b border-[#181818] animate-fade-in">
+    <section id="experience" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
       {/* Section Header with Accent Color */}
       <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
         <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
@@ -27,36 +27,69 @@ export default function ExperienceTimeline() {
               {/* Header Row */}
               <button
                 onClick={() => setExpandedId(isExpanded ? null : job.id)}
-                className="w-full text-left flex items-start justify-between gap-4 cursor-pointer py-1.5"
+                className="w-full text-left cursor-pointer py-1.5 group"
                 aria-expanded={isExpanded}
               >
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-[16px] font-bold text-white group-hover:text-white transition-colors">
-                      {job.company}
-                    </h3>
-                    <span className="text-[#666666]">·</span>
-                    <span className="text-[14.5px] font-semibold text-white">{job.role}</span>
+                {/* Desktop Layout: Side-by-side with full breathing room */}
+                <div className="hidden sm:flex items-start justify-between gap-4">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-[16px] font-bold text-white group-hover:text-white transition-colors">
+                        {job.company}
+                      </h3>
+                      <span className="text-[#666666]">·</span>
+                      <span className="text-[14.5px] font-semibold text-white">{job.role}</span>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-[12px] font-mono text-[#AAAAAA] mt-1">
+                      <span className="flex items-center gap-1 shrink-0">
+                        <MapPin size={11} style={{ color: 'var(--accent)' }} />
+                        {job.location}
+                      </span>
+                      <span className="text-[#444444]">·</span>
+                      <span className="text-white font-medium">
+                        {'tagline' in job && job.tagline ? job.tagline : 'Multi-Agent Enterprise RAG Platform'}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-2 text-[12px] font-mono text-[#AAAAAA] mt-1">
-                    <span className="flex items-center gap-1">
-                      <MapPin size={11} style={{ color: 'var(--accent)' }} />
-                      {job.location}
+                  <div className="flex items-center gap-3 shrink-0 text-right">
+                    <span className="font-mono text-[12px] text-[#AAAAAA] font-medium">
+                      {job.period}
                     </span>
-                    <span className="text-[#444444]">·</span>
-                    <span className="text-white font-medium">
-                      {'tagline' in job && job.tagline ? job.tagline : 'Multi Agent Enterprise RAG'}
-                    </span>
+                    <div className="text-[#888888] group-hover:text-white transition-colors">
+                      {isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 shrink-0 text-right">
-                  <span className="font-mono text-[12px] text-[#AAAAAA] font-medium">
-                    {job.period}
-                  </span>
-                  <div className="text-[#888888] group-hover:text-white transition-colors">
-                    {isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                {/* Mobile Layout: Clean vertical hierarchy so text and tagline never squish */}
+                <div className="sm:hidden space-y-1.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-[16px] font-bold text-white tracking-tight">
+                      {job.company}
+                    </h3>
+                    <div className="flex items-center gap-2 font-mono text-[11px] text-[#AAAAAA]">
+                      <span>{job.period}</span>
+                      <div className="text-[#888888]">
+                        {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-[14px] font-semibold text-white">
+                    {job.role}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] font-mono text-[#AAAAAA] pt-0.5">
+                    <span className="flex items-center gap-1 shrink-0">
+                      <MapPin size={11} style={{ color: 'var(--accent)' }} />
+                      {job.location}
+                    </span>
+                    <span className="text-[#555555]">·</span>
+                    <span className="text-white font-medium">
+                      {'tagline' in job && job.tagline ? job.tagline : 'Multi-Agent Enterprise RAG Platform'}
+                    </span>
                   </div>
                 </div>
               </button>

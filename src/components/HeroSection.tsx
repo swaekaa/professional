@@ -4,7 +4,7 @@ import { personal } from '../data/portfolio';
 
 export default function HeroSection() {
   return (
-    <section id="about" className="pt-2 pb-12 border-b border-[#181818] animate-fade-in">
+    <section id="about" className="pt-2 pb-12 border-b border-[#181818] animate-fade-in scroll-mt-16">
       {/* Identity Header */}
       <div className="space-y-4">
         <div className="flex items-start sm:items-center gap-4">

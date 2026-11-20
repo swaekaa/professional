@@ -28,7 +28,7 @@ export default function ProjectList() {
   }, [selectedProject]);
 
   return (
-    <section id="projects" className="py-10 border-b border-[#181818] animate-fade-in">
+    <section id="projects" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
       {/* Header with Accent Color */}
       <div className="flex items-center justify-between mb-6 font-mono text-[12px]">
         <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>

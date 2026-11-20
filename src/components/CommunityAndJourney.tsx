@@ -5,7 +5,7 @@ export default function CommunityAndJourney() {
   return (
     <>
       {/* Technical Toolkit Section */}
-      <section id="toolkit" className="py-10 border-b border-[#181818] animate-fade-in">
+      <section id="toolkit" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
             <span className="uppercase tracking-wider">toolkit</span>
@@ -47,7 +47,7 @@ export default function CommunityAndJourney() {
       </section>
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-10 border-b border-[#181818] animate-fade-in">
+      <section id="certifications" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
             <span className="uppercase tracking-wider">certifications</span>
@@ -60,42 +60,58 @@ export default function CommunityAndJourney() {
             <div
               key={i}
               data-cert={item.title}
-              className="py-2.5 border-b border-[#181818] last:border-0 flex items-start justify-between gap-4 group"
+              className="py-3 border-b border-[#181818] last:border-0 group"
             >
-              <div className="flex items-start gap-3.5 min-w-0">
-                <span className="font-mono text-[11.5px] text-[#888888] shrink-0 mt-0.5">
-                  {item.year}
-                </span>
-                <div className="min-w-0">
-                  {'file' in item && item.file ? (
-                    <a
-                      href={item.file}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/link text-[15px] font-bold text-white hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5"
-                    >
-                      <span>{item.title}</span>
-                      <ArrowUpRight
-                        size={13}
-                        className="text-[#666666] group-hover/link:text-[var(--accent)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all shrink-0"
-                      />
-                    </a>
-                  ) : (
-                    <h4 className="text-[15px] font-bold text-white">{item.title}</h4>
-                  )}
-                  <p className="text-[13px] text-[#999999] mt-0.5 font-normal">{item.issuer}</p>
+              <div className="flex items-start justify-between gap-3 sm:gap-4">
+                <div className="flex items-start gap-3 sm:gap-3.5 min-w-0 flex-1">
+                  <span className="font-mono text-[11.5px] text-[#888888] shrink-0 mt-0.5 w-9 sm:w-10">
+                    {item.year}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div>
+                      {'file' in item && item.file ? (
+                        <a
+                          href={item.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/link text-[15px] font-bold text-white hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5 flex-wrap"
+                        >
+                          <span>{item.title}</span>
+                          <ArrowUpRight
+                            size={13}
+                            className="text-[#666666] group-hover/link:text-[var(--accent)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all shrink-0"
+                          />
+                        </a>
+                      ) : (
+                        <h4 className="text-[15px] font-bold text-white leading-snug">{item.title}</h4>
+                      )}
+                    </div>
+
+                    {/* Mobile: Issuer and Credential Badge in natural flow */}
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 mt-1 sm:hidden">
+                      <p className="text-[13px] text-[#999999] font-normal">{item.issuer}</p>
+                      <span className="font-mono text-[10px] text-[#CCCCCC] bg-[#0E1015] border border-[#22242E] px-2 py-0.5 rounded shrink-0">
+                        {item.credential}
+                      </span>
+                    </div>
+
+                    {/* Desktop: Issuer only */}
+                    <p className="hidden sm:block text-[13px] text-[#999999] mt-0.5 font-normal">{item.issuer}</p>
+                  </div>
                 </div>
+
+                {/* Desktop: Credential badge on far right */}
+                <span className="hidden sm:inline-block font-mono text-[10px] text-[#CCCCCC] bg-[#0E1015] border border-[#22242E] px-2 py-0.5 rounded shrink-0 self-start mt-0.5">
+                  {item.credential}
+                </span>
               </div>
-              <span className="font-mono text-[10px] text-[#CCCCCC] bg-[#0E1015] border border-[#22242E] px-2 py-0.5 rounded shrink-0 self-start mt-0.5">
-                {item.credential}
-              </span>
             </div>
           ))}
         </div>
       </section>
 
       {/* Education Block with Comprehensive Academic History */}
-      <section id="education" className="py-10 border-b border-[#181818] animate-fade-in">
+      <section id="education" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
             <span className="uppercase tracking-wider">education</span>
@@ -142,7 +158,7 @@ export default function CommunityAndJourney() {
       </section>
 
       {/* Journey Timeline Section */}
-      <section id="journey" className="py-10 border-b border-[#181818] animate-fade-in">
+      <section id="journey" className="py-10 border-b border-[#181818] animate-fade-in scroll-mt-16">
         <div className="flex items-center justify-between mb-5 font-mono text-[12px]">
           <div className="flex items-center gap-1.5 font-bold" style={{ color: 'var(--accent)' }}>
             <span className="uppercase tracking-wider">journey</span>
